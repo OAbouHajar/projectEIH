@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<!-- Add Latest compiled and minified Autoaddress CSS --> 
+<link href="https://api.autoaddress.ie/2.0/control/css/autoaddress.min.css" rel="stylesheet"/> 
+</head> 
+<body> 
+<!-- Add placeholder div to your page to place the plugin --> 
+<div id="myDiv"></div>  
+
+<!-- Add jQuery to your page --> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Add Latest compiled and minified Autoaddress JS -->  
+<script src="https://api.autoaddress.ie/2.0/control/js/jquery.autoaddress.min.js"></script>
+
+<!-- Initialise the Autoaddress Plugin --> 
+<script type="text/javascript"> 
+   $(function(){
+      $("#myDiv").AutoAddress({ 
+         key : "YOUR_KEY" ,
+         vanityMode : true,
+         addressProfile : "Demo5LineV2",
+         country : "ie",
+         language : "en"
+      }); 
+   });
+</script>
+
+
+<iframe src="https://www.google.com/maps/" 
+width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</body> 
+</html>
