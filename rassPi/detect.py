@@ -53,6 +53,6 @@ for imagePath in imagePaths:
 		filename, len(rects), len(pick)))
 
 	# show the output images
-	#cv2.imshow("Before NMS", orig)
-	#cv2.imshow("After NMS", image)
-	#cv2.waitKey(0)
+	cv2.imshow("Before NMS", orig)
+	cv2.imshow("After NMS", image)
+	cv2.waitKey(0)
