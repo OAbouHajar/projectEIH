@@ -11,7 +11,6 @@ import imutils
 import cv2
 import pickle
 
-#pickle.dump( 0, open( "number.p", "wb" ) )
 
 # construct the argument parse and parse the arguments
 #ap = argparse.ArgumentParser()
@@ -24,7 +23,7 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
 # loop over the image paths
 #imagePaths = list(paths.list_images(args["images"]))
-imagePath = "images/person_029.bmp"
+imagePath = "/home/pi/year4/projectEIH/body-detect/images/pic.bmp"
 # load the image and resize it to (1) reduce detection time
 # and (2) improve detection accuracy
 image = cv2.imread(imagePath)
@@ -58,7 +57,7 @@ print("[INFO] {}: {} original boxes, {} after suppression".format(
 numberINNow = len(pick)
 fileNumber = pickle.load(open( "number.p", "rb" ))
 fileNumber += numberINNow
-pickle.dump( fileNumber, open( "number.p", "wb" ) )
+pickle.dump( fileNumber, open( "number.p", "wb" ) , protocol=2)
 
 
 print ("the current number of people in the building is : " , pickle.load(open( "number.p", "rb" )))

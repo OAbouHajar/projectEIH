@@ -4,6 +4,9 @@ import time
 import RPi.GPIO as GPIO
 from datetime import datetime
 import subprocess
+import pickle
+
+pickle.dump( 0, open( "number.p", "wb" ) , protocol=2 )
 
 x= True
 GPIO.setmode(GPIO.BCM)
@@ -22,9 +25,9 @@ while x:
     timeNow = str(datetime.now().strftime("%H,%M,%S"));
     pir.wait_for_motion()
     #camera.capture("/home/pi/year4/projectEIH/rassPi/pictres/"+timeNow+".png")
-    camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic.png")
+    camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic.bmp")
     GPIO.output(18,GPIO.HIGH)
-    subprocess.run(["python /home/pi/year4/projectEIH/body-detect/detect.py --images /home/pi/year4/projectEIH/body-detect/images/"], shell=True)
+    subprocess.run(["python /home/pi/year4/projectEIH/body-detect/detect.py"], shell=True)
     print("selfie taken  " + timeNow)
     #pir.wait_for_no_motion()
     GPIO.output(18,GPIO.LOW)
