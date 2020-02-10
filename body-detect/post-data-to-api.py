@@ -1,21 +1,25 @@
+from firebase import firebase
+firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', None)
 import requests
-import time
-import datetime
-import collections
+
+
+projectData = {    
+    "name": "testingFromUnum",
+    "buildingID" : "carlowITExit1",
+    "deviceId" : "rassPi521",
+    "numberOfPeople" : 20,
+    "timeUpdated" : "12:21",
+    "status" : False,
+    }
 
 
 
 
-url = 'https://eihtesting.free.beeceptor.com'
-req = requests.get(url)
-data = req.json()
-print('GET' , data)
+url = 'https://projecteih.firebaseio.com/carlowITUnum.json'
+
+r = requests.put(url, json=projectData)
+x= r.json()
+print(x)
 
 
-urlSend = 'http://eih.mocklab.io/number'
-toSendAPI = {
-  "numberOfPeopleInside": 2,
-  "timeStored": 3
-}
-reqSend = requests.post(urlSend, params=toSendAPI)
-print('POST' , reqSend)
+#curl -X PUT -d '{"user_id" : "sam", "text" : "Ahoy!"}'   'https://projecteih.firebaseio.com/message_list.json'
