@@ -3,19 +3,17 @@ firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', Non
 import requests
 
 
-projectData = {    
-    "name": "testingFromUnum",
-    "buildingID" : "carlowITExit1",
-    "deviceId" : "rassPi521",
-    "numberOfPeople" : 20,
-    "timeUpdated" : "12:21",
-    "status" : False,
-    }
 
+projectData = {
+    'buildingID': 'carlowITExit1',
+    'deviceId': 'rassPi521',
+    'name': 'Carlow IT Unum',
+    'numberOfPeopleIn': 1,
+    'numberOfPeopleOut': 0,
+    'status': False,
+    'timeUpdated': '12:21'}
 
-
-
-url = 'https://projecteih.firebaseio.com/carlowITUnum.json'
+url = 'https://projecteih.firebaseio.com/carlowIT.json'
 
 r = requests.put(url, json=projectData)
 x= r.json()
