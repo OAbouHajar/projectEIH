@@ -1,17 +1,25 @@
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', None)
 import requests
+import argparse
+import time
 
+ap = argparse.ArgumentParser()
+ap.add_argument("-n", "--numberOUT", type=int,
+help="Current number of people to send to the API")
 
+args = vars(ap.parse_args())
 
+currentNumber = args["numberOUT"]
+print ('currentNumber' , currentNumber)
 projectData = {
-    'buildingID': 'carlowITExit1',
-    'deviceId': 'rassPi521',
-    'name': 'Carlow IT Unum',
-    'numberOfPeopleIn': 1,
-    'numberOfPeopleOut': 0,
+    'buildingID': 'CarlowIT',
+    'deviceId': 'rassPi4-MainOUT',
+    'name': 'Carlow IT MAIN OUT',
+    'numberOfPeopleIn': 0,
+    'numberOfPeopleOut': currentNumber,
     'status': False,
-    'timeUpdated': '12:21'}
+    'timeUpdated': time.time()}
 
 url = 'https://projecteih.firebaseio.com/carlowIT.json'
 

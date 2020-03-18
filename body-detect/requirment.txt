@@ -1,3 +1,10 @@
 sudo pip install requests
 sudo pip install python-firebase
 sudo apt update && sudo apt-get install python-opencv python-scipy ipython
+pip3 install firebase
+pip3 install imutils
+pip3 install python_jwt
+pip3 install gcloud
+pip3 install sseclient
+pip3 install parse
+pip3 install requests_toolbelt
