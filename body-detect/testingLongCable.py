@@ -1,15 +1,22 @@
-# Write your code here :-)
+import time
+
 from gpiozero import MotionSensor
-from picamera import PiCamera
-import RPi.GPIO as GPIO
-from datetime import datetime
-import subprocess
+from gpiozero import LED
 
 pir = MotionSensor(4)
+red_led = LED(17)
+red_led.off()
 
+pir2 = MotionSensor(24)
 
-x= True
-while x:
-    print("project start")
+while True:
     pir.wait_for_motion()
-    print("selfie taken  ")
+    print('Motion detected')
+    pir2.wait_for_motion()
+    print('2 Motion detected')
+    red_led.on()
+    pir.wait_for_no_motion()
+    print('NO')
+    pir2.wait_for_no_motion()
+    print('NO 2')
+    red_led.off()
