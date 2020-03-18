@@ -15,8 +15,9 @@ pir2 = MotionSensor(24)
 startTime = time.time()
 
 while True:
+    print('PIR ONE DETECTING ....')
     if(pir.wait_for_motion()):
-        print("pir1 work")
+        print("> PIR ONE ON < ")
         p = subprocess.run(["python /home/pi/year4/projectEIH/body-detect/subprocessApp2.py"], shell=True)
         pir.wait_for_no_motion()
-        print("DONE")
+        print("STORED")
