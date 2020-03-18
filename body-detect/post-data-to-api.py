@@ -4,20 +4,28 @@ import requests
 import argparse
 import time
 
+## previouse number on the API
+url = 'https://projecteih.firebaseio.com/carlowIT.json'
+r = requests.get(url)
+x= r.json()
+preNumber = x['numberOfPeopleOut']
+
+
+## read the argument sent from the detect.py file with the number of new people detected
 ap = argparse.ArgumentParser()
 ap.add_argument("-n", "--numberOUT", type=int,
 help="Current number of people to send to the API")
-
 args = vars(ap.parse_args())
-
 currentNumber = args["numberOUT"]
-print ('currentNumber' , currentNumber)
+
+newNumber = preNumber + currentNumber
+
 projectData = {
     'buildingID': 'CarlowIT',
     'deviceId': 'rassPi4-MainOUT',
     'name': 'Carlow IT MAIN OUT',
     'numberOfPeopleIn': 0,
-    'numberOfPeopleOut': currentNumber,
+    'numberOfPeopleOut': newNumber,
     'status': False,
     'timeUpdated': time.time()}
 

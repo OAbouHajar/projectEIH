@@ -9,6 +9,7 @@ import numpy as np
 import argparse
 import imutils
 import cv2
+import os
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -49,9 +50,9 @@ for imagePath in imagePaths:
 
 	# show some information on the number of bounding boxes
 	filename = imagePath[imagePath.rfind("/") + 1:]
-	print("[INFO] {}: {} original boxes, {} after suppression".format(
-		filename, len(rects), len(pick)))
+	print("[INFO] {}: {} original boxes, {} after suppression".format(filename, len(rects), len(pick)))
 
+os.system('python3 /home/pi/year4/projectEIH/body-detect/post-data-to-api.py --numberOUT {}'.format(len(pick)) )
 	# show the output images
 	#cv2.imshow("Before NMS", orig)
 	#cv2.imshow("After NMS", image)

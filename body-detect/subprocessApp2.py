@@ -14,7 +14,7 @@ pir = MotionSensor(4)
 pir2 = MotionSensor(24)
 
 camera = PiCamera()
-camera.resolution = (400,300)
+camera.resolution = (400,200)
 
 #start time to check if 2 second pass and no dedect to pir2
 startTime = time.time()
