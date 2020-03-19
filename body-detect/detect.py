@@ -52,6 +52,7 @@ for imagePath in imagePaths:
 	filename = imagePath[imagePath.rfind("/") + 1:]
 	print("[INFO] {}: {} original boxes, {} after suppression".format(filename, len(rects), len(pick)))
 
+## send date to post file
 os.system('python3 /home/pi/year4/projectEIH/body-detect/post-data-to-api.py --numberOUT {}'.format(len(pick)) )
 	# show the output images
 	#cv2.imshow("Before NMS", orig)
