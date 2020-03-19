@@ -14,7 +14,7 @@ GPIO.setup(sensor2, GPIO.IN, GPIO.PUD_DOWN)
 
 cam=picamera.PiCamera()
 
-
+### DELAY TIME SHOULE BE 3 SECOND BEFORE THE PIR CHANGE ITS VALUE
 
 def main():
     while True:
@@ -36,4 +36,3 @@ def main():
                 time.sleep(3)
                 main()
 main()
-
