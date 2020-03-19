@@ -1,13 +1,18 @@
+########## Porject for one direction OUT ####
+## THE PROJECT RUN IN THE SECQUENCE
+## 1-eihOUT.py
+## 2- subprocessApp2.py
+## 3- detect.py -> send data to post-data-to-api.py
 import time
 from gpiozero import MotionSensor
 from gpiozero import LED
 import subprocess
 import os
 import signal
-
+## LED Temporory TO BE DELETED AFTER
 red_led = LED(17)
 red_led.off()
-
+## PIR Sensors Conections
 pir = MotionSensor(4)
 pir2 = MotionSensor(24)
 
