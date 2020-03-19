@@ -7,8 +7,8 @@ import time
 from gpiozero import MotionSensor
 from gpiozero import LED
 import subprocess
-import os
 import signal
+import os
 ## LED Temporory TO BE DELETED AFTER
 red_led = LED(17)
 red_led.off()
