@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block body %}
+
+
+<div class="page1">
+    <div class="center" id="p1">
+        <img src="static/logo.png" class="center logo"></img>
+        <h4>Enter Address or EirCode to search</h4>
+        <form action='/displayResults' method='POST'>
+            {% include 'googlAutoComplete.html' %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

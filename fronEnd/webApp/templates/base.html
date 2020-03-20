@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>{{ the_title }}</title>
+    <link rel="stylesheet" type="text/css" href="../static/EIH.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+    <br>{% include 'nav.html' %}
+    <h1>{{ the_title }}</h1>
+
+    {% block body %} {% endblock %}
+    <p>
+        <div class="footer"> &copy; 2020 by Osama Abou Hajar. All Rights Reserved.</div>
+        <div class="socialMedia">
+            <a href="#" class="fa fa-github"></a>
+            <a href="https://www.linkedin.com/in/osamaabouhajar/" class="fa fa-linkedin"></a>
+            <a href="http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html" class="fa fa-rss"></a>
+        </div>
+    </p>
+</body>
+
+</html>

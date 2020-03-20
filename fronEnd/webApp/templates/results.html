@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block body %}
+
+<div class="page2">
+    <div class="result">
+        <span class="searchResults"> The Search results For : </span>
+        <span id="resultsLable" class=" resultsLable ">  {{searched_text}}</span>
+        <br><br><br>
+        <label>Building Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <span id="address" class=" resultsLable "> {{ building_name }} </span>
+        <hr>
+        <label>Number Of People: </label>
+        <span class="resultsLable ">  {{ total_numebr }} person</span>
+        <hr> <br> {% include 'maps2.html' %}
+
+    </div>
+
+    <form action='/displayform'>
+        <button class=" button button3 buttonBack"> Home </button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
