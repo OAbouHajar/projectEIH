@@ -77,8 +77,8 @@ trackableObjects = {}
 # initialize the total number of frames processed thus far, along
 # with the total number of objects that have moved either up or down
 totalFrames = 0
-totalDown = 0
-totalUp = 0
+totalIn = 0
+totalOut = 0
 
 # start the frames per second throughput estimator
 fps = FPS().start()
@@ -98,7 +98,7 @@ while True:
 	# resize the frame to have a maximum width of 500 pixels (the
 	# less data we have, the faster we can process it), then convert
 	# the frame from BGR to RGB for dlib
-	frame = imutils.resize(frame, width=500)
+	frame = imutils.resize(frame, width=250)
 	rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
 	# if the frame dimensions are empty, set them
@@ -189,18 +189,22 @@ while True:
 	# draw a horizontal line in the center of the frame -- once an
 	# object crosses this line we will determine whether they were
 	# moving 'up' or 'down'
-	cv2.line(frame, (0, H // 2), (W, H // 2), (0, 255, 255), 2)
+	hightOut = int(H // 3.20) # YELLOW
+	hightIN = int(H // 1.6)  # RED
+	
+	cv2.line(frame, (0, hightOut), (W, hightOut), (0, 255, 255), 2)
+	cv2.line(frame, (0, hightIN), (W, hightIN), (0, 0, 255), 2)
 
 	# use the centroid tracker to associate the (1) old object
 	# centroids with (2) the newly computed object centroids
 	objects = ct.update(rects)
-
 	# loop over the tracked objects
 	for (objectID, centroid) in objects.items():
 		# check to see if a trackable object exists for the current
 		# object ID
 		to = trackableObjects.get(objectID, None)
 
+ 
 		# if there is no existing trackable object, create one
 		if to is None:
 			to = TrackableObject(objectID, centroid)
@@ -215,22 +219,38 @@ while True:
 			y = [c[1] for c in to.centroids]
 			direction = centroid[1] - np.mean(y)
 			to.centroids.append(centroid)
+			
+			to.passLineOut1 = False
+			to.passLineIn1 = False
+			to.passLineOut2 = False
+			to.passLineIn2 = False
+			
+			if not to.passLineOut1 and not to.passLineOut2 :
+				pass
 
 			# check to see if the object has been counted or not
 			if not to.counted:
 				# if the direction is negative (indicating the object
-				# is moving up) AND the centroid is above the center
+				# is moving out) AND the centroid is above the center
 				# line, count the object
-				if direction < 0 and centroid[1] < H // 2:
-					totalUp += 1
+				##### OUT
+				if direction < 0:
+					if centroid[1] < hightIN:
+						to.passLineOut1 = True
+						print (objectID, "  Passed out 1")
+						if centroid[1] < hightOut:
+							print (objectID , "  Passed out 2")
+							to.passLineOut2 = True
+				
+				if (direction < 0 and to.passLineOut1 and to.passLineOut2 ):
+					totalOut += 1
 					to.counted = True
+					print (objectID, "  OUT")
+					to.passLineOut1 = False
+					to.passLineOut2 = False
+				
 
-				# if the direction is positive (indicating the object
-				# is moving down) AND the centroid is below the
-				# center line, count the object
-				elif direction > 0 and centroid[1] > H // 2:
-					totalDown += 1
-					to.counted = True
+
 
 		# store the trackable object in our dictionary
 		trackableObjects[objectID] = to
@@ -245,9 +265,8 @@ while True:
 	# construct a tuple of information we will be displaying on the
 	# frame
 	info = [
-		("Up", totalUp),
-		("Down", totalDown),
-		("Status", status),
+		("out", totalOut),
+		("in", totalIn),
 	]
 
 	# loop over the info tuples and draw them on our frame
