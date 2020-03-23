@@ -19,9 +19,17 @@ def displayResults():
     str_list = addressName.split(',')
     # display only the name from tha address.
     building_name_send = str_list[0]
-     
+    url = 'https://projecteih.firebaseio.com/carlowIT.json'
+    r = requests.get(url)
+    x= r.json()
+    print(x['numberOfPeopleIN'])
+    if (x['buildingID'] == building_name_send):
+        total_numebr_send = str(x['numberOfPeopleIN']) + " Person"
+    else:
+        total_numebr_send = "NO DATA FOR THIS ADDRESS"
+
     return render_template(
-        "results.html", person_name="osama", searched_text=addressName , building_name= building_name_send , total_numebr = "10"
+        "results.html", person_name="osama", searched_text=addressName , building_name= building_name_send , total_numebr = total_numebr_send
     )
 
 

@@ -10,7 +10,7 @@ firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', Non
 url = 'https://projecteih.firebaseio.com/carlowIT.json'
 r = requests.get(url)
 x= r.json()
-preNumber = x['numberOfPeopleOut']
+preNumber = x['numberOfPeopleIN']
 
 
 ## read the argument sent from line 55 the detect.py file with the number of new people detected
@@ -25,13 +25,15 @@ newNumber = preNumber + currentNumber
 
 ## The Project API
 projectData = {
-    'buildingID': 'CarlowIT',
+    'buildingID': 'Institute of Technology Carlow',
     'deviceId': 'rassPi4-MainOUT',
     'name': 'Carlow IT MAIN OUT',
-    'numberOfPeopleIn': 0,
-    'numberOfPeopleOut': newNumber,
-    'status': False,
-    'timeUpdated': time.time()}
+    'address' : 'Institute of Technology Carlow, Kilkenny Rd, Moanacurragh, Carlow',
+    'eircode' : 'R93 V960',
+    'numberOfPeopleIN': newNumber,
+    'status': True,
+    'timeUpdated': time.time()
+    }
 
 url = 'https://projecteih.firebaseio.com/carlowIT.json'
 ## Push the number to the firebase
