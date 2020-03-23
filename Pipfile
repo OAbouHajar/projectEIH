@@ -8,4 +8,8 @@ verify_ssl = true
 [packages]
 
 [requires]
+<<<<<<< Updated upstream
 python_version = "3.7"
+=======
+python_version = "3.6"
+>>>>>>> Stashed changes
