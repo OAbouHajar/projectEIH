@@ -40,7 +40,7 @@ def contactForm():
 
 @app.route("/emailMsg")
 def emailMsg():
-    print('Hi')
+
     return render_template(
         "sentMsg.html"
     )
