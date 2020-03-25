@@ -22,7 +22,6 @@ def displayResults():
     url = 'https://projecteih.firebaseio.com/carlowIT.json'
     r = requests.get(url)
     x= r.json()
-    print(x['numberOfPeopleIN'])
     if (x['buildingID'] == building_name_send):
         total_numebr_send = str(x['numberOfPeopleIN']) + " Person"
     else:
@@ -32,5 +31,18 @@ def displayResults():
         "results.html", person_name="osama", searched_text=addressName , building_name= building_name_send , total_numebr = total_numebr_send
     )
 
+@app.route("/contactForm")
+def contactForm():
+
+    return render_template(
+        "contactUs.html"
+    )
+
+@app.route("/emailMsg")
+def emailMsg():
+    print('Hi')
+    return render_template(
+        "sentMsg.html"
+    )
 
 app.run(debug=True)

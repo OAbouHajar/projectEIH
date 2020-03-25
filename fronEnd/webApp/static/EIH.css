@@ -8,7 +8,8 @@ body {
     background-size: cover;
 }
 
-input[type=text] {
+input[type=text],
+input[type=email] {
     padding: 12px 20px;
     margin-left: 20%;
     box-sizing: border-box;
@@ -17,6 +18,18 @@ input[type=text] {
     width: 50%;
     height: 100%;
     display: inline-block;
+}
+
+textarea {
+    padding: 12px 20px;
+    margin-left: 16%;
+    box-sizing: border-box;
+    border: 2px yellow;
+    border-radius: 4px;
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    max-width: 500px;
 }
 
 .logo {
@@ -40,9 +53,29 @@ input[type=text] {
     border-radius: 12px;
 }
 
+.buttonContactUs {
+    /* Green */
+    border: none;
+    color: white;
+    padding: 12px 55px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
 .button3 {
     background-color: #f7f588;
     color: black;
+    border: 2px solid #9c9c7b;
+}
+
+.button4 {
+    background-color: #ec6161;
     border: 2px solid #9c9c7b;
 }
 
@@ -52,7 +85,22 @@ input[type=text] {
     border: 2px solid #9c9c7b;
 }
 
+.buttonBack {
+    display: block;
+    margin: auto;
+}
+
+.buttonAlignContactFrom {
+    display: inline;
+    margin: auto;
+}
+
 .button3:hover {
+    background-color: #9c9c7b;
+    color: black;
+}
+
+.button4:hover {
     background-color: #9c9c7b;
     color: black;
 }
@@ -65,6 +113,21 @@ input[type=text] {
 h1 {
     text-align: center;
     color: aliceblue;
+    font-size: 52px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: #f7f588;
+    margin: auto;
+}
+
+h3 {
+    text-align: center;
+    color: #860b0b;
+    margin: auto;
+    padding-top: 77px;
 }
 
 .footer {
@@ -116,6 +179,12 @@ h1 {
     font-size: x-large;
 }
 
+.result label {
+    color: aliceblue;
+    margin-right: 25%;
+    font-size: x-large;
+}
+
 .resultsLable {
     color: rgb(223, 255, 43);
     font-size: x-large;
@@ -126,9 +195,27 @@ h1 {
     font-size: x-large;
 }
 
-.buttonBack {
+
+/* Contact Form */
+
+.contact {
     display: block;
     margin: auto;
+    background-color: rgba(153, 182, 200, 0.678);
+    border: 2px solid red;
+    padding: 10px;
+    border: 2px solid #f7f588;
+    padding: 10px;
+    border-radius: 15px;
+    padding: 2% 2%;
+    width: 60%;
+    margin-bottom: 2%;
+}
+
+.contact label {
+    color: aliceblue;
+    margin-right: 10%;
+    font-size: x-large;
 }
 
 
@@ -180,7 +267,9 @@ h1 {
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    input[type=text] {
+    input[type=text],
+    input[type=email],
+    textarea {
         margin-left: 3%;
         width: 95%;
     }

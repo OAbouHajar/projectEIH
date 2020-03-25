@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block body %}
+
+<!-- Form Started -->
+<div class="page2">
+    <div class="contact">
+        <H1>Thanks!!</H1>
+        <BR>
+        <h2>YOUR MESSAGE HAS BEEN SENT,
+            <br>WEILL BE BACK TO AS SOON AS POSSIBLE</h2>
+        <h3>You Will Be Redirected To The Main Page In 5 Seconds</h3>
+
+    </div>
+</div>
+<script>
+    setTimeout(function() {
+        window.location.href = '/displayform';
+    }, 5000);
+</script>
+
+<!-- Form Ended -->
+{% endblock %}

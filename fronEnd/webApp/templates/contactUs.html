@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block body %}
+
+<!-- Form Started -->
+<div class="page2">
+    <div class="contact">
+        <form action="/emailMsg">
+            <div>
+                <label><i class="fa fa-user" aria-hidden="true"></i> Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fa fa-comment" aria-hidden="true"></i> Message</label>
+                <textarea rows="2" name="message" class="form-control" placeholder="Type Your Message" required></textarea>
+            </div>
+
+            <br><br><br>
+            <button class=" buttonContactUs button3 buttonAlignContactFrom"> Send </button>
+            <button class=" buttonContactUs button4 buttonAlignContactFrom " href="/displayform"> Cancel </button>
+
+
+        </form>
+    </div>
+</div>
+
+<!-- Form Ended -->
+{% endblock %}
