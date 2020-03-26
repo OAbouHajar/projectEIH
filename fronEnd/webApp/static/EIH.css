@@ -35,6 +35,9 @@ textarea {
 .logo {
     height: 185px;
     width: 200px;
+    display: block;
+    margin: auto;
+    content: url(/static/logo.png);
 }
 
 .button {
@@ -260,6 +263,50 @@ h3 {
 .fa-rss {
     background: #ff6600;
     color: white;
+}
+
+.alert {
+    padding: 15px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: -2%;
+    margin-bottom: 3%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #8e1212;
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -3px;
+    color: inherit;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+
+a {
+    background-color: transparent;
 }
 
 

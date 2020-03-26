@@ -29,7 +29,7 @@ def main():
                 time.sleep(3)
                 main()
         elif (GPIO.input(sensor2)):
-            print("TOW is ON FIRST")
+            print("TWO is ON FIRST")
             time.sleep(2.5)
             if(GPIO.input(sensor1)):
                 print("IGNORE SENSOR 2 FIRST")
