@@ -28,20 +28,12 @@ projectData = {
     'buildingID': 'Institute of Technology Carlow',
     'deviceId': 'rassPi4-MainOUT',
     'name': 'Carlow IT MAIN OUT',
-<<<<<<< HEAD
     'address' : 'Institute of Technology Carlow, Kilkenny Rd, Moanacurragh, Carlow',
     'eircode' : 'R93 V960',
     'numberOfPeopleIN': newNumber,
     'status': True,
     'timeUpdated': time.time()
     }
-=======
-    'address':'Institute of Technology Carlow, Kilkenny Rd, Moanacurragh, Carlow',
-    'ericode':'R93 V960',
-    'numberOfPeopleIN': newNumber,
-    'status': False,
-    'timeUpdated': time.time()}
->>>>>>> 7b288e9024b0ed45a030cd52fa314ba20e068df2
 
 url = 'https://projecteih.firebaseio.com/carlowIT.json'
 ## Push the number to the firebase
