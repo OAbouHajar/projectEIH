@@ -27,6 +27,8 @@ def ir1First(channel):
         print('CAMERA', channel)
         print ('*** PICTURE TAKEN ***')
         camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic.png")
+        #timeNow = str(datetime.now().strftime("%H,%M,%S"));
+        #camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic"+timeNow+".png")
         print ('++++ BODY DETECTING ++++ ')
         subprocess.call(["python /home/pi/year4/projectEIH/body-detect/detect.py --images /home/pi/year4/projectEIH/body-detect/images/"], shell=True)
 
