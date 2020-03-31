@@ -25,7 +25,7 @@ def check_if_searched_address_in_db(building_name_send):
     r = requests.get(url)
     x= r.json()
     if (x['buildingID'] == building_name_send):
-        total_numebr_send = str(x['numberOfPeopleIN']) + " Person"
+        total_numebr_send = str(x['numberOfPeopleINDetect']) + " Person"
         found = True
     session['address_founded'] = True
 
