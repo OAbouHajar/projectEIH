@@ -2,11 +2,12 @@ from firebase import firebase
 import requests
 import argparse
 import time
+import os
 
 ## connection to the firebase
 firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', None)
 ## get the previouse number on the API
-url = 'https://projecteih.firebaseio.com/carlowIT.json'
+url = os.environ['FIREBASE_DB_URL']
 r = requests.get(url)
 x= r.json()
 preNumber = x['numberOfPeopleINDetect']
@@ -41,7 +42,7 @@ projectData = {
     'timeUpdated': time.time()
     }
 
-url = 'https://projecteih.firebaseio.com/carlowIT.json'
+url = os.environ['FIREBASE_DB_URL']
 ## Push the number to the firebase
 r = requests.put(url, json=projectData)
 x= r.json()
