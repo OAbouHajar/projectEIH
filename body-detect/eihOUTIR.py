@@ -42,7 +42,7 @@ def ir1First(channel):
         #timeNow = str(datetime.now().strftime("%H,%M,%S"));
         #camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic"+timeNow+".png")
         print ('++++ BODY DETECTING ++++ ')
-        command = "python {}/detect.py --images {}/images/ -d".format(path, direction )
+        command = "python {}/detect.py --images {}/images/ -d {}".format(path,path, direction )
         subprocess.call([command], shell=True)
 
 
