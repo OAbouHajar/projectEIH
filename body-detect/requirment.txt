@@ -8,3 +8,7 @@ pip3 install gcloud
 pip3 install sseclient
 pip3 install parse
 pip3 install requests_toolbelt
+
+
+
+sudo raspi-config nonint do_camera 0

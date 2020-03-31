@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO
 import subprocess
+import argparse
 import os
+import pdb
+import sys
 from picamera import PiCamera
 from datetime import datetime
 import time
@@ -14,6 +17,15 @@ camera.resolution = (400,200)
 BEAM_PIN1 = 18 ##sensor Number !
 BEAM_PIN2 = 17 ##sensor Number 2
 
+
+##current working directory
+path = os.getcwd()
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+listArg =  sys.argv[1:]
+direction = listArg[0]
+
+
 def ir1First(channel):
     print('one First')
     print('WAIT TWO >>>>')
@@ -26,11 +38,12 @@ def ir1First(channel):
         ## if sensor two was detected the camera run to take picture
         print('CAMERA', channel)
         print ('*** PICTURE TAKEN ***')
-        camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic.png")
+        camera.capture("{}/images/pic.png".format(path))
         #timeNow = str(datetime.now().strftime("%H,%M,%S"));
         #camera.capture("/home/pi/year4/projectEIH/body-detect/images/pic"+timeNow+".png")
         print ('++++ BODY DETECTING ++++ ')
-        subprocess.call(["python /home/pi/year4/projectEIH/body-detect/detect.py --images /home/pi/year4/projectEIH/body-detect/images/"], shell=True)
+        command = "python {}/detect.py --images {}/images/ -d".format(path, direction )
+        subprocess.call([command], shell=True)
 
 
 

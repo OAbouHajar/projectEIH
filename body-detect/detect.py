@@ -10,11 +10,15 @@ import argparse
 import imutils
 import cv2
 import os
+import sys
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--images", required=True, help="path to images directory")
+ap.add_argument("-d", "--direction", required=True, help="the project direction [out] OR [in] ")
 args = vars(ap.parse_args())
+listArg =  sys.argv[1:]
+
 
 # initialize the HOG descriptor/person detector
 hog = cv2.HOGDescriptor()
@@ -52,8 +56,15 @@ for imagePath in imagePaths:
 	filename = imagePath[imagePath.rfind("/") + 1:]
 	print("[INFO] {}: {} original boxes, {} after suppression".format(filename, len(rects), len(pick)))
 
+path = os.getcwd()
 ## send date to post file
-os.system('python3 /home/pi/year4/projectEIH/body-detect/post-data-to-api.py --numberOUT {}'.format(len(pick)) )
+if 'out' in listArg:
+	os.system('python3 {}/post-data-to-api.py --numberOUT {}'.format(path ,len(pick)) )
+if 'in' in listArg:
+	os.system('python3 {}/post-data-to-api.py --numberIN {}'.format(path ,len(pick)) )
+		
+	
+	
 	# show the output images
 	#cv2.imshow("Before NMS", orig)
 	#cv2.imshow("After NMS", image)
