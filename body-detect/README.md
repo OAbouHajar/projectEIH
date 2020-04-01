@@ -81,4 +81,22 @@ As it shown in the picture below:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/ir-collaboration.JPG" alt="mypy logo" width="600px"/>
 
+**Raspberry Pi Camera**
+
+* the camera connect to the camera port on the Raspberry as it shown in the picture below.#
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/cameraconnection.JPG" alt="mypy logo" width="600px"/>
+
+* Now you need to enable camera support using the __raspi-config__ program you will have used when you first set up your Raspberry Pi:
+
+    * Use the cursor keys to select and open Interfacing Options, and then select Camera and follow the prompt to enable the camera.
+    * To test that the system is installed and working, try the following command:
+    * $ raspistill -v -o test.jpg
+
+
+
+* The camera should be installed closer to the mid point of the entrance, with height range [190cm] to [220cm], with distance and an angle cover the full Entrance width and height.
+
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/camera_sensor_setup.JPG" alt="mypy logo" width="600px"/>
 
