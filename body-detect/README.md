@@ -75,5 +75,6 @@ To have the best performance of your hardware the follwing instractions should b
 * Sensor one should be connected to GIPO 4 PIN(7)
 * Sensor one should be connected to GIPO 17 PIN(11)
 As it shown in the picture below:
-<iframe src="https://drive.google.com/file/d/1VghohxcAI0lSmkRnLIiKa8wMIfhTZz8o/preview" width="640" height="480"></iframe>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/IR_connection.JPG" alt="mypy logo" width="600px"/>
+
 
