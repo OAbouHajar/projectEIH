@@ -90,11 +90,11 @@ As it shown in the picture below:
 * Now you need to enable camera support using the __raspi-config__ program you will have used when you first set up your Raspberry Pi:
 
     * Use the cursor keys to select and open Interfacing Options, and then select Camera and follow the prompt to enable the camera.
-    * To test that the system is installed and working, try the following command:
+    * To test that the system is installed and working.
+
+Try the following command:
 
     $ raspistill -v -o test.jpg
-
-    $ sudo apt-get install python3 python3-pip
 
 
 * The camera should be installed closer to the mid point of the entrance, with height range [190cm] to [220cm], with distance and an angle cover the full Entrance width and height.
