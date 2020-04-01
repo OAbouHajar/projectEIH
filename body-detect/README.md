@@ -114,6 +114,16 @@ To Run EIH Project you do need the same software package to both direction __IN_
 
     $ python eihIR.py in
 
+And this will change the calculations in the file [post-data-to-api.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/post-data-to-api.py) in the following code.
+
+`
+if args["numberOUT"] is not None:
+    ## add the number coming from the API to the number coming from the RassPi
+    newNumber = preNumber- currentNumberOUT
+elif args["numberIN"] is not None:
+    newNumber = preNumber + currentNumberIN
+`
+
 ***To Run the Project In The Both Direction, You need One Software Package and Two Hardware Set***
 ***As It's Shown In The Picture***
 
