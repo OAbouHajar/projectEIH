@@ -1,4 +1,4 @@
-<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/img/logo.png" alt="mypy logo" width="300px"/>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/img/logo.png" alt="mypy logo" width="150px"/>
 
 EIH: Emergency Info Hub
 =======================================
@@ -9,15 +9,6 @@ Emergency Info Hub ([EIH](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.
 The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save this number to the cloud to be used when a disaster happens.
 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
-
-Hardware Requirements
-------------
-You need the list of hardware parts to be connected:
-
-* Hardware List:
-    * Raspberry Pi 4 with 8GB RAM && 8GB Memory Card
-    * Raspberry Pi Camera 
-    * IR Break Beam Sensor LEDs
 
 
 Software Requirements
@@ -45,7 +36,7 @@ file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect
 * ["-db"] 
 * ["--dburl"]
 
-for example: 
+For example: 
 
     $ python setup.py -db https://<project-name>.firebaseio.com/<file-name>.json
 
@@ -64,5 +55,26 @@ Once you setup is completed you will have the follwing dependencies installed on
     * sseclient
     * parse
     * requests_toolbelt
+
+
+Hardware Requirements
+------------
+You need the list of hardware parts to be connected:
+
+* Hardware List:
+    * Raspberry Pi 4 with 8GB RAM && 8GB Memory Card
+    * Raspberry Pi Camera 
+    * IR Break Beam Sensor LEDs
+
+Hardware Collaboration
+------------
+
+To have the best performance of your hardware the follwing instractions should be followed:
+
+**IR Break Beam Sensor LEDs**
+* Sensor one should be connected to GIPO 4 PIN(7)
+* Sensor one should be connected to GIPO 17 PIN(11)
+As it shown in the picture below:
+<img src="https://drive.google.com/file/d/1VghohxcAI0lSmkRnLIiKa8wMIfhTZz8o/preview" width="640" height="480" alt="mypy logo" width="600px"/>
 
 
