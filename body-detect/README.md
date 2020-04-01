@@ -114,4 +114,10 @@ To Run EIH Project you do need the same software package to both direction __IN_
 
     $ python eihIR.py in
 
+***To Run the Project In The Both Direction, You need One Software Package and Two Hardware Set***
+***As It's Shown In The Picture***
+
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/in_and_out.JPG" alt="mypy logo" width="600px"/>
+
 
