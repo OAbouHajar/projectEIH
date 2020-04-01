@@ -83,7 +83,7 @@ As it shown in the picture below:
 
 **Raspberry Pi Camera**
 
-* the camera connect to the camera port on the Raspberry as it shown in the picture below.#
+* the camera connect to the camera port on the Raspberry Pi as it shown in the picture below.#
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/cameraconnection.JPG" alt="mypy logo" width="600px"/>
 
@@ -101,4 +101,17 @@ Try the following command:
 
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/camera_sensor_setup.JPG" alt="mypy logo" width="600px"/>
+
+How To Run EIH?
+------------
+To Run EIH Project you do need the same software package to both direction __IN__ or __OUT__ and that by telling the system what direction to run with the argument passed as the following commands:
+
+### To Run The Project for ___OUT___ Direction ###
+
+    $ python eihIR.py out
+
+### To Run The Project for ___IN___ Direction ###
+
+    $ python eihIR.py in
+
 
