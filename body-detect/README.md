@@ -18,14 +18,12 @@ You need the list of hardware parts to be connected:
     * Raspberry Pi 4 with 8GB RAM && 8GB Memory Card
     * Raspberry Pi Camera 
     * IR Break Beam Sensor LEDs
-        * Sensor 1 Connected to GPIO 17
-        * Sensor 2 Connected to GPIO 18
 
 
 Software Requirements
 ------------
 
-You need Python 3.5 or later to run mypy.  You can have multiple Python
+1- You need Python 3.5 or later to run mypy.  You can have multiple Python
 versions (2.x and 3.x) installed on the same system without problems.
 
 In Ubuntu, Mint and Debian you can install Python 3 like this:
@@ -35,3 +33,36 @@ In Ubuntu, Mint and Debian you can install Python 3 like this:
 For other Linux flavors, macOS and Windows, packages are available at
 
   http://www.python.org/getit/
+
+
+-- The file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) is made to easy install all the requirements 
+if you have Python 3 and pip3 installed on you device already, you can use the following command to setup the EIH project in fully. 
+ 
+    $ python setup.py
+
+file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) support the following arguments to setup Google firebase URL:
+
+* ["-db"] 
+* ["--dburl"]
+
+for example: 
+
+    $ python setup.py -db https://<project-name>.firebaseio.com/<file-name>.json
+
+Once you setup is completed you will have the follwing dependencies installed on your system.
+
+* Dependencies:
+    * Requests
+    * python-firebase
+    * python-opencv 
+    * python-scipy 
+    * ipython
+    * firebase
+    * imutils
+    * python_jwt
+    * gcloud
+    * sseclient
+    * parse
+    * requests_toolbelt
+
+
