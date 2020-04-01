@@ -73,8 +73,12 @@ To have the best performance of your hardware the follwing instractions should b
 
 **IR Break Beam Sensor LEDs**
 * Sensor one should be connected to GIPO 4 PIN(7)
-* Sensor one should be connected to GIPO 17 PIN(11)
+* Sensor two should be connected to GIPO 17 PIN(11)
 As it shown in the picture below:
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/IR_connection.JPG" alt="mypy logo" width="600px"/>
+
+* Both sensors should installed, on the both side of the door, with range [25cm] to [50cm] height from the ground taken the kids and adults height under considration as shown in the picture below:
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/ir-collaboration.JPG" alt="mypy logo" width="600px"/>
 
 
