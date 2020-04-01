@@ -106,11 +106,11 @@ How To Run EIH?
 ------------
 To Run EIH Project you do need the same software package to both direction __IN__ or __OUT__ and that by telling the system what direction to run with the argument passed as the following commands:
 
-### To Run The Project for ___OUT___ Direction ###
+### To Run The Project for [__OUT__] Direction ###
 
     $ python eihIR.py out
 
-### To Run The Project for ___IN___ Direction ###
+### To Run The Project for [__IN__] Direction ###
 
     $ python eihIR.py in
 
