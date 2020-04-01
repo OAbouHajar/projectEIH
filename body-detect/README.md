@@ -91,6 +91,7 @@ As it shown in the picture below:
 
     * Use the cursor keys to select and open Interfacing Options, and then select Camera and follow the prompt to enable the camera.
     * To test that the system is installed and working, try the following command:
+
     $ raspistill -v -o test.jpg
 
 
