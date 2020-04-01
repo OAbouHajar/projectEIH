@@ -94,6 +94,7 @@ As it shown in the picture below:
 
     $ raspistill -v -o test.jpg
 
+    $ sudo apt-get install python3 python3-pip
 
 
 * The camera should be installed closer to the mid point of the entrance, with height range [190cm] to [220cm], with distance and an angle cover the full Entrance width and height.
