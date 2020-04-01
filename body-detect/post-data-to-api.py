@@ -24,9 +24,10 @@ currentNumberOUT = args["numberOUT"]
 currentNumberIN = args["numberIN"]
 
 if args["numberOUT"] is not None:
-    ## add the number coming from the API to the number coming from the RassPi
+    ## substact the number coming from the API to the number coming from the RassPi
     newNumber = preNumber- currentNumberOUT
 elif args["numberIN"] is not None:
+    ## add the number coming from the API to the number coming from the RassPi
     newNumber = preNumber + currentNumberIN
 
 
