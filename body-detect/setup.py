@@ -4,7 +4,9 @@ import pdb
 import sys
 
 #https://projecteih.firebaseio.com/carlowIT.json
-
+print("################################################################################################")
+print("###################################     SETUP START       ######################################")
+print("################################################################################################")
 ## parse the DB URL and set it up as enviroument variable
 ap = argparse.ArgumentParser()
 ap.add_argument("-db", "--dburl", help="The link to the firebase database")
@@ -30,4 +32,6 @@ os.system('pip3 install parse')
 os.system('pip3 install requests_toolbelt')
 os.system('pip3 install flask')
 
-
+print("################################################################################################")
+print("###################################     SETUP DONE        ######################################")
+print("################################################################################################")
