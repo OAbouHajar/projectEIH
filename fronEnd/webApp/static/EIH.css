@@ -8,7 +8,7 @@ body {
     background-size: cover;
 }
 
-input[type=text],
+input[name=thelocation],
 input[type=email] {
     padding: 12px 20px;
     margin-left: 20%;
@@ -16,8 +16,30 @@ input[type=email] {
     border: 2px yellow;
     border-radius: 4px;
     width: 50%;
-    height: 100%;
     display: inline-block;
+}
+
+input[name=loginInput], input[name=loginPass] {
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px yellow;
+    border-radius: 4px;
+    width: 37%;
+    margin-bottom: 3%;
+}
+
+.userlogin {
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 4%;
+    font-size: -webkit-xxx-large;
+    margin-bottom: 6%;
+    margin-top: 4%;
+}
+
+.loginStyle{
+    margin-left: 36%;
+
 }
 
 textarea {
@@ -71,6 +93,19 @@ textarea {
     border-radius: 12px;
 }
 
+.buttonLogIN {
+    border: none;
+    color: white;
+    padding: 12px 55px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-left: 11%;
+}
 .button3 {
     background-color: #f7f588;
     color: black;
@@ -192,6 +227,11 @@ h3 {
     color: rgb(223, 255, 43);
     font-size: x-large;
 }
+.loginLable {
+    color: rgb(243, 217, 23);
+    font-size: x-large;
+}
+
 
 .searchResults {
     color: rgb(238, 200, 31);
@@ -368,3 +408,130 @@ a {
         font-size: large;
     }
 }
+
+
+/* Table Styles */
+.resultAllLocations {
+    display: block;
+    margin: auto;
+    background-color: rgba(153, 182, 200, 0.678);
+    border: 2px solid red;
+    padding: 10px;
+    border: 2px solid #f7f588;
+    padding: 10px;
+    border-radius: 15px;
+    padding: 2% 2%;
+    width: 75%;
+    margin-bottom: 2%;
+}
+
+.table-wrapper {
+    margin: 31px 0px 31px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    border: #fff;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 15px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: rgb(149, 138, 33);
+}
+
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before{
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fl-table thead, .fl-table tbody, .fl-table thead th {
+        display: block;
+    }
+    .fl-table thead th:last-child{
+        border-bottom: none;
+    }
+    .fl-table thead {
+        float: left;
+    }
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fl-table td, .fl-table th {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+
+
+/*     log in form */

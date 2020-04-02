@@ -1,15 +1,20 @@
-import argparse
-import os
+from firebase import firebase
+import requests
 import pdb
-import sys
+import time
+import os
 
-# construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-listArg =  sys.argv[1:]
-pdb.set_trace()
+#export FIREBASE_DB_URL="https://projecteih.firebaseio.com/"
+#export DB_FILE_NAME="locations.json"
+firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', None)
+r = requests.get('https://projecteih.firebaseio.com/locations.json')
+x= r.json()
 
-## send date to post file
-if 'out' in listArg:
-    print('out program')
-if 'in' in listArg:
-    print('in program')
+for k, v in x.items():
+    print(k)
+    print(v['buildingID'])
+    print(v['known_name'])
+    print(v['eircode'])
+    print(v['numberOfPeopleINDetect'])
+    print(v['timeUpdated'])
+    print('##############################')

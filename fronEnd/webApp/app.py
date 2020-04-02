@@ -4,6 +4,11 @@ import requests
 app = Flask(__name__)  # "dunder name".
 app.secret_key = 'sadfsdfdsfdsafdsafsadfadsfadsfdsafdsfa'
 
+def get_all_data_from_firebase():
+    r = requests.get('https://projecteih.firebaseio.com/locations.json')
+    x= r.json()
+    return x
+
 def get_the_search_location():
     # to get the search address fully
     addressName = request.form["thelocation"]
@@ -21,7 +26,7 @@ def get_the_name_form_search_text(addressName):
 def check_if_searched_address_in_db(building_name_send):
     found = False
     total_numebr_send = None
-    url = 'https://projecteih.firebaseio.com/carlowIT.json'
+    url = 'https://projecteih.firebaseio.com/locations.json'
     r = requests.get(url)
     x= r.json()
     if (x['buildingID'] == building_name_send):
@@ -79,6 +84,25 @@ def emailMsg():
         "sentMsg.html"
     )
 
+@app.route("/allLocations")
+def allLocations():
+    items_send = get_all_data_from_firebase()
+    print(items_send)
+    return render_template(
+        "allLocations.html",
+        items= items_send,
+        x= items_send
+    )
+    
+@app.route("/login")
+def login():
+    items_send = get_all_data_from_firebase()
+    print(items_send)
+    return render_template(
+        "loginForm.html",
+        items= items_send,
+        x= items_send
+    )
 
 
 

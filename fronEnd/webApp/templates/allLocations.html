@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block body %}
+<div class="page2">
+    <div class="resultAllLocations">
+        <h2>All Locations</h2>
+        <div class="table-wrapper">
+            <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Building ID</th>
+                    <th>Eircode</th>
+                     <th>Number Inside</th>
+                    <th>Last Update</th>
+                    <th>Amend</th>
+                </tr>
+            </thead>
+                <tbody>
+                    {% for k, v in x.items(): %}
+                    <tr>
+                        <td>{{ v.buildingID }}</td>
+                        <td>{{ v.eircode }}</td>
+                        <td>{{ v.numberOfPeopleINDetect }}</td>
+                        <td>{{ v.timeUpdated }}</td>
+                        <td><span onclick="loginForm()"> EDIT</span></td>
+                    </tr>
+                {% endfor %}
+             </tbody>
+            </table>
+        </div>
+    </div>
+</div>  
+{% endblock %}
