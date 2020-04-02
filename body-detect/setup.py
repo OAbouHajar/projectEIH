@@ -31,6 +31,8 @@ os.system('pip3 install sseclient')
 os.system('pip3 install parse')
 os.system('pip3 install requests_toolbelt')
 os.system('pip3 install flask')
+os.system('pip3 install Crypto')
+os.system('pip install pycrypto')
 
 print("################################################################################################")
 print("###################################     SETUP DONE        ######################################")
