@@ -3,29 +3,55 @@
     <div class="resultAllLocations">
         <h2>All Locations</h2>
         <div class="table-wrapper">
-            <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>Building ID</th>
-                    <th>Eircode</th>
-                     <th>Number Inside</th>
-                    <th>Last Update</th>
-                    <th>Amend</th>
-                </tr>
-            </thead>
-                <tbody>
-                    {% for k, v in x.items(): %}
+            <table class="fl-table" id="example">
+                <thead>
                     <tr>
-                        <td>{{ v.buildingID }}</td>
-                        <td>{{ v.eircode }}</td>
-                        <td>{{ v.numberOfPeopleINDetect }}</td>
-                        <td>{{ v.timeUpdated }}</td>
-                        <td><span onclick="loginForm()"> EDIT</span></td>
+                        <th></th>
+                        <th>Building Name</th>
+                        <th>Eircode</th>
+                        <th>Number Inside</th>
+                        <th>Last Update</th>
+                        {% if session["loged_in"] is defined %}
+                        <th>Building ID</th>
+                        {% endif %}
                     </tr>
-                {% endfor %}
-             </tbody>
+                </thead>
+                <tbody>
+                    <form action='/resetLocation' method='POST'>
+                        <button type="submit" value="Submit" class=" buttonreset" onclick="checkbox_check();"> Reset</button> {% for k, v in x.items(): %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="reset_checkbox" id="reset_checkbox" value="{{ k }}">
+                            </td>
+                            <td>{{ v.known_name }}</td>
+                            <td>{{ v.eircode }}</td>
+                            <td>{{ v.numberOfPeopleINDetect }}</td>
+                            <td>{{ v.timeUpdated }}</td>
+                            {% if session["loged_in"] is defined %}
+                            <td id="{{k}}">{{ k }}</td>
+
+
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </form>
+
+                </tbody>
             </table>
         </div>
     </div>
-</div>  
+</div>
+
+<script>
+    function checkbox_check() {
+        checked = document.getElementById('reset_checkbox').checked;
+        if (checked == true) {
+            therespond = confirm('Do you to reset the selected IDs?');
+            return therespond
+        } else {
+            alert("YOU HAVE TO SELECT ONE PLACE AT LEAST!!");
+            return false
+        }
+    }
+</script>
 {% endblock %}

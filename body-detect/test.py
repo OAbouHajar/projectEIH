@@ -10,11 +10,18 @@ firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', Non
 r = requests.get('https://projecteih.firebaseio.com/locations.json')
 x= r.json()
 
-for k, v in x.items():
-    print(k)
-    print(v['buildingID'])
-    print(v['known_name'])
-    print(v['eircode'])
-    print(v['numberOfPeopleINDetect'])
-    print(v['timeUpdated'])
-    print('##############################')
+location = 'Carlow IT MAIN Entrance'
+
+if location in x:
+    print('YES')
+    print(x[location]['eircode'])
+
+
+# for k, v in x.items():
+#     print(k)
+#     print(v['buildingID'])
+#     print(v['known_name'])
+#     print(v['eircode'])
+#     print(v['numberOfPeopleINDetect'])
+#     print(v['timeUpdated'])
+#     print('##############################')

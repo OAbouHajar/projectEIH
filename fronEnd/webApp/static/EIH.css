@@ -19,7 +19,8 @@ input[type=email] {
     display: inline-block;
 }
 
-input[name=loginInput], input[name=loginPass] {
+input[name=loginInput],
+input[name=loginPass] {
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px yellow;
@@ -37,9 +38,18 @@ input[name=loginInput], input[name=loginPass] {
     margin-top: 4%;
 }
 
-.loginStyle{
-    margin-left: 36%;
+.menu_admin {
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 0.5%;
+    font-size: -webkit-xxx-large;
+    margin-bottom: 0%;
+    margin-top: 0.5%;
+    font-size: 29px;
+}
 
+.loginStyle {
+    margin-left: 36%;
 }
 
 textarea {
@@ -93,6 +103,20 @@ textarea {
     border-radius: 12px;
 }
 
+.buttonLogOUT {
+    border: none;
+    color: white;
+    padding: 12px 55px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-left: 11%;
+}
+
 .buttonLogIN {
     border: none;
     color: white;
@@ -106,6 +130,23 @@ textarea {
     border-radius: 12px;
     margin-left: 11%;
 }
+
+.buttonreset {
+    border: none;
+    color: white;
+    padding: 3px 34px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 1%;
+    background-color: #bd2121;
+    color: white;
+}
+
 .button3 {
     background-color: #f7f588;
     color: black;
@@ -227,11 +268,11 @@ h3 {
     color: rgb(223, 255, 43);
     font-size: x-large;
 }
+
 .loginLable {
     color: rgb(243, 217, 23);
     font-size: x-large;
 }
-
 
 .searchResults {
     color: rgb(238, 200, 31);
@@ -316,10 +357,23 @@ h3 {
     color: #8e1212;
 }
 
+.alertFailLog {
+    padding: 15px;
+    padding-left: 35px;
+    margin-left: 0%;
+    /* margin-right: 62%; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #8e1212;
+    width: 30%;
+}
+
 .alert-dismissable .close,
 .alert-dismissible .close {
     position: relative;
-    top: -2px;
+    top: -15px;
     right: -3px;
     color: inherit;
 }
@@ -411,6 +465,7 @@ a {
 
 
 /* Table Styles */
+
 .resultAllLocations {
     display: block;
     margin: auto;
@@ -427,7 +482,7 @@ a {
 
 .table-wrapper {
     margin: 31px 0px 31px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2);
 }
 
 .fl-table {
@@ -442,7 +497,8 @@ a {
     background-color: white;
 }
 
-.fl-table td, .fl-table th {
+.fl-table td,
+.fl-table th {
     text-align: center;
     padding: 8px;
 }
@@ -457,7 +513,6 @@ a {
     background: rgb(149, 138, 33);
 }
 
-
 .fl-table thead th:nth-child(odd) {
     color: #ffffff;
     background: #324960;
@@ -467,6 +522,7 @@ a {
     background: #F8F8F8;
 }
 
+
 /* Responsive */
 
 @media (max-width: 767px) {
@@ -474,7 +530,7 @@ a {
         display: block;
         width: 100%;
     }
-    .table-wrapper:before{
+    .table-wrapper:before {
         content: "Scroll horizontally >";
         display: block;
         text-align: right;
@@ -482,10 +538,12 @@ a {
         color: white;
         padding: 0 0 10px;
     }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
+    .fl-table thead,
+    .fl-table tbody,
+    .fl-table thead th {
         display: block;
     }
-    .fl-table thead th:last-child{
+    .fl-table thead th:last-child {
         border-bottom: none;
     }
     .fl-table thead {
@@ -496,7 +554,8 @@ a {
         position: relative;
         overflow-x: auto;
     }
-    .fl-table td, .fl-table th {
+    .fl-table td,
+    .fl-table th {
         padding: 20px .625em .625em .625em;
         height: 60px;
         vertical-align: middle;

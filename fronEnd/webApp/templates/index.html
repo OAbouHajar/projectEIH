@@ -1,6 +1,10 @@
 {% extends "base.html" %} {% block body %}
 
 
+{% if fail_login == 'YES' %}
+<body onload="loginForm()">
+    {% endif %}
+
 <div class="page1">
     <div class="center" id="p1">
         <!-- <img src="static/logo.png" class="center logo"></img> -->
@@ -11,6 +15,7 @@
         </form>
     </div>
 </div>
+<!-- To HIDE OR SHOW THE ALERT -->
 {% if show_Alert == 'YES' %}
 <div id="alert" class="alert alert-danger alert-dismissible fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

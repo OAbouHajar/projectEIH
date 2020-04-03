@@ -23,28 +23,9 @@ def patch():
             'numberOfPeopleINDetect': 0,
             'timeUpdated': time.strftime('%X %x %Z')
             },
-            'Carlow IT MAIN Entrance':
-        {
-        'buildingID': 'Institute of Technology Carlow',
-        'deviceId': 'rassPi4-MainOUT',
-        'known_name': 'Carlow IT MAIN Entrance',
-        'address' : 'Institute of Technology Carlow, Kilkenny Rd, Moanacurragh, Carlow',
-        'eircode' : 'R93 V960',
-        'numberOfPeopleINDetect': 0,
-        'timeUpdated': time.strftime('%X %x %Z')
-        }, 
-        'portlaoise garda station':
-        {
-        'buildingID': 'AN GARDA SIOCHANA',
-        'deviceId': 'rassPi4-MainOUT',
-        'known_name': 'portlaoise garda station',
-        'address' : 'PORTLAOISE GARDA STATION ABBEYLEIX ROAD PORTLAOISE CO. LAOIS',
-        'eircode' : 'R32 XW68',
-        'numberOfPeopleINDetect': 0,
-        'timeUpdated': time.strftime('%X %x %Z')
-        }
     }
-    result = firebase12.patch("locations", projectData1)
+    result = firebase12.post("locations", projectData1)
+    print(result)
     return result
 
 
@@ -67,10 +48,23 @@ auth = firebasePy.auth()
 
 email = 'oabouhajar@hotmail.com'
 password = '1qaz2wsx@'
-
+data =    {
+            'buildingID': 'it carlow ',
+            'deviceId': 'Test ',
+            'known_name': 'it carlow ',
+            'address' : 'Test Tefffst Test Test Test Test Test Test Test ',
+            'eircode' : '1111111111111',
+            'numberOfPeopleINDetect': 0,
+            'timeUpdated': time.strftime('%X %x %Z')
+            }
 # Log the user in
+db = firebasePy.database()
+
 try:
     user = auth.sign_in_with_email_and_password(email, password)
-    patch()
+    #id_API = db.child("locations").child('-M40EmLmh7JjlNpFi2vq').set(data)
+    id_API = db.child("locations").push(data)
+    print(id_API)
+    #patch()
 except IOError:
     print ("Oops!  That was no valid number.  Try again...")
