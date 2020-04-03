@@ -6,39 +6,54 @@
             <table class="fl-table" id="example">
                 <thead>
                     <tr>
-                        <th></th>
+                        {% if session["loged_in"] is defined %}
+
+                        <th>#</th>
+                        <th>Building ID</th>
+
+                        {% endif %}
+
                         <th>Building Name</th>
+                        <th>Address</th>
                         <th>Eircode</th>
                         <th>Number Inside</th>
                         <th>Last Update</th>
-                        {% if session["loged_in"] is defined %}
-                        <th>Building ID</th>
-                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     <form action='/resetLocation' method='POST'>
-                        <button type="submit" value="Submit" class=" buttonreset" onclick="checkbox_check();"> Reset</button> {% for k, v in x.items(): %}
+                        {% if session["loged_in"] is defined %}
+
+                        <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="checkbox_check();"></input>
+                        <input type="submit" name="action" value="Update" class=" buttonreset" onclick="checkbox_check();"></input>
+                        <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="checkbox_check();"></input>
+                        {% endif %} {% for k, v in x.items(): %}
+
                         <tr>
+                            {% if session["loged_in"] is defined %}
+
                             <td>
                                 <input type="checkbox" name="reset_checkbox" id="reset_checkbox" value="{{ k }}">
                             </td>
-                            <td>{{ v.known_name }}</td>
-                            <td>{{ v.eircode }}</td>
-                            <td>{{ v.numberOfPeopleINDetect }}</td>
-                            <td>{{ v.timeUpdated }}</td>
-                            {% if session["loged_in"] is defined %}
                             <td id="{{k}}">{{ k }}</td>
-
-
                             {% endif %}
+                            <td name="known_name" id="known_name" contenteditable>{{ v.known_name }}</td>
+                            <td name="address" id="address" value="{{ v.address }}" contenteditable>{{ v.address }}</td>
+                            <input type="hidden" name="{{k}}" value="{{ v.address }}" />
+                            <td name="eircode" id="eircode" value="{{ v.eircode }}" contenteditable>{{ v.eircode }}</td>
+                            <input type="hidden" name="{{k}}" value="{{ v.eircode }}" />
+                            <td name="numberOfPeopleINDetect" id="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}">{{ v.numberOfPeopleINDetect }}</td>
+                            <input type="hidden" name="{{k}}" value="{{ v.numberOfPeopleINDetect }}" />
+                            <td name="timeUpdated" id="timeUpdated" value="{{ v.timeUpdated }}" contenteditable>{{ v.timeUpdated }}</td>
                         </tr>
                         {% endfor %}
                     </form>
-
+                    <br>
                 </tbody>
             </table>
         </div>
+        <span class="tableinstraction">*Double click on the field to edit.</span>
+
     </div>
 </div>
 

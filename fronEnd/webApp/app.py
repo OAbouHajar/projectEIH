@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request,redirect, url_for,session
 import requests
 import pyrebase
+import time
 
 
 app = Flask(__name__)  # "dunder name".
@@ -55,16 +56,33 @@ def db_config():
 def reset_to_zero(id_to_reset):
     
     db = db_config().database()
-    auth = db_config().auth()
     db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': 0})
 
+
+def delete_row(id_to_reset):
+    print( "DELETED", id_to_reset)
+
+    db = db_config().database()
+    db.child("locations").child(id_to_reset).remove()
+def update_row(selected):
+    for id_to_reset in selected:  
+        data = {
+                'buildingID': 'it carlow ',
+                'deviceId': 'Test ',
+                'known_name': 'it carlow ',
+                'address' : 'Test Tefffst Test Test Test Test Test Test Test ',
+                'eircode' : '1111111111111',
+                'numberOfPeopleINDetect': 0,
+                'timeUpdated': time.strftime('%X %x %Z')
+        }
+        db = db_config().database()
+        db.child("locations").child(id_to_reset).update()
 
 
 def login_check():
     email = request.form["loginInput"]
     password = request.form["loginPass"]
-    config = db_config()
-    firebasePy = pyrebase.initialize_app(config)
+    firebasePy = db_config()
     # Get a reference to the auth service
     auth = firebasePy.auth()
     # Log the user in
@@ -151,9 +169,16 @@ def login():
 @app.route("/resetLocation", methods=["POST"])
 def resetLocation():
     selected = request.form.getlist('reset_checkbox')
-    print(selected)
-    for id_to_reset in selected:
-        reset_to_zero(id_to_reset)       
+    print(selected)    
+    if request.form.get('action') == 'Reset':
+        for id_to_reset in selected:
+            reset_to_zero(id_to_reset)
+    elif request.form.get('action') == 'Delete':
+        for id_to_reset in selected:
+            delete_row(id_to_reset)
+    elif request.form.get('action') == 'Update':
+        for id_to_update in selected:
+            print(request.form.getlist(id_to_update))
     return redirect(url_for('allLocations'))
 
 

@@ -134,17 +134,23 @@ textarea {
 .buttonreset {
     border: none;
     color: white;
-    padding: 3px 34px;
+    padding: 9px 24px;
     text-align: center;
     text-decoration: none;
     font-size: 22px;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 0px;
     margin-bottom: 1%;
-    background-color: #bd2121;
-    color: white;
+    margin-right: 4.5px;
+    background-color: #ffffffb0;
+    color: #4e4600;
+}
+
+.buttonreset:hover {
+    background-color: #324960;
+    color: rgb(255, 255, 255);
 }
 
 .button3 {
@@ -207,6 +213,16 @@ h3 {
     color: #860b0b;
     margin: auto;
     padding-top: 77px;
+}
+
+.tableinstraction {
+    /* text-align: center; */
+    /* letter-spacing: 1px; */
+    font-size: 19px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f6f288;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .footer {
@@ -495,6 +511,7 @@ a {
     max-width: 100%;
     white-space: nowrap;
     background-color: white;
+    margin-top: 1%;
 }
 
 .fl-table td,
