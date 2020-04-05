@@ -1,24 +1,22 @@
-{% extends "base.html" %} {% block body %}
+{% extends "base.html" %} {% block body %} {% if fail_login == 'YES' %}
 
-
-{% if fail_login == 'YES' %}
 <body onload="loginForm()">
     {% endif %}
 
-<div class="page1">
-    <div class="center" id="p1">
-        <!-- <img src="static/logo.png" class="center logo"></img> -->
-        <div class="center logo"></div>
-        <h4>Enter Address or EirCode to search</h4>
-        <form action='/displayResults' method='POST'>
-            {% include 'googlAutoComplete.html' %}
-        </form>
+    <div class="page1">
+        <div class="center" id="p1">
+            <!-- <img src="static/logo.png" class="center logo"></img> -->
+            <div class="center logo"></div>
+            <h4>Enter Address or EirCode to search</h4>
+            <form action='/displayResults' method='POST'>
+                {% include 'googlAutoComplete.html' %}
+            </form>
+        </div>
     </div>
-</div>
-<!-- To HIDE OR SHOW THE ALERT -->
-{% if show_Alert == 'YES' %}
-<div id="alert" class="alert alert-danger alert-dismissible fade in">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Alert!</strong> The Entered Address <b>{{building_name}}</b> Has No Date In Our DataBase.
-</div>
-{% endif %} {% endblock %}
+    <!-- To HIDE OR SHOW THE ALERT -->
+    {% if show_Alert == 'YES' %}
+    <div id="alert" class="alert alert-danger alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> The Entered Address <b>{{building_name}}</b> Has No Date In Our DataBase.
+    </div>
+    {% endif %} {% endblock %}

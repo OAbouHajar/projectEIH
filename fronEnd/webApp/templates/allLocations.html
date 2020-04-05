@@ -1,18 +1,28 @@
 {% extends "base.html" %} {% block body %}
+
 <div class="page2">
+    {% if session["address_found_in_DB"] is defined %}
+    <div id="alert" class="alert alert-danger alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> The Entered address is in Our DataBase.
+    </div>
+    {% elif session["address_not_found_in_DB"] is defined %}
+    <div id="alert" class="alert alert-okay alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> the Builiding registation key is : {{session['id_generated']}}
+    </div>
+    {% endif %}
     <div class="resultAllLocations">
         <h2>All Locations</h2>
         <div class="table-wrapper">
-            <table class="fl-table" id="example">
+            <table class="fl-table" id="allLocation">
                 <thead>
                     <tr>
                         {% if session["loged_in"] is defined %}
 
                         <th>#</th>
                         <th>Building ID</th>
-
                         {% endif %}
-
                         <th>Building Name</th>
                         <th>Address</th>
                         <th>Eircode</th>
@@ -21,32 +31,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action='/resetLocation' method='POST'>
+                    <form name="all" action='/resetLocation' method='POST'>
                         {% if session["loged_in"] is defined %}
-
                         <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="checkbox_check();"></input>
-                        <input type="submit" name="action" value="Update" class=" buttonreset" onclick="checkbox_check();"></input>
+                        <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
                         <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="checkbox_check();"></input>
-                        {% endif %} {% for k, v in x.items(): %}
+                        <input id="add_buttom" value="+/- New Row" class=" buttonAddsimple" onclick="myFunction()"></input> {% endif %}
+                        <tr id="myDIV" style="display: none">
+                            <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="add_new();">ADD</button>
+                            </td>
+                            <td><input type="text" disabled placeholder="Auto Generate"></input>
+                            </td>
+                            <td><input type="text" name="new_row_name" id="new_row_name" placeholder="Builiding Name"></input>
+                            </td>
+                            <td> {% include 'googlAutoCompleteGeneral.html' %} </td>
+                            <td><input name="new_row_eircode" id="new_row_eircode" type="text" placeholder="Eircode"></input>
+                            </td>
+                            </input>
+                            <td><input type="text" disabled placeholder="Auto Generate" /></td>
+                            <td><input type="datetime" disabled placeholder="Auto Generate" required></td>
+                            </input>
+                        </tr>
+                        {% for k, v in x.items(): %} {% if v.active is sameas true %}
 
                         <tr>
                             {% if session["loged_in"] is defined %}
 
                             <td>
-                                <input type="checkbox" name="reset_checkbox" id="reset_checkbox" value="{{ k }}">
+                                <input type="radio" name="reset_checkbox" id="{{ k }}" value="{{ k }}">
                             </td>
                             <td id="{{k}}">{{ k }}</td>
                             {% endif %}
-                            <td name="known_name" id="known_name" contenteditable>{{ v.known_name }}</td>
-                            <td name="address" id="address" value="{{ v.address }}" contenteditable>{{ v.address }}</td>
-                            <input type="hidden" name="{{k}}" value="{{ v.address }}" />
-                            <td name="eircode" id="eircode" value="{{ v.eircode }}" contenteditable>{{ v.eircode }}</td>
-                            <input type="hidden" name="{{k}}" value="{{ v.eircode }}" />
+                            <td name="known_name" id="{{k}}_name" contenteditable>{{ v.known_name }}</td>
+                            <input type="hidden" name="known_name_update" id="known_name_update" />
+                            <td name="address" id="{{k}}_address" value="{{ v.address }}" contenteditable>{{ v.address }}</td>
+                            <input type="hidden" name="address_update" id="address_update" />
+                            <td name="eircode" id="{{k}}_eircode" value="{{ v.eircode }}" contenteditable>{{ v.eircode }}</td>
+                            <input type="hidden" name="eircode_update" id="eircode_update" />
                             <td name="numberOfPeopleINDetect" id="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}">{{ v.numberOfPeopleINDetect }}</td>
-                            <input type="hidden" name="{{k}}" value="{{ v.numberOfPeopleINDetect }}" />
+                            <input type="hidden" name="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}" />
                             <td name="timeUpdated" id="timeUpdated" value="{{ v.timeUpdated }}" contenteditable>{{ v.timeUpdated }}</td>
                         </tr>
-                        {% endfor %}
+                        {% endif %} {% endfor %}
+                        <input type="hidden" name="selected_radio" id='selected_radio' />
+
                     </form>
                     <br>
                 </tbody>
@@ -59,14 +87,78 @@
 
 <script>
     function checkbox_check() {
-        checked = document.getElementById('reset_checkbox').checked;
-        if (checked == true) {
-            therespond = confirm('Do you to reset the selected IDs?');
-            return therespond
-        } else {
-            alert("YOU HAVE TO SELECT ONE PLACE AT LEAST!!");
-            return false
+        var ele = document.getElementsByName('reset_checkbox');
+        var founded = false;
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                rad = ele[i].value;
+                founded = true
+            }
         }
+        if (founded == false) {
+            alert('select one option pelase!')
+            return false;
+
+        }
+        var rad;
+        document.getElementById("selected_radio").value = rad;
+        return confirm('Do you to comtinue the process?');
+
     }
+
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "table-row";
+        } else {
+            x.style.display = "none";
+        }
+
+    }
+
+    function storeChangesInSession() {
+
+
+        var ele = document.getElementsByName('reset_checkbox');
+        var founded = false;
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                rad = ele[i].value;
+                founded = true
+            }
+        }
+        if (founded == false) {
+            alert('select one option pelase!')
+            return false;
+
+        }
+        var rad;
+        document.getElementById("selected_radio").value = rad;
+        var name = document.getElementById(rad + '_name').innerHTML;
+        var address = document.getElementById(rad + '_address').innerHTML;
+        var eircode = document.getElementById(rad + '_eircode').innerHTML;
+
+        document.getElementById("known_name_update").value = name;
+        document.getElementById("address_update").value = address;
+        document.getElementById("eircode_update").value = eircode;
+
+        return confirm('Do you to comtinue the process?');
+
+
+    }
+
+
+    // function storeChangesInSession() {
+    //     var name = document.getElementById("known_name").innerHTML
+    //     var address = document.getElementById("address").innerHTML
+    //     var eircode = document.getElementById("eircode").innerHTML
+    //     var id = document.getElementById("reset_checkbox").innerHTML
+
+    //     sessionStorage.setItem("known_name_update", name);
+    //     sessionStorage.setItem("address_update", address);
+    //     sessionStorage.setItem("eircode_update", eircode);
+    //     return confirm('Do you to comtinue the process?');
+
+    // }
 </script>
 {% endblock %}

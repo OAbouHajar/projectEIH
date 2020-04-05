@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect, url_for,session
+from flask import Flask, render_template, request,redirect, url_for,session, jsonify
 import requests
 import pyrebase
 import time
@@ -54,30 +54,48 @@ def db_config():
 
 
 def reset_to_zero(id_to_reset):
-    
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': 0})
 
+def add_new_builiding():
+    data_stored = get_all_data_from_firebase()
+    data =    {
+    'deviceId': 'none',
+    'known_name': request.form.get('new_row_name').upper(),
+    'address' : request.form.get('new_row_address').upper(),
+    'eircode' : request.form.get('new_row_eircode').upper(),
+    'numberOfPeopleINDetect': 0,
+    'timeUpdated': time.strftime('%X %x %Z'),
+    'active' : True
+    }
+    if(check_if_address_added_already(data_stored,data)):
+        session['address_found_in_DB'] = True
+        return False
+    else:
+        db = db_config().database()
+        id_generated = db.child("locations").push(data)
+        session['id_generated']=id_generated['name']
+        return id_generated
+
+
+def check_if_address_added_already(data_stored,data):
+    for key, value in data_stored.items():
+        print('##################################')
+        print(data['address'])
+        print(value['address'])
+        if(str(value['address']) == str(data['address'])):
+            return True
+    session['address_not_found_in_DB'] = False
+    return False
 
 def delete_row(id_to_reset):
     print( "DELETED", id_to_reset)
-
     db = db_config().database()
-    db.child("locations").child(id_to_reset).remove()
-def update_row(selected):
-    for id_to_reset in selected:  
-        data = {
-                'buildingID': 'it carlow ',
-                'deviceId': 'Test ',
-                'known_name': 'it carlow ',
-                'address' : 'Test Tefffst Test Test Test Test Test Test Test ',
-                'eircode' : '1111111111111',
-                'numberOfPeopleINDetect': 0,
-                'timeUpdated': time.strftime('%X %x %Z')
-        }
-        db = db_config().database()
-        db.child("locations").child(id_to_reset).update()
-
+    db.child("locations").child(id_to_reset).update({'active' : False})
+    
+def update_row(id_to_update,data):
+    db = db_config().database()
+    x = db.child("locations").child(id_to_update).update(data)
 
 def login_check():
     email = request.form["loginInput"]
@@ -109,10 +127,6 @@ def display_form():
         return render_template("index.html", the_title="" , show_Alert="NO" ,building_name= "building_name_send", fail_login="YES")
     else:
         return render_template("index.html", the_title="" , show_Alert="NO" ,building_name= "building_name_send",fail_login="NO")
-
-# @app.route("/displayformwithalert")
-# def display_form_with_alert(building_name_send):
-#     return render_template("index.html", the_title="" , show_Alert="YES" ,building_name= building_name_send) 
 
 
 @app.route("/displayResults", methods=["POST"])
@@ -147,11 +161,18 @@ def emailMsg():
 @app.route("/allLocations")
 def allLocations():
     items_send = get_all_data_from_firebase()
-    return render_template(
+    if items_send is None:
+        return render_template(
+        "allLocations.html",
+        items= dict(),
+        x= {}
+        )
+    else:
+        return render_template(
         "allLocations.html",
         items= items_send,
         x= items_send
-    )
+        )
     
 @app.route("/login", methods=["POST"])
 def login():
@@ -168,17 +189,24 @@ def login():
 
 @app.route("/resetLocation", methods=["POST"])
 def resetLocation():
-    selected = request.form.getlist('reset_checkbox')
-    print(selected)    
+    selected = request.form.get('selected_radio')
+    print(selected)
+    print(request.form.get('action'))
     if request.form.get('action') == 'Reset':
-        for id_to_reset in selected:
-            reset_to_zero(id_to_reset)
+            reset_to_zero(selected)
     elif request.form.get('action') == 'Delete':
-        for id_to_reset in selected:
-            delete_row(id_to_reset)
+            delete_row(selected)
     elif request.form.get('action') == 'Update':
-        for id_to_update in selected:
-            print(request.form.getlist(id_to_update))
+        data =    {
+            'known_name': request.form.get('known_name_update').upper(),
+            'address' : request.form.get('address_update').upper(),
+            'eircode' : request.form.get('eircode_update').upper(),
+            'timeUpdated': time.strftime('%X %x %Z')
+            }
+        print(data)
+        update_row(selected,data)
+    elif request.form.get('action') == 'Add':
+        id_generated = add_new_builiding()                                    
     return redirect(url_for('allLocations'))
 
 

@@ -148,6 +148,29 @@ textarea {
     color: #4e4600;
 }
 
+.buttonAddsimple {
+    padding: 9px 24px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 0px;
+    margin-bottom: 1%;
+    margin-right: 4.5px;
+    background-color: #ffffffb0;
+    color: #4e4600;
+    left: 86%;
+    position: sticky;
+    width: 11%;
+    font-size: 25px;
+    border: none;
+}
+
+.buttonAdd:disabled {
+    background-color: #8a8787;
+}
+
 .buttonreset:hover {
     background-color: #324960;
     color: rgb(255, 255, 255);
@@ -404,6 +427,12 @@ h3 {
     border-color: #ebccd1;
 }
 
+.alert-okay {
+    color: #000000;
+    background-color: #e4f3a6;
+    border-color: #242b05;
+}
+
 .close {
     float: right;
     font-size: 21px;
@@ -492,7 +521,7 @@ a {
     padding: 10px;
     border-radius: 15px;
     padding: 2% 2%;
-    width: 75%;
+    width: auto;
     margin-bottom: 2%;
 }
 
@@ -509,7 +538,6 @@ a {
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
-    white-space: nowrap;
     background-color: white;
     margin-top: 1%;
 }
