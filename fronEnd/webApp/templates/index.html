@@ -20,3 +20,12 @@
         <strong>Alert!</strong> The Entered Address <b>{{session['building_name_send']}}</b> Has No Date In Our DataBase.
     </div>
     {% endif %} {% endblock %}
+
+    <script>
+        $("form").keypress(function(e) {
+            //Enter key
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    </script>

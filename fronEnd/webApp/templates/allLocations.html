@@ -31,14 +31,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form name="all" action='/resetLocation' method='POST'>
+                    <form name="all" id="all_data" action='/resetLocation' method='POST'>
                         {% if session["loged_in"] is defined %}
-                        <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="checkbox_check();"></input>
+                        <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
                         <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
-                        <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="checkbox_check();"></input>
+                        <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
                         <input id="add_buttom" value="+/- New Row" class=" buttonAddsimple" onclick="myFunction()"></input> {% endif %}
+                        <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
+
                         <tr id="myDIV" style="display: none">
-                            <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="add_new();">ADD</button>
+                            <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="return add_new();">ADD</button>
                             </td>
                             <td><input type="text" disabled placeholder="Auto Generate"></input>
                             </td>
@@ -147,18 +149,43 @@
 
     }
 
+    function add_new() {
+        var name = document.getElementById('new_row_name').value;
+        var address = document.getElementById('pac-input').value;
+        var eircode = document.getElementById('new_row_eircode').value;
 
-    // function storeChangesInSession() {
-    //     var name = document.getElementById("known_name").innerHTML
-    //     var address = document.getElementById("address").innerHTML
-    //     var eircode = document.getElementById("eircode").innerHTML
-    //     var id = document.getElementById("reset_checkbox").innerHTML
+        if (name == "" || address == "" || eircode == "") {
+            alert('Please fill all the feilds to add!');
+            return false;
+        } else {
+            return confirm('Do you to comtinue the process?');
+        }
 
-    //     sessionStorage.setItem("known_name_update", name);
-    //     sessionStorage.setItem("address_update", address);
-    //     sessionStorage.setItem("eircode_update", eircode);
-    //     return confirm('Do you to comtinue the process?');
+    }
+    $("form").keypress(function(e) {
+        //Enter key
+        if (e.which == 13) {
+            return false;
+        }
+    });
 
-    // }
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("allLocation");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
 {% endblock %}

@@ -55,17 +55,8 @@ def reset_to_zero(id_to_reset):
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': 0})
 
-def add_new_builiding():
+def add_new_builiding(data):
     data_stored = get_all_data_from_firebase()
-    data =    {
-    'deviceId': 'none',
-    'known_name': request.form.get('new_row_name').upper(),
-    'address' : request.form.get('new_row_address').upper(),
-    'eircode' : request.form.get('new_row_eircode').upper(),
-    'numberOfPeopleINDetect': 0,
-    'timeUpdated': time.strftime('%X %x %Z'),
-    'active' : True
-    }
     if(check_if_address_added_already(data_stored,data['address'])):
         session['address_found_in_DB'] = True
         return False
@@ -87,6 +78,8 @@ def check_if_searched_address_in_db(building_name_send):
 def check_if_address_added_already(data_stored,data):
     for key, value in data_stored.items():
         print('##################################')
+        print(str(value['address']))
+        print(str(data))
         if(str(value['address']) == str(data)):
             session["number_inside"] = str(value['numberOfPeopleINDetect'])
             return True
@@ -197,7 +190,7 @@ def resetLocation():
     print(selected)
     print(request.form.get('action'))
     if request.form.get('action') == 'Reset':
-            reset_to_zero(selected)
+        reset_to_zero(selected)
     elif request.form.get('action') == 'Delete':
             delete_row(selected)
     elif request.form.get('action') == 'Update':
@@ -210,7 +203,16 @@ def resetLocation():
         print(data)
         update_row(selected,data)
     elif request.form.get('action') == 'Add':
-        id_generated = add_new_builiding()                                    
+        data =    {
+        'deviceId': 'none',
+        'known_name': request.form.get('new_row_name').upper(),
+        'address' : request.form.get('new_row_address').upper(),
+        'eircode' : request.form.get('new_row_eircode').upper(),
+        'numberOfPeopleINDetect': 0,
+        'timeUpdated': time.strftime('%X %x %Z'),
+        'active' : True
+        }
+        add_new_builiding(data)                                    
     return redirect(url_for('allLocations'))
 
 
