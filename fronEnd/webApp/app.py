@@ -14,7 +14,7 @@ def get_all_data_from_firebase():
 
 def get_the_search_location():
     # to get the search address fully
-    addressName = request.form["thelocation"]
+    addressName = request.form["thelocation"].upper()
     return addressName
 
 def get_the_name_form_search_text(addressName):
@@ -22,23 +22,21 @@ def get_the_name_form_search_text(addressName):
     str_list = addressName.split(',')
     # display only the name from tha address.
     building_name_send = str_list[0]
-
     session['building_name_send'] = building_name_send
     return building_name_send
 
-def check_if_searched_address_in_db(building_name_send):
-    found = False
-    total_numebr_send = None
-    url = 'https://projecteih.firebaseio.com/locations.json'
-    r = requests.get(url)
-    x= r.json()
-    if building_name_send in x:
-        total_numebr_send = str(x[building_name_send]['numberOfPeopleINDetect']) + " Person"
-        found = True
-        session['address_founded'] = True
+    # found = False
+    # total_numebr_send = None
+    # url = 'https://projecteih.firebaseio.com/locations.json'
+    # r = requests.get(url)
+    # x= r.json()
+    # if building_name_send in x:
+    #     total_numebr_send = str(x[building_name_send]['numberOfPeopleINDetect']) + " Person"
+    #     found = True
+    #     session['address_founded'] = True
 
-    session['total_numebr_send'] = total_numebr_send
-    return found, total_numebr_send
+    # session['total_numebr_send'] = total_numebr_send
+    # return found, total_numebr_send
 
 def db_config():
     config = {
@@ -68,7 +66,7 @@ def add_new_builiding():
     'timeUpdated': time.strftime('%X %x %Z'),
     'active' : True
     }
-    if(check_if_address_added_already(data_stored,data)):
+    if(check_if_address_added_already(data_stored,data['address'])):
         session['address_found_in_DB'] = True
         return False
     else:
@@ -78,12 +76,19 @@ def add_new_builiding():
         return id_generated
 
 
+def check_if_searched_address_in_db(building_name_send):
+    data_stored = get_all_data_from_firebase()
+    print('##################################00')
+    print(get_the_search_location())
+    return check_if_address_added_already(data_stored,get_the_search_location())
+
+
+
 def check_if_address_added_already(data_stored,data):
     for key, value in data_stored.items():
         print('##################################')
-        print(data['address'])
-        print(value['address'])
-        if(str(value['address']) == str(data['address'])):
+        if(str(value['address']) == str(data)):
+            session["number_inside"] = str(value['numberOfPeopleINDetect'])
             return True
     session['address_not_found_in_DB'] = False
     return False
@@ -122,11 +127,11 @@ def route():
 @app.route("/displayform")
 def display_form():
     if not session.get('address_founded') is None:
-        return render_template("index.html", the_title="" , show_Alert="YES" ,building_name= session['building_name_send'], fail_login= "NO")
+        return render_template("index.html", the_title=""  , fail_login= "NO")
     elif session.get('fail_login') is True:
-        return render_template("index.html", the_title="" , show_Alert="NO" ,building_name= "building_name_send", fail_login="YES")
+        return render_template("index.html", the_title="", fail_login="YES")
     else:
-        return render_template("index.html", the_title="" , show_Alert="NO" ,building_name= "building_name_send",fail_login="NO")
+        return render_template("index.html", the_title="" ,fail_login="NO")
 
 
 @app.route("/displayResults", methods=["POST"])
@@ -135,13 +140,12 @@ def displayResults():
     addressName = get_the_search_location()
     building_name_send = get_the_name_form_search_text(addressName)
 
-    found, total_numebr_send = check_if_searched_address_in_db(building_name_send)
-    print("found" , found)
+    found = check_if_searched_address_in_db(building_name_send)
     if not found:
         return redirect(url_for('display_form'))
     else:
         return render_template(
-            "results.html", person_name="osama", searched_text=addressName , building_name= building_name_send , total_numebr = total_numebr_send
+            "results.html", person_name="osama", searched_text=addressName , building_name= building_name_send , total_numebr = session["number_inside"] 
         )
 
 @app.route("/contactForm")

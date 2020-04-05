@@ -14,9 +14,9 @@
         </div>
     </div>
     <!-- To HIDE OR SHOW THE ALERT -->
-    {% if show_Alert == 'YES' %}
+    {% if session["address_not_found_in_DB"] is defined %}
     <div id="alert" class="alert alert-danger alert-dismissible fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Alert!</strong> The Entered Address <b>{{building_name}}</b> Has No Date In Our DataBase.
+        <strong>Alert!</strong> The Entered Address <b>{{session['building_name_send']}}</b> Has No Date In Our DataBase.
     </div>
     {% endif %} {% endblock %}

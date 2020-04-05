@@ -5,6 +5,7 @@ body {
     margin: auto;
     background-image: url(/static/home-bg.png);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 

@@ -81,14 +81,11 @@
             <a href="/">Home</a>
             <a href="http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html" target="_blank">About</a>
             <a href="/allLocations">Locations</a>
-            <a href="/contactForm">Contact</a>
-            {% if session["loged_in"] is defined %}
-            <div class='menu_admin'>Admin Options:</div>
+            <a href="/contactForm">Contact</a> {% if session["loged_in"] is defined %}
+            <!-- <div class='menu_admin'>Admin Options:</div>
             <a href="/contactForm">Edit Building</a>
-            <a href="/contactForm">Add User</a>
-            <a href="/">Log Out</a>
-
-            {% endif %}
+            <a href="/contactForm">Add User</a> -->
+            <a href="/">Log Out</a> {% endif %}
 
         </div>
     </div>
