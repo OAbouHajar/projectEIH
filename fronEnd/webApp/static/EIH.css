@@ -14,12 +14,12 @@
         background-position: 0px -0px;
         background-repeat: no-repeat;
         background-size: 5%;
-        width: 50%;
+        width: 57%;
         font-size: 16px;
-        padding: 12px 20px 12px 40px;
+        padding: 14px 6px 11px 48px;
         border: 1px solid #ddd;
-        margin-bottom: 12px;
-        margin-left: -12%;
+        margin-bottom: 4px;
+        margin-left: -14.5%;
     }
     
     #allLocation tr:hover {
@@ -167,7 +167,7 @@
     }
     
     .buttonAddsimple {
-        padding: 9px 24px;
+        padding: 7px 25px 10px 24px;
         text-align: center;
         text-decoration: none;
         -webkit-transition-duration: 0.4s;
@@ -517,6 +517,56 @@
             display: block;
             margin: auto;
             font-size: large;
+        }
+        .buttonreset {
+            margin-left: 1%;
+            padding: 13px 28px;
+            font-size: 22px;
+        }
+        .buttonAddsimple {
+            margin-left: 1%;
+            margin-top: auto;
+            width: 78%;
+        }
+        #myInput {
+            background-image: url(/static/searchicon.png);
+            background-position: 0px -0px;
+            background-repeat: no-repeat;
+            background-size: 18%;
+            width: 83%;
+            font-size: 16px;
+            /* padding: 14px 6px 11px 48px; */
+            border: 1px solid #ddd;
+            margin-bottom: 6px;
+            margin-left: 0.5%;
+        }
+        .login {
+            position: fixed;
+            top: -9px;
+            color: #ffffff;
+            font-size: 30px;
+            cursor: pointer;
+            margin-left: 65%;
+            padding-top: 5%;
+        }
+        .userlogin {
+            color: #fff;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 4%;
+            font-size: -webkit-xxx-large;
+            margin-bottom: 6%;
+            margin-top: 4%;
+        }
+        input[name=loginInput],
+        input[name=loginPass] {
+            width: 85%;
+        }
+        .loginLable {
+            color: rgb(243, 217, 23);
+            font-size: x-large;
+        }
+        .loginStyle {
+            margin-left: 8%;
         }
     }
     /* Table Styles */
