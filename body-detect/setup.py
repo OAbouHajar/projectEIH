@@ -21,7 +21,7 @@ os.system('export FIREBASE_DB_URL="{}"'.format(db_url))
 os.system('export REG_BUILIDING_ID="{}"'.format(reg_id_fixed))
 os.system('export DEVICE_ID="{}"'.format(device_id))
 #export FIREBASE_DB_URL="https://projecteih.firebaseio.com/locations.json"
-#export REG_BUILIDING_ID="-M4AU6aNNx2nxz2qHD2Q"
+#export REG_BUILIDING_ID="-M4Eq45nYdyBOA8GgL5r"
 #export DEVICE_ID="carlow145"
 #python3 setup.py --dburl https://projecteih.firebaseio.com/locations.json --regid M4AdyrseXVUYD8UjLEB --deviceid carlow145
 
