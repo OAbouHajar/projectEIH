@@ -3,14 +3,40 @@ import requests
 import argparse
 import time
 import os
+import pyrebase
 
-## connection to the firebase
-firebase = firebase.FirebaseApplication('https://projecteih.firebaseio.com', None)
+
+def db_config():
+    config = {
+    "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
+    "authDomain": "projecteih.firebaseio.com",
+    "databaseURL": "https://projecteih.firebaseio.com",
+    "storageBucket": "projecteih.appspot.com",
+    "serviceAccount": "/home/osama/Desktop/projectEIH/body-detect/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
+    }
+    firebasePy = pyrebase.initialize_app(config)
+
+    return firebasePy
+
+def get_all_data_from_firebase():
+    r = requests.get('https://projecteih.firebaseio.com/locations.json')
+    x= r.json()
+    return x
+
+
+def get_stored_number_of_people_from_db():
+    x = get_all_data_from_firebase()
+    return x['numberOfPeopleINDetect']
+
+def update_with_the_new_number(id_to_reset, new_number):
+    db = db_config().database()
+    new_number = 10
+    db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': 0})
+
 ## get the previouse number on the API
 url = os.environ['FIREBASE_DB_URL']
-r = requests.get(url)
-x= r.json()
-preNumber = x['numberOfPeopleINDetect']
+reg_id = os.environ['REG_BUILIDING_ID']
+device_id = os.environ['DEVICE_ID']
 
 
 ## read the argument sent from line 55 the detect.py file with the number of new people detected
@@ -23,6 +49,9 @@ args = vars(ap.parse_args())
 currentNumberOUT = args["numberOUT"]
 currentNumberIN = args["numberIN"]
 
+## get the previous number from the DB
+preNumber = get_stored_number_of_people_from_db()
+
 if args["numberOUT"] is not None:
     ## substact the number coming from the API to the number coming from the RassPi
     newNumber = preNumber- currentNumberOUT
@@ -30,22 +59,5 @@ elif args["numberIN"] is not None:
     ## add the number coming from the API to the number coming from the RassPi
     newNumber = preNumber + currentNumberIN
 
-
-## The Project API
-projectData = {
-    'buildingID': 'Institute of Technology Carlow',
-    'deviceId': 'rassPi4-MainOUT',
-    'name': 'Carlow IT MAIN OUT',
-    'address' : 'Institute of Technology Carlow, Kilkenny Rd, Moanacurragh, Carlow',
-    'eircode' : 'R93 V960',
-    'numberOfPeopleINDetect': newNumber,
-    'status': True,
-    'timeUpdated': time.time()
-    }
-
-url = os.environ['FIREBASE_DB_URL']
-## Push the number to the firebase
-r = requests.put(url, json=projectData)
-x= r.json()
-print(x)
-print('^^ DONE ^^')
+## send the new number to the update with the building ID
+update_with_the_new_number(reg_id, newNumber)

@@ -9,10 +9,16 @@ print("###################################     SETUP START       ###############
 print("################################################################################################")
 ## parse the DB URL and set it up as enviroument variable
 ap = argparse.ArgumentParser()
-ap.add_argument("-db", "--dburl", help="The link to the firebase database")
+ap.add_argument("-db", "--dburl", help="The link to the firebase database",required=True)
+ap.add_argument("-r", "--regid", help="the building ID got from the registration", required=True)
+ap.add_argument("-dv", "--deviceid", help="the device Id linked to the builiding",required=True)
 args = vars(ap.parse_args())
 db_url = args["dburl"]
+reg_id = args["regid"]
+device_id = args["deviceid"]
 os.system('export FIREBASE_DB_URL="{}"'.format(db_url))
+os.system('export REG_BUILIDING_ID="{}"'.format(reg_id))
+os.system('export DEVICE_ID="{}"'.format(device_id))
 ##installing python 
 os.system('sudo apt-get update')
 os.system('sudo apt-get install python3.6')
