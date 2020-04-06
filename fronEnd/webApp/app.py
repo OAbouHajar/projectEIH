@@ -76,13 +76,16 @@ def check_if_searched_address_in_db(building_name_send):
 
 
 def check_if_address_added_already(data_stored,data):
-    for key, value in data_stored.items():
-        print('##################################')
-        print(str(value['address']))
-        print(str(data))
-        if(str(value['address']) == str(data)):
-            session["number_inside"] = str(value['numberOfPeopleINDetect'])
-            return True
+    if data_stored is None:
+        pass
+    else:
+        for key, value in data_stored.items():
+            print('##################################')
+            print(str(value['address']))
+            print(str(data))
+            if(str(value['address']) == str(data)):
+                session["number_inside"] = str(value['numberOfPeopleINDetect'])
+                return True
     session['address_not_found_in_DB'] = False
     return False
 
