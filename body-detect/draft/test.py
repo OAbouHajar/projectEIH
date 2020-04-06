@@ -13,13 +13,16 @@ def get_stored_number_of_people_from_db(reg_id):
     return x[reg_id]['numberOfPeopleINDetect']
 
 
+
 def db_config():
+    path = os.getcwd()
+
     config = {
     "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
     "authDomain": "projecteih.firebaseio.com",
     "databaseURL": "https://projecteih.firebaseio.com",
     "storageBucket": "projecteih.appspot.com",
-    "serviceAccount": "/home/osama/Desktop/projectEIH/body-detect/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
+    "serviceAccount": "{}/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json".format(path )
     }
     firebasePy = pyrebase.initialize_app(config)
 
@@ -31,5 +34,5 @@ def update_with_the_new_number(id_to_reset, new_number):
     x= db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': new_number})
     return x
 
-print(get_stored_number_of_people_from_db('-M4AU6aNNx2nxz2qHD2Q'))
-print(update_with_the_new_number('-M4AU6aNNx2nxz2qHD2Q',10))
+#print(get_stored_number_of_people_from_db('-M4AU6aNNx2nxz2qHD2Q'))
+print(update_with_the_new_number('-M4Eq45nYdyBOA8GgL5r',10))

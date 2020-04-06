@@ -13,12 +13,14 @@ def get_stored_number_of_people_from_db(reg_id):
 
 
 def db_config():
+    path = os.getcwd()
+
     config = {
     "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
     "authDomain": "projecteih.firebaseio.com",
     "databaseURL": "https://projecteih.firebaseio.com",
     "storageBucket": "projecteih.appspot.com",
-    "serviceAccount": "/home/osama/Desktop/projectEIH/body-detect/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
+    "serviceAccount": "{}/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json".format(path )
     }
     firebasePy = pyrebase.initialize_app(config)
 
