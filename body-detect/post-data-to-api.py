@@ -6,6 +6,12 @@ import os
 import pyrebase
 
 
+def get_stored_number_of_people_from_db(reg_id):
+    r = requests.get('https://projecteih.firebaseio.com/locations.json')
+    x= r.json()
+    return x[reg_id]['numberOfPeopleINDetect']
+
+
 def db_config():
     config = {
     "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
@@ -18,20 +24,11 @@ def db_config():
 
     return firebasePy
 
-def get_all_data_from_firebase():
-    r = requests.get('https://projecteih.firebaseio.com/locations.json')
-    x= r.json()
-    return x
-
-
-def get_stored_number_of_people_from_db():
-    x = get_all_data_from_firebase()
-    return x['numberOfPeopleINDetect']
 
 def update_with_the_new_number(id_to_reset, new_number):
     db = db_config().database()
-    new_number = 10
-    db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': 0})
+    x= db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': new_number})
+    return x
 
 ## get the previouse number on the API
 url = os.environ['FIREBASE_DB_URL']
@@ -50,7 +47,7 @@ currentNumberOUT = args["numberOUT"]
 currentNumberIN = args["numberIN"]
 
 ## get the previous number from the DB
-preNumber = get_stored_number_of_people_from_db()
+preNumber = get_stored_number_of_people_from_db(reg_id)
 
 if args["numberOUT"] is not None:
     ## substact the number coming from the API to the number coming from the RassPi

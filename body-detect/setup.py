@@ -15,10 +15,21 @@ ap.add_argument("-dv", "--deviceid", help="the device Id linked to the builiding
 args = vars(ap.parse_args())
 db_url = args["dburl"]
 reg_id = args["regid"]
+reg_id_fixed = '-'+reg_id
 device_id = args["deviceid"]
 os.system('export FIREBASE_DB_URL="{}"'.format(db_url))
-os.system('export REG_BUILIDING_ID="{}"'.format(reg_id))
+os.system('export REG_BUILIDING_ID="{}"'.format(reg_id_fixed))
 os.system('export DEVICE_ID="{}"'.format(device_id))
+#export FIREBASE_DB_URL="https://projecteih.firebaseio.com/locations.json"
+#export REG_BUILIDING_ID="-M4AdyrseXVUYD8UjLEB"
+#export DEVICE_ID="carlow145"
+#python3 setup.py --dburl https://projecteih.firebaseio.com/locations.json --regid M4AdyrseXVUYD8UjLEB --deviceid carlow145
+
+
+print("FIREBASE_DB_URL", os.environ['FIREBASE_DB_URL'])
+print("REG_BUILIDING_ID",os.environ['REG_BUILIDING_ID'])
+print("DEVICE_ID", os.environ['DEVICE_ID'])
+
 ##installing python 
 os.system('sudo apt-get update')
 os.system('sudo apt-get install python3.6')
