@@ -3,7 +3,9 @@ import os
 import pdb
 import sys
 
-#https://projecteih.firebaseio.com/carlowIT.json
+#export FIREBASE_DB_URL=https://projecteih.firebaseio.com/locations.json
+#export REG_BUILIDING_ID=-M4Eq45nYdyBOA8GgL5r
+#export DEVICE_ID=carlow14512
 print("################################################################################################")
 print("###################################     SETUP START       ######################################")
 print("################################################################################################")
