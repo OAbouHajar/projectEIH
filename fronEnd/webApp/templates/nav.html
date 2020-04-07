@@ -63,12 +63,11 @@
         
         .menu {
             position: fixed;
-            top: 0;
+            top: 4%;
+            left: 2%;
             color: #ffffff;
-            font-size: 30px;
+            font-size: 24px;
             cursor: pointer;
-            margin-left: 2%;
-            padding-top: 2%;
         }
     </style>
 </head>
@@ -78,7 +77,7 @@
     <div id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
-            <a href="/">Home</a>
+            <a href="/displayform">Home</a>
             <a href="http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html" target="_blank">About</a>
             <a href="/allLocations">Locations</a>
             <a href="/contactForm">Contact</a> {% if session["loged_in"] is defined %}

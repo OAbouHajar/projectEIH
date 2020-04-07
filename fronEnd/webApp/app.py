@@ -2,10 +2,23 @@ from flask import Flask, render_template, request,redirect, url_for,session, jso
 import requests
 import pyrebase
 import time
+from datetime import timedelta
 
 
 app = Flask(__name__)  # "dunder name".
-app.secret_key = 'sadfsdfdsfdsafdsafsadfadsfadsfdsafdsfa'
+
+DEBUG = True
+# SECRET_KEY = 'development key'
+
+app.config.from_object(__name__)
+#app.config.from_envvar('EIH_SETTINGS')
+#app.secret_key = 'sadfsdfdsfdsafdsafsadfad4sfadsfdsafdsfa'
+app.config.from_pyfile('configuration/myconfig.cfg')
+app.config.update(
+#     ## time out logged in session after minutes=5 time
+     PERMANENT_SESSION_LIFETIME =  timedelta(minutes=5)
+
+)
 
 def get_all_data_from_firebase():
     r = requests.get('https://projecteih.firebaseio.com/locations.json')
@@ -44,8 +57,8 @@ def db_config():
     "authDomain": "projecteih.firebaseio.com",
     "databaseURL": "https://projecteih.firebaseio.com",
     "storageBucket": "projecteih.appspot.com",
-    "serviceAccount": "/home/osama/Desktop/projectEIH/body-detect/cred/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
-    }
+    "serviceAccount": "configuration/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
+}
     firebasePy = pyrebase.initialize_app(config)
 
     return firebasePy
@@ -109,6 +122,7 @@ def login_check():
         user = auth.sign_in_with_email_and_password(email, password)
         session['logged_in_email'] = email
         session['loged_in'] = True
+        session.permanent = True
         return True
     except IOError:
         return False
@@ -119,6 +133,7 @@ def login_check():
 @app.route("/")
 def route():
     session.clear()
+    #return display_form()
     return redirect(url_for('display_form'))
 @app.route("/displayform")
 def display_form():
@@ -219,6 +234,5 @@ def resetLocation():
     return redirect(url_for('allLocations'))
 
 
-
-
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run()

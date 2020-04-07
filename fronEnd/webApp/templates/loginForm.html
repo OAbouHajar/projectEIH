@@ -61,24 +61,21 @@
             }
         }
         
-        .menu {
-            position: fixed;
-            top: 0;
-            color: #ffffff;
-            font-size: 30px;
-            cursor: pointer;
-            margin-left: 2%;
-            padding-top: 2%;
-        }
-        
         .login {
             position: fixed;
-            top: -60px;
+            top: 4%;
+            /*left: 2%;*/
             color: #ffffff;
-            font-size: 30px;
+            font-size: 24px;
             cursor: pointer;
             margin-left: 91%;
-            padding-top: 5%;
+            /* padding-top: 5%; */
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .login {
+                margin-left: 69%;
+            }
         }
     </style>
 </head>
@@ -87,7 +84,7 @@
     <div id="myLog" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
         <br><br><br> {% if session["loged_in"] is defined %}
-        <span class="login" onclick="window.location.href = '/';">&#9776; Log out </span> {% else %}
+        <span class="login" onclick="window.location.href = '/';">&#128275; Log out </span> {% else %}
         <form action='/login' method='POST'>
             <div class='loginStyle'>
                 {% if fail_login == 'YES' %}
@@ -105,7 +102,7 @@
                 <input id="pac-input2" name='loginPass' type="password" placeholder="ENTER PASSWORD" required></input>
                 <button type="submit" value="Submit" class=" buttonLogIN button3 "> Log In </button>
         </form>
-        <span class="login" onclick="loginForm()">&#9776; Log In</span>
+        <span class="login" onclick="loginForm()">&#x1f512; Log In</span>
         </div>
         {% endif %}
     </div>

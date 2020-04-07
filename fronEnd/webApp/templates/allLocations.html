@@ -32,12 +32,15 @@
                 </thead>
                 <tbody>
                     <form name="all" id="all_data" action='/resetLocation' method='POST'>
-                        {% if session["loged_in"] is defined %}
-                        <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
-                        <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
-                        <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
-                        <input id="add_buttom" value="+/- New Row" class=" buttonAddsimple" onclick="myFunction()"></input> {% endif %}
+                        {% if session["loged_in"] is not defined %}
+                        <input type="text" id="myInput" onkeyup="search_all()" placeholder="Search for names.." title="Type in a name"> {% elif session["loged_in"] is defined %}
                         <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
+                        <div class="buttonsContainer">
+                            <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
+                            <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
+                            <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
+                            <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset" onclick="return add_row()"></input> {% endif %}
+                        </div>
 
                         <tr id="myDIV" style="display: none">
                             <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="return add_new();">ADD</button>
@@ -82,7 +85,11 @@
                 </tbody>
             </table>
         </div>
-        <span class="tableinstraction">*Double click on the field to edit.</span>
+        {% if session["loged_in"] is defined %}
+        <span class="tableinstraction">*Double click on the field to edit.</span> {% endif %}
+        <form action='/displayform'>
+            <button class=" button button3 buttonBack"> Home </button>
+        </form>
 
     </div>
 </div>
@@ -108,7 +115,7 @@
 
     }
 
-    function myFunction() {
+    function add_row() {
         var x = document.getElementById("myDIV");
         if (x.style.display === "none") {
             x.style.display = "table-row";
@@ -169,13 +176,32 @@
         }
     });
 
+    function search_all() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("allLocation");
+        tr = table.getElementsByTagName("tr");
+        for (i = 2; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
     function search() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("allLocation");
         tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
+        for (i = 2; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[2];
             if (td) {
                 txtValue = td.textContent || td.innerText;

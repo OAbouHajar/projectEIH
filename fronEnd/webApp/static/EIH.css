@@ -9,6 +9,10 @@
         background-size: cover;
     }
     
+    .buttonsContainer {
+        display: contents;
+    }
+    
     #myInput {
         background-image: url(/static/searchicon.png);
         background-position: 0px -0px;
@@ -19,7 +23,7 @@
         padding: 14px 6px 11px 48px;
         border: 1px solid #ddd;
         margin-bottom: 4px;
-        margin-left: -13.5%;
+        margin-right: 1%;
     }
     
     #allLocation tr:hover {
@@ -54,16 +58,6 @@
         font-size: -webkit-xxx-large;
         margin-bottom: 6%;
         margin-top: 4%;
-    }
-    
-    .menu_admin {
-        color: #fff;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        margin-left: 0.5%;
-        font-size: -webkit-xxx-large;
-        margin-bottom: 0%;
-        margin-top: 0.5%;
-        font-size: 29px;
     }
     
     .loginStyle {
@@ -286,7 +280,7 @@
     }
     
     .page1 {
-        padding: 5% 2% 4% 2%;
+        padding: 8% 2% 4% 2%;
         margin: auto;
     }
     
@@ -322,8 +316,8 @@
     }
     
     .resultsLable {
-        color: rgb(223, 255, 43);
-        font-size: x-large;
+        color: rgb(246, 242, 136);
+        font-size: 95%;
     }
     
     .loginLable {
@@ -468,7 +462,7 @@
         input[type=text],
         input[type=email],
         textarea {
-            margin-left: 3%;
+            margin-left: 0%;
             width: 95%;
         }
         [class*="button"] {
@@ -508,7 +502,7 @@
             font-size: large;
         }
         .resultsLable {
-            font-size: large;
+            font-size: 90%;
         }
         .searchResults {
             font-size: large;
@@ -540,22 +534,14 @@
             margin-bottom: 6px;
             margin-left: 0.5%;
         }
-        .login {
-            position: fixed;
-            top: -9px;
-            color: #ffffff;
-            font-size: 30px;
-            cursor: pointer;
-            margin-left: 65%;
-            padding-top: 5%;
-        }
         .userlogin {
             color: #fff;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             margin-left: 4%;
-            font-size: -webkit-xxx-large;
+            font-size: 50px;
             margin-bottom: 6%;
-            margin-top: 4%;
+            margin-top: 25%;
+            margin-left: -2%;
         }
         input[name=loginInput],
         input[name=loginPass] {
@@ -567,6 +553,10 @@
         }
         .loginStyle {
             margin-left: 8%;
+        }
+        .buttonContactUs {
+            margin-left: 3%;
+            width: -webkit-fill-available;
         }
     }
     /* Table Styles */
