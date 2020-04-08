@@ -9,7 +9,7 @@
     {% elif session["address_not_found_in_DB"] is defined %}
     <div id="alert" class="alert alert-okay alert-dismissible fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Alert!</strong> the Builiding registation key is : {{session['id_generated']}}
+        <strong>Alert!</strong> the Builiding registation key is : <strong>'{{session['id_generated']}}'</strong> Add this key to your hardware to connect.
     </div>
     {% endif %}
     <div class="resultAllLocations">
@@ -39,9 +39,22 @@
                             <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
                             <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
                             <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
-                            <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset" onclick="return add_row()"></input> {% endif %}
+                            <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset" onclick="return add_row()"></input>
                         </div>
+                        <div id="contextMenu" class="dropdown clearfix">
+                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+                                <input type="submit" name="action" value="Reset" class=" buttonreset2" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Add" onclick="return add_new();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Delete" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Update" onclick="return storeChangesInSession();"></input>
+                                <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset2" tabindex="-1" onclick="return add_row()"></input>
 
+                            </div>
+                        </div>
+                        {% endif %}
                         <tr id="myDIV" style="display: none">
                             <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="return add_new();">ADD</button>
                             </td>
@@ -93,6 +106,8 @@
 
     </div>
 </div>
+
+
 
 <script>
     function checkbox_check() {
@@ -213,5 +228,29 @@
             }
         }
     }
+
+
+    $(function() {
+
+        var $contextMenu = $("#contextMenu");
+
+        $("body").on("contextmenu", "table tr", function(e) {
+            $contextMenu.css({
+                display: "block",
+                left: e.pageX,
+                top: e.pageY
+            });
+            return false;
+        });
+
+        $('html').click(function() {
+            $contextMenu.hide();
+        });
+
+        $("#contextMenu li a").click(function(e) {
+            var f = $(this);
+        });
+
+    });
 </script>
 {% endblock %}
