@@ -545,8 +545,11 @@ a {
         margin-top: 4%;
     }
     .logo {
-        height: 150px;
-        width: 165px;
+        height: 130px;
+        width: 140px;
+    }
+    .profile_image {
+        width: 40%;
     }
     [class*="fa"] {
         padding: 7px;
@@ -647,6 +650,19 @@ a {
         justify-content: center;
         margin-top: 2%;
         margin-bottom: 15%;
+    }
+    #pus h4 {
+        font-size: 37px;
+    }
+    #pus h1 {
+        font-size: 20px;
+    }
+    #pus h2 {
+        font-size: 16px;
+    }
+    p {
+        font-size: 14px;
+        padding: 2% 10%;
     }
 }
 

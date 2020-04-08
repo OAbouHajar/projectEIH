@@ -66,12 +66,15 @@ def db_config():
 
     return firebasePy
 
-## reset the locations selected to zero 
+
+## reset the locations selected to zero
 def reset_to_zero(id_to_reset):
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({"numberOfPeopleINDetect": 0})
 
 
+## to add the new building detailes entered by the user.
+## and return the new KEY after registration to by linked by the hardware.
 def add_new_builiding(data):
     data_stored = get_all_data_from_firebase()
     if check_if_address_added_already(data_stored, data["address"]):
@@ -81,21 +84,26 @@ def add_new_builiding(data):
         db = db_config().database()
         id_generated = db.child("locations").push(data)
         session["id_generated"] = id_generated["name"]
+        ## the Key returned is to be added to the hardware
         return id_generated
 
 
+## to returm false or True is the searched address is in the DB.
 def check_if_searched_address_in_db(building_name_send):
     data_stored = get_all_data_from_firebase()
-
     return check_if_address_added_already(data_stored, get_the_search_location())
 
 
+## ## to returm false or True is the searched address is in the DB.
+## set all sesssion when founded.
 def check_if_address_added_already(data_stored, data):
+    ## Error Pass is none data in the DB.
     if data_stored is None:
         pass
     else:
+        ## To loop inside the json file coming back from the API.
+        ## Key is the building id and the value its detailes.
         for key, value in data_stored.items():
-
             if str(value["address"]) == str(data):
                 session["number_inside"] = str(value["numberOfPeopleINDetect"])
                 return True
@@ -103,17 +111,19 @@ def check_if_address_added_already(data_stored, data):
     return False
 
 
+## To delete the selected raw from the DB.
 def delete_row(id_to_reset):
-
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({"active": False})
 
 
+## To update the selected raw from the DB.
 def update_row(id_to_update, data):
     db = db_config().database()
     x = db.child("locations").child(id_to_update).update(data)
 
 
+## to check if the login was successful or not
 def login_check():
     email = request.form["loginInput"]
     password = request.form["loginPass"]
@@ -128,14 +138,17 @@ def login_check():
         session.permanent = True
         return True
     except IOError:
+        ## Increment the session["login_attempts"] at each time the login failing.
         session["login_attempts"] += 1
         return False
-
+    ## return the email and the password attepming to log in with.
     return email, password
 
 
+## the application route.
 @app.route("/")
 def route():
+    ## redirevt to the main bage index in the display_form function.
     return redirect(url_for("display_form"))
 
 
@@ -151,33 +164,41 @@ def logout():
 
 @app.route("/displayform")
 def display_form():
+    ## for the first time running the webapp, if no session set aleady that mean
+    ## this is the first time then the session get initialized.
     if not session:
         session["login_attempts"] = 1
         session["locked_status"] = False
         session["request_ip_address_locked"] = ""
+    ## if the session were set already, and the ip was blocked.
     elif session["request_ip_address_locked"] == request.remote_addr:
+        ## to check when the IP is blocke after the 5 time failing login attempts.
+        ## and check if the time at lock out was greater than 5 minutes then re allow to login.
         if (
             session["locked_status"] is True
             and (time.time() - session["time_locked"]) > 500
         ):
             session["locked_status"] = False
             session.clear()
+    ## return the GOOGLE_API_KEY saved in .env file to the index page. for more security.
     return render_template("index.html", API_KEY=os.environ["GOOGLE_API_KEY"])
 
 
+## route to display the results page.
+##when the user enter the location in the search input
 @app.route("/displayResults", methods=["POST"])
 def displayResults():
-
+    ### get the location searched by the user.
     addressName = get_the_search_location()
+    ### split the name of the location from the first part of the address.
     building_name_send = get_the_name_form_search_text(addressName)
-
+    ### if the addcess was found in the DB.
     found = check_if_searched_address_in_db(building_name_send)
     if not found:
         return redirect(url_for("display_form"))
     else:
         return render_template(
             "results.html",
-            person_name="osama",
             searched_text=addressName,
             building_name=building_name_send,
             total_numebr=session["number_inside"],
@@ -186,20 +207,25 @@ def displayResults():
 
 @app.route("/contactForm")
 def contactForm():
-
+    ### contact US form to be done by the organizations it selfs.
+    ## if any one start using this project in the future they will be abke to set the contact and methods they prefare.
     return render_template("contactUs.html")
 
 
 @app.route("/emailMsg")
 def emailMsg():
-
+    ### once the contact msg has been sent than you page will be shown and redirect to the main page in 5 seconds.
     return render_template("sentMsg.html")
 
 
+## route to display all the data in the database.
 @app.route("/allLocations")
 def allLocations():
+    ### to get all the data from the data set
     items_send = get_all_data_from_firebase()
     if items_send is None:
+        ## if the data was none an empty dictionary will be sent.
+        ### Error handeling.
         return render_template(
             "allLocations.html",
             items=dict(),
@@ -215,14 +241,16 @@ def allLocations():
         )
 
 
+## login route
 @app.route("/login", methods=["POST"])
 def login():
-
+    ### to check if the user attempts is 5.
     if session["login_attempts"] == 5:
         session["time_locked"] = time.time()
         session["request_ip_address_locked"] = request.remote_addr
         session["locked_status"] = True
         return redirect(url_for("route"))
+    ## if attempts less than 5 then the login email,and password get checked.
     logPass = login_check()
     if logPass:
         return redirect(url_for("allLocations"))
@@ -233,22 +261,30 @@ def login():
 
 @app.route("/resetLocation", methods=["POST"])
 def resetLocation():
+    ### getting the value of the radio button on the admin board>
+    ### for all locations table.
     selected = request.form.get("selected_radio")
-
+    ### if the user select the reset option
     if request.form.get("action") == "Reset":
         reset_to_zero(selected)
+    ### if the user select the Delete option
     elif request.form.get("action") == "Delete":
         delete_row(selected)
+    ### if the user select the Update option
     elif request.form.get("action") == "Update":
+        ### the data has been updated get collected and formatted 
+        ### then the data json sent tp update_row() fuction.
         data = {
             "known_name": request.form.get("known_name_update").upper(),
             "address": request.form.get("address_update").upper(),
             "eircode": request.form.get("eircode_update").upper(),
             "timeUpdated": time.strftime("%X %x %Z"),
         }
-
         update_row(selected, data)
+    ### if the user select the Add option
     elif request.form.get("action") == "Add":
+        ### the data has been added get collected and formatted 
+        ### then the data json sent tp add_new_builiding() fuction.
         data = {
             "deviceId": "none",
             "known_name": request.form.get("new_row_name").upper(),
@@ -261,11 +297,11 @@ def resetLocation():
         add_new_builiding(data)
     return redirect(url_for("allLocations"))
 
+## route to about Us bage
 @app.route("/aboutus")
 def aboutus():
-    return render_template(
-    "aboutus.html",
-    )
+    return render_template("aboutus.html",)
 
+# the application start
 if __name__ == "__main__":
     app.run()
