@@ -83,13 +83,20 @@
 <body>
     <div id="myLog" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
-        <br><br><br> {% if session["loged_in"] is defined %}
-        <span class="login" onclick="window.location.href = '/';">&#128275; Log out </span> {% else %}
+        <br><br><br> {% if session['locked_status'] is sameas true %}
+        <div class='loginStyle'>
+            <div id="alert" class="alertFailLog alert-danger alert-dismissible fade in">
+                <strong>Alert!</strong> You are locked out for 5 Minutes
+            </div>
+            <span class="login" onclick="loginForm()">&#x1f512; Log In</span>
+        </div>
+        {% elif session["loged_in"] is defined %}
+        <span class="login" onclick="window.location.href = '/logout';">&#128275; Log out </span> {% else %}
         <form action='/login' method='POST'>
             <div class='loginStyle'>
-                {% if fail_login == 'YES' %}
+                {% if session['fail_login'] is sameas true %}
                 <div id="alert" class="alertFailLog alert-danger alert-dismissible fade in">
-                    <strong>Wrong!</strong> Email Address OR Password.
+                    <strong>Wrong!</strong> Email Address OR Password. attempts {{session['login_attempts']}} of 5.
                 </div>
                 {% endif %}
                 <div class='userlogin'>USER LOGIN</div>

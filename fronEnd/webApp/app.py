@@ -3,12 +3,12 @@ import requests
 import pyrebase
 import time
 from datetime import timedelta
-
+import datetime
+import os
 
 app = Flask(__name__)  # "dunder name".
 
 DEBUG = True
-# SECRET_KEY = 'development key'
 
 app.config.from_object(__name__)
 #app.config.from_envvar('EIH_SETTINGS')
@@ -16,9 +16,10 @@ app.config.from_object(__name__)
 app.config.from_pyfile('configuration/myconfig.cfg')
 app.config.update(
 #     ## time out logged in session after minutes=5 time
-     PERMANENT_SESSION_LIFETIME =  timedelta(minutes=5)
+     PERMANENT_SESSION_LIFETIME =  timedelta(minutes=15)
 
 )
+app.secret_key = os.urandom(32)
 
 def get_all_data_from_firebase():
     r = requests.get('https://projecteih.firebaseio.com/locations.json')
@@ -37,19 +38,6 @@ def get_the_name_form_search_text(addressName):
     building_name_send = str_list[0]
     session['building_name_send'] = building_name_send
     return building_name_send
-
-    # found = False
-    # total_numebr_send = None
-    # url = 'https://projecteih.firebaseio.com/locations.json'
-    # r = requests.get(url)
-    # x= r.json()
-    # if building_name_send in x:
-    #     total_numebr_send = str(x[building_name_send]['numberOfPeopleINDetect']) + " Person"
-    #     found = True
-    #     session['address_founded'] = True
-
-    # session['total_numebr_send'] = total_numebr_send
-    # return found, total_numebr_send
 
 def db_config():
     config = {
@@ -82,8 +70,7 @@ def add_new_builiding(data):
 
 def check_if_searched_address_in_db(building_name_send):
     data_stored = get_all_data_from_firebase()
-    print('##################################00')
-    print(get_the_search_location())
+
     return check_if_address_added_already(data_stored,get_the_search_location())
 
 
@@ -93,9 +80,7 @@ def check_if_address_added_already(data_stored,data):
         pass
     else:
         for key, value in data_stored.items():
-            print('##################################')
-            print(str(value['address']))
-            print(str(data))
+
             if(str(value['address']) == str(data)):
                 session["number_inside"] = str(value['numberOfPeopleINDetect'])
                 return True
@@ -103,7 +88,7 @@ def check_if_address_added_already(data_stored,data):
     return False
 
 def delete_row(id_to_reset):
-    print( "DELETED", id_to_reset)
+
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({'active' : False})
     
@@ -125,6 +110,7 @@ def login_check():
         session.permanent = True
         return True
     except IOError:
+        session['login_attempts'] += 1
         return False
 
     return email,password
@@ -132,17 +118,29 @@ def login_check():
 
 @app.route("/")
 def route():
+    return redirect(url_for('display_form'))
+
+@app.route("/logout")
+def logout():
+    ##clear all the session set already
     session.clear()
+    #The key is secure enough, and each time you launch your system the key changes invalidating all sessions.
+    app.secret_key = os.urandom(32)
     #return display_form()
     return redirect(url_for('display_form'))
+
+
 @app.route("/displayform")
 def display_form():
-    if not session.get('address_founded') is None:
-        return render_template("index.html", the_title=""  , fail_login= "NO")
-    elif session.get('fail_login') is True:
-        return render_template("index.html", the_title="", fail_login="YES")
-    else:
-        return render_template("index.html", the_title="" ,fail_login="NO")
+    if not session:
+        session['login_attempts'] = 1
+        session['locked_status'] = False
+        session['request_ip_address_locked'] = ''
+    elif session['request_ip_address_locked'] == request.remote_addr:
+        if session['locked_status'] is True and (time.time() - session['time_locked']) > 500:
+            session['locked_status'] = False
+            session.clear()
+    return render_template("index.html" )
 
 
 @app.route("/displayResults", methods=["POST"])
@@ -191,9 +189,13 @@ def allLocations():
     
 @app.route("/login", methods=["POST"])
 def login():
-
-    logPass= login_check()
     
+    if session['login_attempts'] == 5:
+        session['time_locked'] = time.time()
+        session['request_ip_address_locked'] = request.remote_addr
+        session['locked_status'] = True
+        return redirect(url_for('route'))
+    logPass= login_check()
     if logPass: 
         return redirect(url_for('allLocations'))
     else:  
@@ -201,12 +203,10 @@ def login():
         return redirect(url_for('display_form'))
 
 
-
 @app.route("/resetLocation", methods=["POST"])
 def resetLocation():
     selected = request.form.get('selected_radio')
-    print(selected)
-    print(request.form.get('action'))
+
     if request.form.get('action') == 'Reset':
         reset_to_zero(selected)
     elif request.form.get('action') == 'Delete':
@@ -218,7 +218,7 @@ def resetLocation():
             'eircode' : request.form.get('eircode_update').upper(),
             'timeUpdated': time.strftime('%X %x %Z')
             }
-        print(data)
+
         update_row(selected,data)
     elif request.form.get('action') == 'Add':
         data =    {

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block body %} {% if fail_login == 'YES' %}
+{% extends "base.html" %} {% block body %} {% if session['fail_login'] is sameas true %}
 
 <body onload="loginForm()">
     {% endif %}
