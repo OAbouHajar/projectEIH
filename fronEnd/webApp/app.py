@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 
 
 ## to load all the env vriables from the .env file
-project_folder = os.path.expanduser('~/')  # 
-load_dotenv(os.path.join(project_folder, '.env'))
+project_folder = os.path.expanduser("~/")  #
+load_dotenv(os.path.join(project_folder, ".env"))
 
 app = Flask(__name__)  # "dunder name".
 
@@ -29,16 +29,18 @@ app.secret_key = os.urandom(32)
 
 ## Set up the DB url to be able to read the public data.
 def get_all_data_from_firebase():
-    db_file_url = os.environ['DB_FILE_URL']
+    db_file_url = os.environ["DB_FILE_URL"]
     r = requests.get(db_file_url)
     x = r.json()
     return x
+
 
 ## function to return the location has been searched by the user input on the main page.
 def get_the_search_location():
     # to get the search address fully
     addressName = request.form["thelocation"].upper()
     return addressName
+
 
 ## function to split the address and return the first part as the surched name.
 def get_the_name_form_search_text(addressName):
@@ -49,22 +51,22 @@ def get_the_name_form_search_text(addressName):
     session["building_name_send"] = building_name_send
     return building_name_send
 
+
 ## function to congifure the database ## this information should be secret.
-#   export GOOGLE_API_KEY=AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8
-#   echo "export GOOGLE_API_KEY=AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8" >> .env
+## all enviroument veriables are stored in other secret file
 def db_config():
     config = {
-        "apiKey": os.environ['GOOGLE_API_KEY'],
-        "authDomain": os.environ['AUTH_DOMAIN'],
-        "databaseURL": os.environ['DB_URL'],
-        "storageBucket": os.environ['STOREG_BUKET'],
-        "serviceAccount": os.environ['SERVICE_ACCOUNT'],
+        "apiKey": os.environ["GOOGLE_API_KEY"],
+        "authDomain": os.environ["AUTH_DOMAIN"],
+        "databaseURL": os.environ["DB_URL"],
+        "storageBucket": os.environ["STOREG_BUKET"],
+        "serviceAccount": os.environ["SERVICE_ACCOUNT"],
     }
     firebasePy = pyrebase.initialize_app(config)
 
     return firebasePy
 
-
+## reset the locations selected to zero 
 def reset_to_zero(id_to_reset):
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({"numberOfPeopleINDetect": 0})
@@ -160,7 +162,7 @@ def display_form():
         ):
             session["locked_status"] = False
             session.clear()
-    return render_template("index.html", API_KEY=os.environ['GOOGLE_API_KEY'])
+    return render_template("index.html", API_KEY=os.environ["GOOGLE_API_KEY"])
 
 
 @app.route("/displayResults", methods=["POST"])
@@ -198,9 +200,19 @@ def emailMsg():
 def allLocations():
     items_send = get_all_data_from_firebase()
     if items_send is None:
-        return render_template("allLocations.html", items=dict(), x={} , API_KEY=os.environ['GOOGLE_API_KEY'])
+        return render_template(
+            "allLocations.html",
+            items=dict(),
+            x={},
+            API_KEY=os.environ["GOOGLE_API_KEY"],
+        )
     else:
-        return render_template("allLocations.html", items=items_send, x=items_send, API_KEY=os.environ['GOOGLE_API_KEY'])
+        return render_template(
+            "allLocations.html",
+            items=items_send,
+            x=items_send,
+            API_KEY=os.environ["GOOGLE_API_KEY"],
+        )
 
 
 @app.route("/login", methods=["POST"])
@@ -249,6 +261,11 @@ def resetLocation():
         add_new_builiding(data)
     return redirect(url_for("allLocations"))
 
+@app.route("/aboutus")
+def aboutus():
+    return render_template(
+    "aboutus.html",
+    )
 
 if __name__ == "__main__":
     app.run()

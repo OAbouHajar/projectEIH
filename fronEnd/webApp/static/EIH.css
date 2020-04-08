@@ -302,9 +302,44 @@ h3 {
     font-weight: 500;
 }
 
+#pus h4 {
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 56px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f4af0b;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#pus h1 {
+    font-size: 30px;
+    color: #e0bb62;
+}
+
+#pus h2 {
+    font-size: 18px;
+    color: #b7b7b7;
+    padding-top: 7px;
+}
+
 .page1 {
     padding: 5% 2% 4% 2%;
     margin: auto;
+}
+
+.pageus {
+    padding: 3% 2% 4% 2%;
+    margin: auto;
+}
+
+p {
+    color: white;
+    padding: 1% 18%;
+    font-size: 17px;
+    text-align: center;
 }
 
 .page2 {
@@ -373,6 +408,13 @@ h3 {
     font-size: x-large;
 }
 
+.profile_image {
+    margin: auto;
+    display: table;
+    align-items: center;
+    content: url(/static/me.png);
+}
+
 
 /*socila Media*/
 
@@ -381,7 +423,7 @@ h3 {
     align-items: center;
     justify-content: center;
     margin-top: 2%;
-    margin-bottom: 15%;
+    margin-bottom: 2%;
 }
 
 .fa {
@@ -520,6 +562,9 @@ a {
         padding-top: 10px;
     }
     .page1 {
+        padding: 25% 2% 4% 2%;
+    }
+    .pageus {
         padding: 25% 2% 4% 2%;
     }
     .page2 {
