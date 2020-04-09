@@ -202,6 +202,7 @@ def displayResults():
             searched_text=addressName,
             building_name=building_name_send,
             total_numebr=session["number_inside"],
+            GOOGLE_MAP_API=os.environ['GOOGLE_MAP_API'],
         )
 
 
