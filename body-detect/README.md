@@ -52,15 +52,15 @@ Once you setup is completed you will have the follwing dependencies installed on
 
 **Export the Environment Variables**
 - once your setup.py done you have to set you environment variables to gain the access to you databese credentials:
-
-    $ export FIREBASE_DB_URL=https://<'PROJECT-NAME'>.firebaseio.com/<'JSON-FILE-NAME'>.json
+```javascript
+    $ export FIREBASE_DB_URL='https:<PROJECT-NAME>.firebaseio.com/<JSON-FILE-NAME>.json'
    
-    $ export REG_BUILIDING_ID=<'THE-KEY-YOU-GET-AFTER-ADDING-THE-BUILDING-TO-THE-SYSTEM-FROM-THE-FRONT-END'>
+    $ export REG_BUILIDING_ID='<THE-KEY-YOU-GET-AFTER-ADDING-THE-BUILDING-TO-THE-SYSTEM-FROM-THE-FRONT-END>'
    
-    $ export DEVICE_ID=<'THE-DEVICE-ID-YOU-CHOSE'>
+    $ export DEVICE_ID='<THE-DEVICE-ID-YOU-CHOSE>'
    
-    $ export PROJECT_API_KEY=<'GOOGLE-FIREBASE-PRJECT-API-KEY'>
-
+    $ export PROJECT_API_KEY='<GOOGLE-FIREBASE-PRJECT-API-KEY>'
+```
 
 Hardware Requirements
 ------------
