@@ -732,6 +732,9 @@ a {
         font-size: 14px;
         padding: 10% 5%;
     }
+    .zoom {
+        width: 46%;
+    }
 }
 
 
