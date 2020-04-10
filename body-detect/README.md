@@ -1,11 +1,11 @@
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/img/logo.png" alt="mypy logo" width="150px"/>
 
-EIH: Emergency Info Hub
+EIH: Emergency Info Hub (Back-End)
 =======================================
 
 What is EIH?
 -------------
-Emergency Info Hub ([EIH](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html)),is a fourth year student project, has been designed to be a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
+Emergency Info Hub ([EIH](https://eih.pythonanywhere.com/)),is a fourth year student project, has been designed to be a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
 The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save this number to the cloud to be used when a disaster happens.
 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
@@ -13,7 +13,7 @@ See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.ht
 
 Software Requirements
 ------------
-
+To run the hardware part of EIH:
 1- You need Python 3.5 or later to run mypy.  You can have multiple Python
 versions (2.x and 3.x) installed on the same system without problems.
 
@@ -31,14 +31,7 @@ if you have Python 3 and pip3 installed on you device already, you can use the f
  
     $ python setup.py
 
-file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) support the following arguments to setup Google firebase URL:
-
-* ["-db"] 
-* ["--dburl"]
-
-For example: 
-
-    $ python setup.py -db https://<project-name>.firebaseio.com/<file-name>.json
+file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) 
 
 Once you setup is completed you will have the follwing dependencies installed on your system.
 
@@ -55,6 +48,15 @@ Once you setup is completed you will have the follwing dependencies installed on
     * sseclient
     * parse
     * requests_toolbelt
+    * pyrebase
+
+**Export the Environment Variables**
+- once your setup.py done you have to set you environment variables to gain the access to you databese credentials:
+
+    $ #export FIREBASE_DB_URL=https://<PROJECT-NAME>.firebaseio.com/<JSON-FILE-NAME>.json
+    $ export REG_BUILIDING_ID=<THE-KEY-YOU-GET-AFTER-ADDING-THE-BUILDING-TO-THE-SYSTEM-FROM-THE-FRONT-END>
+    $ export DEVICE_ID=<THE-DEVICE-ID-YOU-CHOSE>
+    $ export PROJECT_API_KEY=<GOOGLE-FIREBASE-PRJECT-API-KEY>
 
 
 Hardware Requirements
