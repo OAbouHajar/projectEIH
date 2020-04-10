@@ -130,7 +130,7 @@ elif args["numberIN"] is not None:
     newNumber = preNumber + currentNumberIN
 ```
 
-***To Run the Project In The Both Direction, You need One Software Package and Two Hardware Set***
+***To Run the Project In The Both Direction, You need Two Hardware Set***
 ***As It's Shown In The Picture***
 
 
