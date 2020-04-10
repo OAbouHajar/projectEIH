@@ -21,7 +21,7 @@ app.config.from_object(__name__)
 app.config.from_pyfile("configuration/myconfig.cfg")
 ## update flask config to set the life time of session to 15, if no actions the session will be logout.
 app.config.update(
-    ## time out logged in session after minutes=5 time
+    ## time out logged in session after minutes=15 time
     PERMANENT_SESSION_LIFETIME=timedelta(minutes=15)
 )
 ## Generate a random String as secret key wach time we run the app for more secuity.
@@ -115,6 +115,10 @@ def check_if_address_added_already(data_stored, data):
 def delete_row(id_to_reset):
     db = db_config().database()
     db.child("locations").child(id_to_reset).update({"active": False})
+## To activate the selected raw from the DB.
+def active_row(id_to_reset):
+    db = db_config().database()
+    db.child("locations").child(id_to_reset).update({"active": True})
 
 
 ## To update the selected raw from the DB.
@@ -144,7 +148,12 @@ def login_check():
     ## return the email and the password attepming to log in with.
     return email, password
 
-
+@app.before_request
+def func():
+    if not session:
+        session["login_attempts"] = 1
+        session["locked_status"] = False
+        session["request_ip_address_locked"] = ""
 ## the application route.
 @app.route("/")
 def route():
@@ -181,7 +190,7 @@ def display_form():
             session["locked_status"] = False
             session.clear()
     ## return the GOOGLE_API_KEY saved in .env file to the index page. for more security.
-    return render_template("index.html", API_KEY=os.environ["GOOGLE_API_KEY"])
+    return render_template("index.html", API_KEY=os.environ["GOOGLE_API_KEY"], alert=session.pop('address_not_found_in_DB', None)  )
 
 
 ## route to display the results page.
@@ -232,6 +241,7 @@ def allLocations():
             items=dict(),
             x={},
             API_KEY=os.environ["GOOGLE_API_KEY"],
+            alert=session.pop('address_not_found_in_DB', None)
         )
     else:
         return render_template(
@@ -239,6 +249,7 @@ def allLocations():
             items=items_send,
             x=items_send,
             API_KEY=os.environ["GOOGLE_API_KEY"],
+            alert=session.pop('address_not_found_in_DB', None)
         )
 
 
@@ -271,9 +282,11 @@ def resetLocation():
     ### if the user select the Delete option
     elif request.form.get("action") == "Delete":
         delete_row(selected)
+    elif request.form.get("action") == "Activate":
+        active_row(selected)
     ### if the user select the Update option
     elif request.form.get("action") == "Update":
-        ### the data has been updated get collected and formatted 
+        ### the data has been updated get collected and formatted
         ### then the data json sent tp update_row() fuction.
         data = {
             "known_name": request.form.get("known_name_update").upper(),
@@ -284,9 +297,10 @@ def resetLocation():
         update_row(selected, data)
     ### if the user select the Add option
     elif request.form.get("action") == "Add":
-        ### the data has been added get collected and formatted 
+        ### the data has been added get collected and formatted
         ### then the data json sent tp add_new_builiding() fuction.
         data = {
+            'active' : True,
             "deviceId": "none",
             "known_name": request.form.get("new_row_name").upper(),
             "address": request.form.get("new_row_address").upper(),

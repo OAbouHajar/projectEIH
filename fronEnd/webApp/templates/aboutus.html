@@ -1,20 +1,263 @@
 {% extends "base.html" %} {% block body %}
 
-<div class="pageus">
-    <div class="center" id="pus">
-        <!-- <img src="static/logo.png" class="center logo"></img> -->
-        <div class="center logo"></div>
-        <h4>EMERGENCY INFO HUB</h4>
-        <p>Emergency Info Hub (EIH), Is a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
-            <br> <br>The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save
-            this number to the cloud to be used when a disaster happens.
-        </p>
-        <hr class="style-eight">
-        <div class="profile_image">
+<div class="page2">
+    {% if session["address_found_in_DB"] is defined %}
+    <div id="alert" class="alert alert-danger alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> The Entered address is in Our DataBase.
+    </div>
+    {% elif session["address_not_found_in_DB"] is sameas false %}
+    <div id="alert" class="alert alert-okay alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> the Builiding registation key is : <strong>'{{session['id_generated']}}'</strong> Add this key to your hardware to connect.
+    </div>
+    {% endif %}
+    <div class="resultAllLocations">
+        <h2>All Locations</h2>
+        <div class="table-wrapper">
+            <table class="fl-table" id="allLocation">
+                <thead>
+                    <tr>
+                        {% if session["loged_in"] is defined %}
+
+                        <th>#</th>
+                        <th>Building ID</th>
+                        {% endif %}
+                        <th>Building Name</th>
+                        <th>Address</th>
+                        <th>Eircode</th>
+                        <th>Number Inside</th>
+                        <th>Status</th>
+                        <th>Last Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form name="all" id="all_data" action='/resetLocation' method='POST'>
+                        {% if session["loged_in"] is not defined %}
+                        <input type="text" id="myInput" onkeyup="search_all()" placeholder="Search for names.." title="Type in a name"> {% elif session["loged_in"] is defined %}
+                        <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
+                        <div class="buttonsContainer">
+                            <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
+                            <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
+                            <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
+                            <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset" onclick="return add_row()"></input>
+                        </div>
+                        <div id="contextMenu" class="dropdown clearfix">
+                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+                                <input type="submit" name="action" value="Reset" class=" buttonreset2" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Add" onclick="return add_new();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Delete" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Activate" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Update" onclick="return storeChangesInSession();"></input>
+                                <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset2" tabindex="-1" onclick="return add_row()"></input>
+
+                            </div>
+                        </div>
+                        {% endif %}
+                        <tr id="myDIV" style="display: none">
+                            <td><button type="submit" name="action" id="new_form_id" value="Add" class=" buttonAdd" onclick="return add_new();">ADD</button>
+                            </td>
+                            <td><input type="text" disabled placeholder="Auto Generate"></input>
+                            </td>
+                            <td><input type="text" name="new_row_name" id="new_row_name" placeholder="Builiding Name"></input>
+                            </td>
+                            <td> {% include 'googlAutoCompleteGeneral.html' %} </td>
+                            <td><input name="new_row_eircode" id="new_row_eircode" type="text" placeholder="Eircode"></input>
+                            </td>
+                            </input>
+                            <td><input type="text" disabled placeholder="Auto Generate" /></td>
+                            <td><input type="text" disabled placeholder="Auto Generate" /></td>
+                            <td><input type="datetime" disabled placeholder="Auto Generate" required></td>
+                            </input>
+                        </tr>
+                        {% for k, v in x.items(): %}
+                        <tr>
+                            {% if session["loged_in"] is defined %}
+
+                            <td>
+                                <input type="radio" name="reset_checkbox" id="{{ k }}" value="{{ k }}">
+                            </td>
+                            <td id="{{k}}">{{ k }}</td>
+                            {% endif %}
+                            <td name="known_name" id="{{k}}_name" contenteditable>{{ v.known_name }}</td>
+                            <input type="hidden" name="known_name_update" id="known_name_update" />
+                            <td name="address" id="{{k}}_address" value="{{ v.address }}" contenteditable>{{ v.address }}</td>
+                            <input type="hidden" name="address_update" id="address_update" />
+                            <td name="eircode" id="{{k}}_eircode" value="{{ v.eircode }}" contenteditable>{{ v.eircode }}</td>
+                            <input type="hidden" name="eircode_update" id="eircode_update" />
+                            <td name="numberOfPeopleINDetect" id="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}">{{ v.numberOfPeopleINDetect }}</td>
+                            <input type="hidden" name="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}" />
+                            <td name="active" id="{{k}}_active" value="{{ v.active }}">{{ v.active }}</td>
+                            <input type="hidden" name="active" value="{{ v.active }}" />
+                            <td name="timeUpdated" id="timeUpdated" value="{{ v.timeUpdated }}">{{ v.timeUpdated }}</td>
+                        </tr>
+                        {% endfor %}
+                        <input type="hidden" name="selected_radio" id='selected_radio' />
+
+                    </form>
+                    <br>
+                </tbody>
+            </table>
         </div>
-        <h1>Osama Abou Hajar</h1>
-        <h2>Software Development Engineer
-        </h2>
+        {% if session["loged_in"] is defined %}
+        <span class="tableinstraction">*Double click on the field to edit.</span> {% endif %}
+        <form action='/displayform'>
+            <button class=" button button3 buttonBack"> Home </button>
+        </form>
+
     </div>
 </div>
+
+
+
+<script>
+    function checkbox_check() {
+        var ele = document.getElementsByName('reset_checkbox');
+        var founded = false;
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                rad = ele[i].value;
+                founded = true
+            }
+        }
+        if (founded == false) {
+            alert('select one option pelase!')
+            return false;
+
+        }
+        var rad;
+        document.getElementById("selected_radio").value = rad;
+        return confirm('Do you to comtinue the process?');
+
+    }
+
+    function add_row() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "table-row";
+        } else {
+            x.style.display = "none";
+        }
+
+    }
+
+    function storeChangesInSession() {
+
+
+        var ele = document.getElementsByName('reset_checkbox');
+        var founded = false;
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                rad = ele[i].value;
+                founded = true
+            }
+        }
+        if (founded == false) {
+            alert('select one option pelase!')
+            return false;
+
+        }
+        var rad;
+        document.getElementById("selected_radio").value = rad;
+        var name = document.getElementById(rad + '_name').innerHTML;
+        var address = document.getElementById(rad + '_address').innerHTML;
+        var eircode = document.getElementById(rad + '_eircode').innerHTML;
+        // var active = document.getElementById(rad + '_active').innerHTML;
+
+        document.getElementById("known_name_update").value = name;
+        document.getElementById("address_update").value = address;
+        document.getElementById("eircode_update").value = eircode;
+        // document.getElementById("eircode_update").value = active;
+
+        return confirm('Do you to comtinue the process?');
+
+
+    }
+
+    function add_new() {
+        var name = document.getElementById('new_row_name').value;
+        var address = document.getElementById('pac-input').value;
+        var eircode = document.getElementById('new_row_eircode').value;
+
+        if (name == "" || address == "" || eircode == "") {
+            alert('Please fill all the feilds to add!');
+            return false;
+        } else {
+            return confirm('Do you to comtinue the process?');
+        }
+
+    }
+    $("form").keypress(function(e) {
+        //Enter key
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
+    function search_all() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("allLocation");
+        tr = table.getElementsByTagName("tr");
+        for (i = 2; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("allLocation");
+        tr = table.getElementsByTagName("tr");
+        for (i = 2; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    $(function() {
+
+        var $contextMenu = $("#contextMenu");
+
+        $("body").on("contextmenu", "table tr", function(e) {
+            $contextMenu.css({
+                display: "block",
+                left: e.pageX,
+                top: e.pageY
+            });
+            return false;
+        });
+
+        $('html').click(function() {
+            $contextMenu.hide();
+        });
+
+        $("#contextMenu li a").click(function(e) {
+            var f = $(this);
+        });
+
+    });
+</script>
 {% endblock %}
