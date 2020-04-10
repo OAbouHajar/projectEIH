@@ -15,8 +15,8 @@ EIH Requirements
 ------------
 This project consist of two parts:
 
-* Wardware: on this link
-* Software: on this link
+* Hardware: on this link ([Hardware](https://eih.pythonanywhere.com/))
+* Software: on this link ([Software](https://eih.pythonanywhere.com/))
 
 
 to run EIH you have to follow the instaction of the REAMDME.MD files for the the Fornt-End and the Back-End.
