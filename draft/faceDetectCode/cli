@@ -1,0 +1,2 @@
+python face_detect.py test_photo/2.jpeg haarcascade_frontalface_default.xml
+
