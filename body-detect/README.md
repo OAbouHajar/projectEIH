@@ -11,7 +11,7 @@ The main objective of this project is giving the number of trapped people under 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
 
 
-Software Requirements
+Software Requirements - Installation:
 ------------
 To run the hardware part of EIH:
 1- You need Python 3.5 or later to run mypy.  You can have multiple Python

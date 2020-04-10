@@ -11,38 +11,12 @@ The main objective of this project is giving the number of trapped people under 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
 
 
-EIH Requirements
+EIH - Front-End:
 ------------
-This project consist of two parts:
+EIH front-end build using ([FLASK](https://flask.palletsprojects.com/en/1.1.x/)) python framework, Jinja2 HTML, CSS, Javascript web design languages. 
 
-* Hardware: on this link ([Hardware](https://github.com/OAbouHajar/projectEIH/tree/master/body-detect))
-* Software: on this link ([Software](https://github.com/OAbouHajar/projectEIH/tree/master/fronEnd/webApp))
-
-
-to run EIH you have to follow the instaction of the REAMDME.MD files for the the Fornt-End and the Back-End.
-
-EIH Story
-------------
-
-The story of EIH started at that day when this photo was taken (the website background), back to 2012 during the Syrian war,
-when I was among those guys running to help the people stuck under rubbles.
-during this moments the one and the only question you will hear is: ANYBODY HERE?
-
-The hours, the minutes and even the Seconds might be a reason to give someone a new life. calling again and again... ANYBODY HERE?, feeling bad if any one left behind with no help.
-
-ANYBODY HERE? it's the reason to start, and here where we are: EIH - "EVERY LIFE MATTERS".
-
-
-EIH Developer
-------------
-<img src="https://eih.pythonanywhere.com/static/me.png" alt="mypy logo" width="150px"/>
-
-**Osama Abou Hajar**
-
-**Software Development Engineer**
-
-**Institute of Technology Carlow**
-
-**oabouhajar@hotmail.com**
-
-**Supervisor: Paul Barry**
+The front-end folder include the following directories and files:
+* configuration: where configuration files (commonly known simply as config files) are files used to configure the parameters and initial settings for some computer programs, this folder include all [*.cfg and JSON files].
+* static: Static web pages are often HTML documents stored as files in the file system and made available by the web server over HTTP, this folder include all [*.css, *.png and *.jpg files].
+* templates: where all the HTML files are stored onherating the base,html page.
+* app.py file: is the main webapp file where all python code and functions run and work alongside with Flask.
