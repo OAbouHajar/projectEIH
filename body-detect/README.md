@@ -121,12 +121,12 @@ To Run EIH Project you do need the same software package to both direction __IN_
 
 And this will change the calculations in the file [post-data-to-api.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/post-data-to-api.py) in the following code.
 
-```javascript
+```python
 if args["numberOUT"] is not None:
-    // substact the number coming from the API to the number coming from the RassPi
+    # substact the number coming from the API to the number coming from the RassPi
     newNumber = preNumber- currentNumberOUT
 elif args["numberIN"] is not None:
-    // add the number coming from the API to the number coming from the RassPi
+    # add the number coming from the API to the number coming from the RassPi
     newNumber = preNumber + currentNumberIN
 ```
 
