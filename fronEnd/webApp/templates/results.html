@@ -5,11 +5,14 @@
         <span class="searchResults"> The Search results For : </span>
         <span id="resultsLable" class=" resultsLable ">  {{searched_text}}</span>
         <br><br><br>
-        <label>Building Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>Building Name:&nbsp;&nbsp;</label>
         <span id="address" class=" resultsLable "> {{ building_name }} </span>
         <hr>
-        <label>People Inside: </label>
+        <label>People Inside:&nbsp;&nbsp;&nbsp;</label>
         <span class="resultsLable ">  {{ total_numebr }} Person</span>
+        <hr>
+        <label>Building Status :</label>
+        <span class="resultsLable ">{%if building_Status %}Active {% else %}NOT Acitve {% endif %}</span>
         <hr> <br> {% include 'maps2.html' %}
 
     </div>

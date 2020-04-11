@@ -6,14 +6,18 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Alert!</strong> The Entered address is in Our DataBase.
     </div>
-    {% elif session["address_not_found_in_DB"] is defined %}
+    {% elif session["id_generated"] is defined %}
     <div id="alert" class="alert alert-okay alert-dismissible fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Alert!</strong> the Builiding registation key is : <strong>'{{session['id_generated']}}'</strong> Add this key to your hardware to connect.
+        <strong>Alert!</strong> the Builiding {{ session['new_row_name'] }} registation key is : <strong>'{{session['id_generated']}}'</strong> Add this key to your hardware to connect.
     </div>
     {% endif %}
     <div class="resultAllLocations">
         <h2>All Locations</h2>
+        {% if session["loged_in"] is defined %}
+        <span class="tableinstraction">* Right Click To Show The Options Menu</span>
+        <br>
+        <span class="tableinstraction">* Double Click On The Field To Edit.</span> {% endif %}
         <div class="table-wrapper">
             <table class="fl-table" id="allLocation">
                 <thead>
@@ -27,6 +31,7 @@
                         <th>Address</th>
                         <th>Eircode</th>
                         <th>Number Inside</th>
+                        <th>Status</th>
                         <th>Last Update</th>
                     </tr>
                 </thead>
@@ -36,9 +41,9 @@
                         <input type="text" id="myInput" onkeyup="search_all()" placeholder="Search for names.." title="Type in a name"> {% elif session["loged_in"] is defined %}
                         <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
                         <div class="buttonsContainer">
-                            <input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>
-                            <input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>
-                            <input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>
+                            <!--<input type="submit" name="action" value="Reset" class=" buttonreset" onclick="return checkbox_check();"></input>-->
+                            <!--<input type="submit" name="action" value="Update" class=" buttonreset" onclick="return storeChangesInSession();"></input>-->
+                            <!--<input type="submit" name="action" value="Delete" class=" buttonreset" onclick="return checkbox_check();"></input>-->
                             <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset" onclick="return add_row()"></input>
                         </div>
                         <div id="contextMenu" class="dropdown clearfix">
@@ -48,6 +53,8 @@
                                 <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Add" onclick="return add_new();"></input>
                                 <br>
                                 <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Delete" onclick="return checkbox_check();"></input>
+                                <br>
+                                <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Activate" onclick="return checkbox_check();"></input>
                                 <br>
                                 <input type="submit" name="action" class=" buttonreset2" tabindex="-1" href="/resetLocation" value="Update" onclick="return storeChangesInSession();"></input>
                                 <input type="button" id="add_buttom" value="+/- New Row" class=" buttonreset2" tabindex="-1" onclick="return add_row()"></input>
@@ -67,11 +74,11 @@
                             </td>
                             </input>
                             <td><input type="text" disabled placeholder="Auto Generate" /></td>
+                            <td><input type="text" disabled placeholder="Auto Generate" /></td>
                             <td><input type="datetime" disabled placeholder="Auto Generate" required></td>
                             </input>
                         </tr>
-                        {% for k, v in x.items(): %} {% if v.active is sameas true %}
-
+                        {% for k, v in x.items(): %}
                         <tr>
                             {% if session["loged_in"] is defined %}
 
@@ -88,9 +95,11 @@
                             <input type="hidden" name="eircode_update" id="eircode_update" />
                             <td name="numberOfPeopleINDetect" id="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}">{{ v.numberOfPeopleINDetect }}</td>
                             <input type="hidden" name="numberOfPeopleINDetect" value="{{ v.numberOfPeopleINDetect }}" />
-                            <td name="timeUpdated" id="timeUpdated" value="{{ v.timeUpdated }}" contenteditable>{{ v.timeUpdated }}</td>
+                            <td name="active" id="{{k}}_active" value="{{ v.active }}">{{ v.active }}</td>
+                            <input type="hidden" name="active" value="{{ v.active }}" />
+                            <td name="timeUpdated" id="timeUpdated" value="{{ v.timeUpdated }}">{{ v.timeUpdated }}</td>
                         </tr>
-                        {% endif %} {% endfor %}
+                        {% endfor %}
                         <input type="hidden" name="selected_radio" id='selected_radio' />
 
                     </form>
@@ -98,8 +107,8 @@
                 </tbody>
             </table>
         </div>
-        {% if session["loged_in"] is defined %}
-        <span class="tableinstraction">*Double click on the field to edit.</span> {% endif %}
+        <!--{% if session["loged_in"] is defined %}-->
+        <!--<span class="tableinstraction">*Double click on the field to edit.</span> {% endif %}-->
         <form action='/displayform'>
             <button class=" button button3 buttonBack"> Home </button>
         </form>
@@ -161,10 +170,12 @@
         var name = document.getElementById(rad + '_name').innerHTML;
         var address = document.getElementById(rad + '_address').innerHTML;
         var eircode = document.getElementById(rad + '_eircode').innerHTML;
+        // var active = document.getElementById(rad + '_active').innerHTML;
 
         document.getElementById("known_name_update").value = name;
         document.getElementById("address_update").value = address;
         document.getElementById("eircode_update").value = eircode;
+        // document.getElementById("eircode_update").value = active;
 
         return confirm('Do you to comtinue the process?');
 

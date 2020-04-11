@@ -106,7 +106,7 @@ hr.style-story:after {
     background-position: 0px -0px;
     background-repeat: no-repeat;
     background-size: 5%;
-    width: 55%;
+    width: 82%;
     font-size: 16px;
     padding: 14px 6px 11px 48px;
     border: 1px solid #ddd;
@@ -342,7 +342,7 @@ h3 {
 .tableinstraction {
     /* text-align: center; */
     /* letter-spacing: 1px; */
-    font-size: 19px;
+    font-size: 14px;
     font-family: 'Montserrat', sans-serif;
     color: #f6f288;
     text-transform: uppercase;
@@ -383,7 +383,7 @@ h3 {
 #pus h5 {
     text-align: center;
     letter-spacing: 1px;
-    font-size: 18px;
+    font-size: 15px;
     font-family: 'Montserrat', sans-serif;
     color: #f4af0b;
     text-transform: uppercase;
@@ -406,12 +406,12 @@ h3 {
 }
 
 #pus h2 {
-    font-size: 18px;
+    font-size: 15px;
     color: #6cd1d6;
     background-color: #ffffff54;
     font-family: 'Montserrat', sans-serif;
     padding: 1px 5px;
-    width: 317px;
+    width: 360px;
 }
 
 .page1 {
@@ -445,12 +445,6 @@ p {
     width: 80%;
     margin-bottom: 2%;
     border: 2px solid #b39004;
-}
-
-.result label {
-    color: aliceblue;
-    margin-right: 25%;
-    font-size: x-large;
 }
 
 .result label {
@@ -747,7 +741,11 @@ a {
         font-size: 20px;
     }
     #pus h2 {
-        font-size: 16px;
+        font-size: 12px;
+        width: 81%;
+    }
+    #pus h5 {
+        font-size: 12px;
     }
     p {
         font-size: 14px;

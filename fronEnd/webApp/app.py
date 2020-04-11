@@ -22,7 +22,7 @@ app.config.from_pyfile("configuration/myconfig.cfg")
 ## update flask config to set the life time of session to 15, if no actions the session will be logout.
 app.config.update(
     ## time out logged in session after minutes=15 time
-    PERMANENT_SESSION_LIFETIME=timedelta(minutes=15)
+    PERMANENT_SESSION_LIFETIME=timedelta(minutes=15),
 )
 ## Generate a random String as secret key wach time we run the app for more secuity.
 app.secret_key = os.urandom(32)
@@ -106,6 +106,7 @@ def check_if_address_added_already(data_stored, data):
         for key, value in data_stored.items():
             if str(value["address"]) == str(data):
                 session["number_inside"] = str(value["numberOfPeopleINDetect"])
+                session["building_Status"] = value['active']
                 return True
     session["address_not_found_in_DB"] = False
     return False
@@ -148,13 +149,14 @@ def login_check():
     ## return the email and the password attepming to log in with.
     return email, password
 
+## the application route.
 @app.before_request
-def func():
+def before_request():
     if not session:
         session["login_attempts"] = 1
         session["locked_status"] = False
         session["request_ip_address_locked"] = ""
-## the application route.
+
 @app.route("/")
 def route():
     ## redirevt to the main bage index in the display_form function.
@@ -211,6 +213,7 @@ def displayResults():
             searched_text=addressName,
             building_name=building_name_send,
             total_numebr=session["number_inside"],
+            building_Status=session["building_Status"],
             GOOGLE_MAP_API=os.environ['GOOGLE_MAP_API'],
         )
 
@@ -309,6 +312,7 @@ def resetLocation():
             "timeUpdated": time.strftime("%X %x %Z"),
             "active": True,
         }
+        session['new_row_name']=request.form.get("new_row_name").upper()
         add_new_builiding(data)
     return redirect(url_for("allLocations"))
 
