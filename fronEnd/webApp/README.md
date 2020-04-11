@@ -71,7 +71,8 @@ It is the main screen of the project, it contain a number of componentes and fun
 
 
 1. **The Search input:**
-   In this screen the user can seach for any Irish addresses.
+   The search box has an integrated Address autocomplete, which create a compatibility to have one search mechanizm.
+   In this screen the user can seach for any Irish addresses 
    The search box use the Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments.
    To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should 
 
@@ -98,6 +99,7 @@ This function will be calling another functions to get the data and check from t
 
 * if the fucntions returns `False` the app will be redirected to the main page with allert no data for the searched address founded displayed.
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="600px"/>
+
 
 ### Loactions Screen: ### 
 This screen will display all the locations with in the databases, and give a fully dymaic table to the admins to add, delete, update, and reset the number of people for each row.
@@ -156,3 +158,6 @@ Redirect to an external link to show the show the case study for EIH as a final 
 #### Contact Screen ####
 
 A contact form to allow the users to contact the admins to give feedback or to report an problem.
+
+
+> For more details you car refare to the comment with in each file, or contact the developer by email. 
