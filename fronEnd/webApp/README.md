@@ -16,6 +16,7 @@ EIH - Front-End:
 EIH front-end build using ([FLASK](https://flask.palletsprojects.com/en/1.1.x/)) python framework, Jinja2 HTML, CSS, Javascript web design languages. 
 
 The structure of the front-en is:
+
     .
     ├── configuration                   # Compiled files (alternatively `dist`)
     ├── static                    # Documentation files (alternatively `doc`)
