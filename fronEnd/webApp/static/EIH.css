@@ -118,6 +118,16 @@ hr.style-story:after {
     background-color: #e7f1ff;
 }
 
+input[name=name] {
+    padding: 15px 20px;
+    margin-left: 20%;
+    box-sizing: border-box;
+    border: 2px yellow;
+    border-radius: 4px;
+    width: 50%;
+    display: inline-block;
+}
+
 input[name=thelocation],
 input[type=email] {
     padding: 15px 20px;
@@ -618,7 +628,7 @@ a {
     input[type=text],
     input[type=email],
     textarea {
-        margin-left: 2%;
+        margin-left: 0%;
         width: 95%;
     }
     [class*="button"] {

@@ -64,12 +64,13 @@ This dependencies will be responsable on all the process and the connections bet
 EIH - Screens & Code Functionality:
 ------------
 
-- Search Screen: It is the main screen of the project, it contain a number of componentes and functions to run. 
+### Search Screen: ### 
+It is the main screen of the project, it contain a number of componentes and functions to run. 
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/main.JPG" alt="mypy logo" width="600px"/>
 
 
-1. The Search input:
+1. **The Search input:**
    In this screen the user can seach for any Irish addresses.
    The search box use the Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments.
    To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should 
@@ -88,7 +89,7 @@ EIH - Screens & Code Functionality:
   For more informations about the ([Google Addresses Autocomplete](https://developers.google.com/maps/documentation/javascript/places-autocomplete?utm_source=google&utm_medium=cpc&utm_campaign=FY18-Q2-global-demandgen-paidsearchonnetworkhouseads-cs-maps_contactsal_saf&utm_content=text-ad-none-none-DEV_c-CRE_397052992739-ADGP_Hybrid+%7C+AW+SEM+%7C+SKWS+~+Places+%7C+BMM+%7C+Address+Autocomplete-KWID_43700049595992256-kwd-312924430504-userloc_20479&utm_term=KW_%2Baddress%20%2Bautocomplete-ST_%2Baddress+%2Bautocomplete&gclid=CjwKCAjw1cX0BRBmEiwAy9tKHirhZ_N53PbWLuOTp3QmQuashEdWHHrzFS0_AOuHn5pBLkcqdNTJjBoC-8kQAvD_BwE)) and the ([countries code](https://www.iban.com/country-codes)).
 
 
-2. The Search Button:
+2. **The Search Button:**
 The search button will send a `POST` request to the `app.py` file to run the `display_form():` function.
 This function will be calling another functions to get the data and check from the database and check if the address is already registerd and active or not.
 
@@ -97,3 +98,16 @@ This function will be calling another functions to get the data and check from t
 
 * if the fucntions returns `False` the app will be redirected to the main page with allert no data for the searched address founded displayed.
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="600px"/>
+
+### Loactions Screen: ### 
+This screen will display all the locations with in the databases, and give a fully dymaic table to the admins to add, delete, update, and reset the number of people for each row.
+
+* Public access all locations page:
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/all_locations.JPG" alt="mypy logo" width="600px"/>
+
+* Admis access all locations page with the menu options on the right mouse click:
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/all_locations_admin.JPG" alt="mypy logo" width="600px"/>
+
+
