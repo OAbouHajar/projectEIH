@@ -62,7 +62,7 @@ EIH - Screens & their codes:
 
 - Search Screen: It is the main screen of the project, it contain a number of componentes and functions to run. 
 
-<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/main.JPG" alt="mypy logo" width="250px"/>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/main.JPG" alt="mypy logo" width="600px"/>
 
 
 1. The Search input:
@@ -89,7 +89,7 @@ The search button will send a `POST` request to the `app.py` file to run the `di
 This function will be calling another functions to get the data and check from the database and check if the address is already registerd and active or not.
 
 * if the fucntions returns True the `retult.html` bage will be display with all the data coming from the Database, in addition to Google Map box using the `maps2.html` file.
-<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/results%20screen.JPG" alt="mypy logo" width="250px"/>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/results%20screen.JPG" alt="mypy logo" width="600px"/>
 
 * if the fucntions returns False the app will be redirected to the main page with allert no data for the searched address founded displayed.
-<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="250px"/>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="600px"/>
