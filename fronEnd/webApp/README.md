@@ -124,6 +124,27 @@ Then you follow the steps in the picture:
 
 * if the Alert! Massege was telling the building is already in the system, that means the building should be activated again and the buidling ID is already assigned.
 
+#### Update Building Feature ####
+On the All locations page, the table support the edit mode, double click on the row you want to edit and you have the ability to edit one row at the time, then you seletec the radio buttom for the edited row and select the update option from the menu.
+
+#### Reset Building Feature ####
+To Reset a building, select the building row, and select the reset option from the table menu.
+The number of people inside the selected buiding will be reset to zero.
+
+#### Delete Building Feature ####
+The Delete option from table menu, will updagte the `acvtive` in the database to `False`.
+
+```python 
+{"active": False}
+```
+
+#### Activate Building Feature ####
+The Activate option from table menu, will updagte the `acvtive` in the database to `True`.
+
+```python 
+{"active": True}
+```
+
 #### About Us Screen ####
 
 The project description and the story of the project.
