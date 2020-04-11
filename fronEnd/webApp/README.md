@@ -15,6 +15,15 @@ EIH - Front-End:
 ------------
 EIH front-end build using ([FLASK](https://flask.palletsprojects.com/en/1.1.x/)) python framework, Jinja2 HTML, CSS, Javascript web design languages. 
 
+The structure of the front-en is:
+    .
+    ├── configuration                   # Compiled files (alternatively `dist`)
+    ├── static                    # Documentation files (alternatively `doc`)
+    ├── templates                     # Source files (alternatively `lib` or `app`)
+    ├── app.py                    # Automated tests (alternatively `spec` or `tests`)
+    ├── .env                   # Tools and utilities
+    └── README.md
+
 The front-end folder include the following directories and files:
 * **configuration** Folder: where configuration files (commonly known simply as config files) are files used to configure the parameters and initial settings for some computer programs, this folder include all [*.cfg and JSON files].
 * **static** Folder: Static web pages are often HTML documents stored as files in the file system and made available by the web server over HTTP, this folder include all [*.css, *.png and *.jpg files].
@@ -57,7 +66,7 @@ This dependencies will be responsable on all the process and the connections bet
 * ([Goolge Firebase](https://firebase.google.com/))
 * ([Goolge Maps API](https://cloud.google.com/maps-platform/))
 
-EIH - Screens & their codes:
+EIH - Screens & Code Functionality:
 ------------
 
 - Search Screen: It is the main screen of the project, it contain a number of componentes and functions to run. 
@@ -70,8 +79,8 @@ EIH - Screens & their codes:
    The search box use the Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments.
    To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should 
 
-* templates/googlAutoCompleteGeneral.html
-* templates/googlAutoComplete.html
+* `templates/googlAutoCompleteGeneral.html`
+* `templates/googlAutoComplete.html`
 
 ```javascript
         // Change the country code from 'IE' to the country where is EIH used 
@@ -88,8 +97,8 @@ EIH - Screens & their codes:
 The search button will send a `POST` request to the `app.py` file to run the `display_form():` function.
 This function will be calling another functions to get the data and check from the database and check if the address is already registerd and active or not.
 
-* if the fucntions returns True the `retult.html` bage will be display with all the data coming from the Database, in addition to Google Map box using the `maps2.html` file.
+* if the fucntions returns `True` the `retult.html` bage will be display with all the data coming from the Database, in addition to Google Map box using the `maps2.html` file.
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/results%20screen.JPG" alt="mypy logo" width="600px"/>
 
-* if the fucntions returns False the app will be redirected to the main page with allert no data for the searched address founded displayed.
+* if the fucntions returns `False` the app will be redirected to the main page with allert no data for the searched address founded displayed.
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="600px"/>
