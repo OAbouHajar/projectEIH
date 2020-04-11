@@ -118,7 +118,20 @@ Then you follow the steps in the picture:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/add_building_steps.JPG" alt="mypy logo" width="600px"/>
 
-* Once you have registerd the System will show you the Building registration ID, This ID should be used on the hardware side to link the backend to this actual building, as it show in the picture.
+* Once you have registration completed the System will show you the Building registration ID, This ID should be used on the hardware side to link the backend to this actual building, as it show in the picture.
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_added_new_key.JPG" alt="mypy logo" width="600px"/>
 
+* if the Alert! Massege was telling the building is already in the system, that means the building should be activated again and the buidling ID is already assigned.
+
+#### About Us Screen ####
+
+The project description and the story of the project.
+
+#### Case Study Screen ####
+
+Redirect to an external link to show the show the case study for EIH as a final year project.
+
+#### Contact Screen ####
+
+A contact form to allow the users to contact the admins to give feedback or to report an problem.
