@@ -12,7 +12,7 @@
 <body>
     <div class="pac-card" id="pac-card">
         <div id="pac-container">
-            <input id="pac-input" name='thelocation' type="text" placeholder="ENTER ADDRESS OR EIRCODE TO SEARCH">
+            <input id="pac-input" name='thelocation' type="text" placeholder="ENTER ADDRESS OR EIRCODE TO SEARCH" required>
             <button class="button button3"> Search</button>
 
         </div>
@@ -70,7 +70,7 @@
                 if (!place.geometry) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
-                    window.alert("No details available for input: '" + place.name + "'");
+                    // window.alert("Please Select the addree from the list: '");
                     return;
                 }
 

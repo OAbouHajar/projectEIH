@@ -160,4 +160,4 @@ Redirect to an external link to show the show the case study for EIH as a final 
 A contact form to allow the users to contact the admins to give feedback or to report an problem.
 
 
-> For more details you car refare to the comment with in each file, or contact the developer by email. 
+> For more details you can refare to the comment with in each file, or contact the developer by email. 
