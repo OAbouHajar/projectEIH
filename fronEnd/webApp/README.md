@@ -53,4 +53,29 @@ This dependencies will be responsable on all the process and the connections bet
     $ export DB_FILE_URL='https://<YOU-PROJECT-NAME-ON-FIREBASE>.firebaseio.com/<THE-JSON-FILE-NAME-ON-FIREBASE>.json'
 ```
 
+> For more detailes about Google firebase and Google Address autocomplete, You have to register and read Google docomentations 
+* ([Goolge Firebase](https://firebase.google.com/))
+* ([Goolge Maps API](https://cloud.google.com/maps-platform/))
+
+EIH - Screens & their codes:
+------------
+
+- Search Screen: It is the main screen of the project, it has one user input. 
+In this screen the user can seach for any Irish addresses.
+The search box use the Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments.
+To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should 
+
+* templates/googlAutoCompleteGeneral.html
+* templates/googlAutoComplete.html
+
+```javascript
+        // Change the country code from 'IE' to the country where is EIH used 
+        // to be able to list al locations with in this country 
+        autocomplete.setComponentRestrictions({
+            'country': 'IE'
+        });
+```
+
+Click Here for more informations about the ([Google Addresses Autocomplete](https://developers.google.com/maps/documentation/javascript/places-autocomplete?utm_source=google&utm_medium=cpc&utm_campaign=FY18-Q2-global-demandgen-paidsearchonnetworkhouseads-cs-maps_contactsal_saf&utm_content=text-ad-none-none-DEV_c-CRE_397052992739-ADGP_Hybrid+%7C+AW+SEM+%7C+SKWS+~+Places+%7C+BMM+%7C+Address+Autocomplete-KWID_43700049595992256-kwd-312924430504-userloc_20479&utm_term=KW_%2Baddress%20%2Bautocomplete-ST_%2Baddress+%2Bautocomplete&gclid=CjwKCAjw1cX0BRBmEiwAy9tKHirhZ_N53PbWLuOTp3QmQuashEdWHHrzFS0_AOuHn5pBLkcqdNTJjBoC-8kQAvD_BwE)) and the ([countries code](https://www.iban.com/country-codes)).
+
 

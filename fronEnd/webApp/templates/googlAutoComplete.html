@@ -46,6 +46,8 @@
             // so that the autocomplete requests use the current map bounds for the
             // bounds option in the request.
             autocomplete.bindTo('bounds', map);
+            // Change the country code from 'IE' to the country where is EIH used 
+            // to be able to list al locations with in this country 
             autocomplete.setComponentRestrictions({
                 'country': 'IE'
             });
