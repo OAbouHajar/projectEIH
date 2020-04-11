@@ -19,11 +19,29 @@ The front-end folder include the following directories and files:
 * **configuration** Folder: where configuration files (commonly known simply as config files) are files used to configure the parameters and initial settings for some computer programs, this folder include all [*.cfg and JSON files].
 * **static** Folder: Static web pages are often HTML documents stored as files in the file system and made available by the web server over HTTP, this folder include all [*.css, *.png and *.jpg files].
 * **templates** Folder: where all the HTML files are stored onherating the base,html page.
-* **app.py** File: is the main webapp file where all python code and functions run and work alongside with Flask.
+* **app.py** File: this is the main webapp python file where all python code and functions run and work alongside with Flask.
 * **.env** File: where all the environment variables are stored and they are represent the security part of the front end.
 
+### app.py ###
+-- This is the main file for the webApp, all the function and the variables are getting processed,to run the file you need to have the following dependencies installed on you machine, or on the server side for online deployment.
+
+To run the app you need to have Python3 installed and flask, in addition to the ([request](https://pypi.org/project/requests/)), ([firebase](https://pypi.org/project/firebase/)), ([python-dotenv](https://pypi.org/project/python-dotenv/)), ([pyrebase](https://pypi.org/project/python-dotenv/)) dependencies as the following:
+
+```javascript
+curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+python get-pip.py
+python3 get-pip.py
+pip3 install flask
+pip install requests
+pip install python-firebase
+pip3 install firebase
+pip install python-dotenv
+pip3 install pyrebase
+```
+This dependencies will be responsable on all the process and the connections between the DataBase and the WebApp.
+
 ### .env File ###
-- The .env file contain all the environment variables, where all the Tokens, API_Keys, and other type of credentials can be storedas following:
+-- The .env file contain all the environment variables, where all the Tokens, API_Keys, and other type of credentials can be storedas following:
 
 ```javascript 
     $ export GOOGLE_API_KEY='GOOGLE-API-KEY-FOR-THE-CREATED-PROJECT-ON-THE-FIREBASE'
