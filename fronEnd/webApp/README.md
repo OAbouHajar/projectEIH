@@ -110,4 +110,15 @@ This screen will display all the locations with in the databases, and give a ful
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/all_locations_admin.JPG" alt="mypy logo" width="600px"/>
 
+#### Add Building Feature ####
+> This is the one of the most important parts to link the hardware to the database:
+
+To add building you have to login as Admin (If you have no Access you sould contact the admin body create a credential for to gain an access).
+Then you follow the steps in the picture:
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/add_building_steps.JPG" alt="mypy logo" width="600px"/>
+
+* Once you have registerd the System will show you the Building registration ID, This ID should be used on the hardware side to link the backend to this actual building, as it show in the picture.
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_added_new_key.JPG" alt="mypy logo" width="600px"/>
 
