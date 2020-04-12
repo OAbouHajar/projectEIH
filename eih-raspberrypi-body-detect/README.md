@@ -11,6 +11,35 @@ The main objective of this project is giving the number of trapped people under 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
 
 
+EIH - Back-End
+------------
+
+The structure of the back-end is:
+
+    .
+    ├── cred/                   # Configure the parameters and initial settings for some computer programs               
+    ├── draft/                  # some files 
+    ├── images/                 # where the image got save to be processes by the body detect algorithm
+    ├── detect.py               # the body detect algorithm
+    ├── eihIR.py                # the main file for EIH back-end project
+    ├── get-pip.py              # to install get
+    ├── post-data-to-api.py     # The file post the data to the clould after the number get detected
+    ├── requirments.txt         # all the for this project
+    ├── setup.py                # to setup the project enviroument            
+    └── README.md               #
+
+This environment variables should be export and save to run the project.
+
+```javascript
+
+    $ export FIREBASE_DB_URL='https://<YOUR-PROJECT-NAME>.firebaseio.com/<THE-JSON-FILE-NAME>.json'
+    $ export REG_BUILIDING_ID='<THE-BUILDING-ID-FROM-FRONT-END-REGISTARTION>'
+    $ export DEVICE_ID='<THE-DDEVICE-ID-YOU-CHOSE>'
+    $ export PROJECT_API_KEY='<THE-FIREBASE-API-KEY>'
+
+```
+> To get `REG_BUILIDING_ID` you have to follow the instractions on ([the fron-end add new building](https://github.com/OAbouHajar/projectEIH/tree/master/eih-front-end-webapp#add-building-feature))
+
 Software Requirements - Installation:
 ------------
 To run the hardware part of EIH:
