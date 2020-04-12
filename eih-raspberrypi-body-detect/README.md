@@ -28,17 +28,6 @@ The structure of the back-end is:
     ├── setup.py                # to setup the project enviroument            
     └── README.md               #
 
-This environment variables should be export and save to run the project.
-
-```javascript
-
-    $ export FIREBASE_DB_URL='https://<YOUR-PROJECT-NAME>.firebaseio.com/<THE-JSON-FILE-NAME>.json'
-    $ export REG_BUILIDING_ID='<THE-BUILDING-ID-FROM-FRONT-END-REGISTARTION>'
-    $ export DEVICE_ID='<THE-DDEVICE-ID-YOU-CHOSE>'
-    $ export PROJECT_API_KEY='<THE-FIREBASE-API-KEY>'
-
-```
-> To get `REG_BUILIDING_ID` you have to follow the instractions on ([the fron-end add new building](https://github.com/OAbouHajar/projectEIH/tree/master/eih-front-end-webapp#add-building-feature))
 
 Software Requirements - Installation:
 ------------
@@ -139,6 +128,19 @@ Try the following command:
 How To Run EIH?
 ------------
 To Run EIH Project you do need the same software package to both direction __IN__ or __OUT__ and that by telling the system what direction to run with the argument passed as the following commands:
+
+> Before you run the project, This environment variables should be export and save to run the project.
+
+```javascript
+
+    $ export FIREBASE_DB_URL='https://<YOUR-PROJECT-NAME>.firebaseio.com/<THE-JSON-FILE-NAME>.json'
+    $ export REG_BUILIDING_ID='<THE-BUILDING-ID-FROM-FRONT-END-REGISTARTION>'
+    $ export DEVICE_ID='<THE-DDEVICE-ID-YOU-CHOSE>'
+    $ export PROJECT_API_KEY='<THE-FIREBASE-API-KEY>'
+
+```
+> To get `REG_BUILIDING_ID` you have to follow the instractions on ([the fron-end add new building](https://github.com/OAbouHajar/projectEIH/tree/master/eih-front-end-webapp#add-building-feature))
+
 
 ### To Run The Project for [__OUT__] Direction ###
 
