@@ -21,6 +21,19 @@ This project consist of two parts:
 
 to run EIH you have to follow the instaction of the REAMDME.MD files for the the Fornt-End and the Back-End.
 
+How EIH works?
+------------
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/back-eng-img/overAll.JPG" alt="mypy logo" width="600px"/>
+
+As It shwon in the diagram above:, 
+* EIH breifly works as the following steps:
+    * When Some one approach the door, the sesors works and the camera take a picture of the people waking IN Or OUT
+    * The Picture will be processed by a body-detect algorithm, to detect how many person in the picture.
+    * The total number of people inside the building will be saved on the could (GOOGLE FIREBASE).
+    * The Emergency Services will be able to reach this details by the address search at anytime.
+
+
 EIH Story
 ------------
 
