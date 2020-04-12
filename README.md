@@ -15,8 +15,8 @@ EIH Requirements
 ------------
 This project consist of two parts:
 
-* Hardware: on this link ([Hardware](https://github.com/OAbouHajar/projectEIH/tree/master/body-detect))
-* Software: on this link ([Software](https://github.com/OAbouHajar/projectEIH/tree/master/fronEnd/webApp))
+* Hardware: on this link ([Hardware](https://github.com/OAbouHajar/projectEIH/tree/master/eih-raspberrypi-body-detect))
+* Website: on this link ([Website](https://github.com/OAbouHajar/projectEIH/tree/master/eih-front-end-webapp))
 
 
 to run EIH you have to follow the instaction of the REAMDME.MD files for the the Fornt-End and the Back-End.
