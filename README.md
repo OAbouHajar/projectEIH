@@ -7,7 +7,7 @@ The project link: https://www.e-hub.ie/
 
 What is EIH?
 -------------
-Emergency Info Hub ([EIH](https://eih.pythonanywhere.com/)),is a fourth year student project, has been designed to be a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
+Emergency Info Hub ([EIH](https://www.e-hub.ie/)),is a fourth year student project, has been designed to be a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
 The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save this number to the cloud to be used when a disaster happens.
 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
@@ -52,7 +52,7 @@ EIH Developer
 ------------
 <img src="https://eih.pythonanywhere.com/static/me.png" alt="mypy logo" width="150px"/>
 
-**Osama Abou Hajar**
+**Osama Abou Hajar** 
 
 **Software Development Engineer**
 
@@ -61,3 +61,5 @@ EIH Developer
 **oabouhajar@hotmail.com**
 
 **Supervisor: Paul Barry**
+
+([EIH](https://www.e-hub.ie/)
