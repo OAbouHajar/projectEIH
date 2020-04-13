@@ -7,7 +7,7 @@
         <div class="center" id="p1">
             <!-- <img src="static/logo.png" class="center logo"></img> -->
             <div class="center logo"></div>
-            <h4>Enter Address or EirCode to search</h4>
+            <h4>Enter Address to search</h4>
             <form action='/displayResults' method='POST'>
                 {% include 'googlAutoComplete.html' %}
             </form>
@@ -17,7 +17,7 @@
     {% if alert is sameas false %}
     <div id="alert" class="alert alert-danger alert-dismissible fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="deleteItems()">&times;</a>
-        <strong>Alert!</strong> The Entered Address <b>{{session['building_name_send']}}</b> Has No Date In Our DataBase.
+        <strong>Alert!</strong> The Entered Address <b>{{session['building_name_send']}}</b> Has No Data In Our DataBase.
     </div>
 
     {% endif %} {% endblock %}

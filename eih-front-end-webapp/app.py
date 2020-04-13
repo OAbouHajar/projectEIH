@@ -22,7 +22,7 @@ app.config.from_pyfile("configuration/myconfig.cfg")
 ## update flask config to set the life time of session to 15, if no actions the session will be logout.
 app.config.update(
     ## time out logged in session after minutes=15 time
-    PERMANENT_SESSION_LIFETIME=timedelta(minutes=15),
+    PERMANENT_SESSION_LIFETIME=timedelta(minutes=45),
 )
 ## Generate a random String as secret key wach time we run the app for more secuity.
 app.secret_key = os.urandom(32)
@@ -149,13 +149,13 @@ def login_check():
     ## return the email and the password attepming to log in with.
     return email, password
 
-## the application route.
-@app.before_request
-def before_request():
-    if not session:
-        session["login_attempts"] = 1
-        session["locked_status"] = False
-        session["request_ip_address_locked"] = ""
+# ## the application route.
+# @app.before_request
+# def before_request():
+#     if not session:
+#         session["login_attempts"] = 1
+#         session["locked_status"] = False
+#         session["request_ip_address_locked"] = ""
 
 @app.route("/")
 def route():
@@ -168,7 +168,7 @@ def logout():
     ##clear all the session set already
     session.clear()
     # The key is secure enough, and each time you launch your system the key changes invalidating all sessions.
-    app.secret_key = os.urandom(32)
+    # app.secret_key = os.urandom(32)
     # return display_form()
     return redirect(url_for("display_form"))
 
@@ -260,11 +260,14 @@ def allLocations():
 @app.route("/login", methods=["POST"])
 def login():
     ### to check if the user attempts is 5.
-    if session["login_attempts"] == 5:
-        session["time_locked"] = time.time()
-        session["request_ip_address_locked"] = request.remote_addr
-        session["locked_status"] = True
-        return redirect(url_for("route"))
+    if session['login_attempts'] is not None:
+        if session["login_attempts"] == 5:
+            session["time_locked"] = time.time()
+            session["request_ip_address_locked"] = request.remote_addr
+            session["locked_status"] = True
+            return redirect(url_for("route"))
+    else:
+        session['login_attempts'] = 1
     ## if attempts less than 5 then the login email,and password get checked.
     logPass = login_check()
     if logPass:
@@ -309,9 +312,9 @@ def resetLocation():
             "address": request.form.get("new_row_address").upper(),
             "eircode": request.form.get("new_row_eircode").upper(),
             "numberOfPeopleINDetect": 0,
-            "timeUpdated": time.strftime("%X %x %Z"),
-            "active": True,
+            "timeUpdated": time.strftime("%X %x %Z")
         }
+        #to be display at after the registration compete
         session['new_row_name']=request.form.get("new_row_name").upper()
         add_new_builiding(data)
     return redirect(url_for("allLocations"))

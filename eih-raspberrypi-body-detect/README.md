@@ -92,7 +92,7 @@ You need the list of hardware parts to be connected:
 Hardware Collaboration
 ------------
 
-To have the best performance of your hardware the follwing instractions should be followed:
+To have the best performance of your hardware the following instructions should be followed:
 
 **IR Break Beam Sensor LEDs**
 * Sensor one should be connected to GIPO 4 PIN(7)
@@ -100,13 +100,13 @@ To have the best performance of your hardware the follwing instractions should b
 As it shown in the picture below:
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/IR_connection.JPG" alt="mypy logo" width="600px"/>
 
-* Both sensors should installed, on the both side of the door, with range [25cm] to [50cm] height from the ground taken the kids and adults height under considration as shown in the picture below:
+* Both sensors should be installed on the both side of the door, with range [25cm] to [50cm] height from the ground taken the kids and adults height under consideration as shown in the picture below:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/ir-collaboration.JPG" alt="mypy logo" width="600px"/>
 
 **Raspberry Pi Camera**
 
-* the camera connect to the camera port on the Raspberry Pi as it shown in the picture below.#
+* the camera connects to the camera port on the Raspberry Pi as it shown in the picture below.#
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/cameraconnection.JPG" alt="mypy logo" width="600px"/>
 
@@ -120,7 +120,7 @@ Try the following command:
     $ raspistill -v -o test.jpg
 
 
-* The camera should be installed closer to the mid point of the entrance, with height range [190cm] to [220cm], with distance and an angle cover the full Entrance width and height.
+* The camera should be installed closer to the midpoint of the entrance, with height range [190cm] to [220cm], with distance and an angle cover the full Entrance width and height.
 
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/random/camera_sensor_setup.JPG" alt="mypy logo" width="600px"/>
