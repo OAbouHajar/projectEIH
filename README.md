@@ -13,6 +13,18 @@ The main objective of this project is giving the number of trapped people under 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
 
 
+EIH - Structure:
+------------
+
+The structure of the EIH GitHub repository is:
+
+    .
+    ├── eih-front-end-webapp          # The Fron-end folder and files which create the website to output the data.
+    ├── eih-raspberrypi-body-detect   # The Back-end folder and files where all the hardware work takeing place.
+    ├── LICENSE                       # EIH enviroument requirements.            
+    └── README.md          
+
+
 EIH Requirements
 ------------
 This project consist of two parts:

@@ -324,6 +324,18 @@ def resetLocation():
 def aboutus():
     return render_template("aboutus.html",)
 
+
+@app.after_request
+def apply_caching(response):
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    # response.headers['Content-Security-Policy'] = "default-src 'self'"
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+
+    return response
+
+
 # the application start
 if __name__ == "__main__":
     app.run()
