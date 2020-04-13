@@ -332,7 +332,6 @@ def apply_caching(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     # response.headers['Content-Security-Policy'] = "default-src 'self'"
     response.headers['X-Content-Type-Options'] = 'nosniff'
-
     return response
 
 
