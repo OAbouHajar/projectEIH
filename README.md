@@ -19,9 +19,9 @@ EIH - Structure:
 The structure of the EIH GitHub repository is:
 
     .
-    ├── eih-front-end-webapp          # The Fron-end folder and files which create the website to output the data.
-    ├── eih-raspberrypi-body-detect   # The Back-end folder and files where all the hardware work takeing place.
-    ├── LICENSE                       # EIH LICENSE agreement for any use of the project.            
+    ├── eih-front-end-webapp/          # The Fron-end folder and files which create the website to output the data.
+    ├── eih-raspberrypi-body-detect/   # The Back-end folder and files where all the hardware work takeing place.
+    ├── LICENSE                        # EIH LICENSE agreement for any use of the project.            
     └── README.md          
 
 
