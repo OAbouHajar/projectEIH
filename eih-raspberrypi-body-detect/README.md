@@ -23,7 +23,7 @@ The structure of the back-end is:
     ├── detect.py               # the body detect algorithm
     ├── eihIR.py                # the main file for EIH back-end project
     ├── get-pip.py              # to install get
-    ├── post-data-to-api.py     # The file post the data to the clould after the number get detected
+    ├── post_data_to_api.py     # The file post the data to the clould after the number get detected
     ├── requirments.txt         # all the for this project
     ├── setup.py                # to setup the project enviroument            
     └── README.md               #
@@ -150,7 +150,7 @@ To Run EIH Project you do need the same software package to both direction __IN_
 
     $ python eihIR.py in
 
-And this will change the calculations in the file [post-data-to-api.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/post-data-to-api.py) in the following code.
+And this will change the calculations in the file [post_data_to_api.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/post_data_to_api.py) in the following code.
 
 ```python
 if args["numberOUT"] is not None:

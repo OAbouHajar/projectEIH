@@ -59,9 +59,9 @@ for imagePath in imagePaths:
 path = os.getcwd()
 ## send date to post file
 if 'out' in listArg:
-	os.system('python3 {}/post-data-to-api.py --numberOUT {}'.format(path ,len(pick)) )
+	os.system('python3 {}/post_data_to_api.py --numberOUT {}'.format(path ,len(pick)) )
 if 'in' in listArg:
-	os.system('python3 {}/post-data-to-api.py --numberIN {}'.format(path ,len(pick)) )
+	os.system('python3 {}/post_data_to_api.py --numberIN {}'.format(path ,len(pick)) )
 		
 	
 	

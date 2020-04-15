@@ -2,7 +2,7 @@
 ## THE PROJECT RUN IN THE SECQUENCE
 ## 1-eihOUT.py
 ## 2- subprocessApp2.py
-## 3- detect.py -> send data to post-data-to-api.py
+## 3- detect.py -> send data to post_data_to_api.py
 import time
 from gpiozero import MotionSensor
 from gpiozero import LED
