@@ -10,6 +10,15 @@
 #  by tracking their number using a simple movement sensor fitted on the main gate and face detection technology,
 #  and save this number to the cloud to be used when a disaster happens.
 
+### To run the rest you have to export the following env veriable
+    #  export GOOGLE_API_KEY='GOOGLE-API-KEY-FOR-THE-CREATED-PROJECT-ON-THE-FIREBASE'
+    #  export GOOGLE_MAP_API='GOOGLE-MAPS-API-KEY-TO-SHOW-THE-MAP-ON-RESULTS'
+    #  export AUTH_DOMAIN='<YOU-PROJECT-NAME-ON-FIREBASE>.firebaseio.com'
+    #  export DB_URL='https://<YOU-PROJECT-NAME-ON-FIREBASE>.firebaseio.com'
+    #  export STOREG_BUKET='<YOU-PROJECT-NAME-ON-FIREBASE>.appspot.com'
+    #  export SERVICE_ACCOUNT='<THE-PATH-TO-THE-DB-CONFIG-JSON-FILE>/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json'
+    #  export DB_FILE_URL='https://<YOU-PROJECT-NAME-ON-FIREBASE>.firebaseio.com/<THE-JSON-FILE-NAME-ON-FIREBASE>.json'
+
 
 import unittest
 import app
@@ -18,7 +27,7 @@ from app import app as web
 from flask import Flask, request, session
 from flask import json, jsonify
 import flask
-
+import os
 webF = flask.Flask(__name__)
 
 
