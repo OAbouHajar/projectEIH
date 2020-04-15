@@ -1,3 +1,15 @@
+# EIH Python CODE
+# AUTHOR: OSAMA ABOU HAJAR
+# Institute of Technology Carlow
+# STUDENT ID: C002201315
+# DATE: 20/04/2020
+# Emergency Info Hub (EIH), Is a central website helps the emergency services to prepare for,
+#      respond to & recover from disaster, by providing all needed data for the targeted building 
+#      (E.g. Number of people, area size and emergency exits).
+# The main objective of this project is giving the number of trapped people under rubbles or inside a building,
+#  by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, 
+#  and save this number to the cloud to be used when a disaster happens.
+
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import requests
 import pyrebase
@@ -259,6 +271,10 @@ def allLocations():
 ## login route
 @app.route("/login", methods=["POST"])
 def login():
+    if not session:
+        session["login_attempts"] = 1
+        session["locked_status"] = False
+        session["request_ip_address_locked"] = ""
     ### to check if the user attempts is 5.
     if session['login_attempts'] is not None:
         if session["login_attempts"] == 5:
