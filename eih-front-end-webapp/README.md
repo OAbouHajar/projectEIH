@@ -5,8 +5,9 @@ EIH: Emergency Info Hub
 
 What is EIH?
 -------------
-Emergency Info Hub ([EIH](https://eih.pythonanywhere.com/)),is a fourth year student project, has been designed to be a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
-The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save this number to the cloud to be used when a disaster happens.
+Emergency Info Hub (EIH), Is a central website helps the emergency services to prepare for, respond to & recover from disaster, by providing all needed data for the targeted building (E.g. Number of people, area size and emergency exits).
+
+The main objective of this project is giving the number of trapped people under rubbles or inside a building, by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, and save this number to the cloud to be used when a disaster happens
 
 See [the documentation](http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html#t3) for more detailes.
 
@@ -15,7 +16,7 @@ EIH - Front-End:
 ------------
 EIH front-end build using ([FLASK](https://flask.palletsprojects.com/en/1.1.x/)) python framework, Jinja2 HTML, CSS, Javascript web design languages. 
 
-The structure of the front-en is:
+The structure of the front-end is:
 
     .
     ├── configuration/       # Configure the parameters and initial settings for some computer programs               
@@ -23,11 +24,12 @@ The structure of the front-en is:
     ├── templates/           # All the HTML files are stored onherating the base,html page
     ├── app.py               # The main webapp python file where all python code and functions run and work alongside with Flask. 
     ├── .env                 # All the environment variables are stored and they are represent the security part of the front end.
-    ├── requirements.txt     # EIH enviroument requirements.            
+    ├── requirements.txt     # EIH enviroument requirements.   
+    ├── test_flask.py        # Unit test, to make sure the DB connection is established and the webApp load successfully.
     └── README.md            #
 
 ### app.py ###
--- This is the main file for the webApp, all the function and the variables are getting processed,to run the file you need to have the following dependencies installed on you machine, or on the server side for online deployment.
+-- This is the main file for the webApp, all the function and the variables are getting processed, to run the file you need to have the following dependencies installed on you machine, or on the server side for online deployment.
 
 To run the app you need to have Python3 installed and flask, in addition to the ([request](https://pypi.org/project/requests/)), ([firebase](https://pypi.org/project/firebase/)), ([python-dotenv](https://pypi.org/project/python-dotenv/)), ([pyrebase](https://pypi.org/project/python-dotenv/)) dependencies as the following:
 
@@ -42,10 +44,10 @@ pip3 install firebase
 pip install python-dotenv
 pip3 install pyrebase
 ```
-This dependencies will be responsable on all the process and the connections between the DataBase and the WebApp.
+This dependency will be responsible on all the process and the connections between the Database and the WebApp.
 
 ### .env File ###
--- The .env file contain all the environment variables, where all the Tokens, API_Keys, and other type of credentials can be storedas following:
+-- The `.env` file contain all the environment variables, where all the Tokens, API_Keys, and other type of credentials can be stored as following:
 
 ```javascript 
     $ export GOOGLE_API_KEY='GOOGLE-API-KEY-FOR-THE-CREATED-PROJECT-ON-THE-FIREBASE'
@@ -57,7 +59,7 @@ This dependencies will be responsable on all the process and the connections bet
     $ export DB_FILE_URL='https://<YOU-PROJECT-NAME-ON-FIREBASE>.firebaseio.com/<THE-JSON-FILE-NAME-ON-FIREBASE>.json'
 ```
 
-> For more detailes about Google firebase and Google Address autocomplete and how to get this API_KEYS and Tokens, You have to register and read Google docomentations 
+> For more detailes about Google firebase and Google Address autocomplete and how to get this API_KEYS and Tokens, You have to register and read Google docomentations.
 * ([Goolge Firebase](https://firebase.google.com/))
 * ([Goolge Maps API](https://cloud.google.com/maps-platform/))
 
@@ -65,16 +67,15 @@ EIH - Screens & Code Functionality:
 ------------
 
 ### Search Screen: ### 
-It is the main screen of the project, it contain a number of componentes and functions to run. 
+It is the main screen of the project, it contain a number of componentes and functions to run.
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/main.JPG" alt="mypy logo" width="600px"/>
 
 
 1. **The Search input:**
-   The search box has an integrated Address autocomplete, which create a compatibility to have one search mechanizm.
-   In this screen the user can seach for any Irish addresses 
-   The search box use the Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments.
-   To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should 
+   The search box has an integrated Address autocomplete, which create a compatibility to have one search mechanizm. 
+   In this screen the user can seach for any Irish addresses The search box use. 
+   The Google Auto complete API to give the user the ability to get the correct address and save their time during emergency moments. To be able to list the address from another countries than Ireland, the country code with in the restrictions atribute in the files below should
 
 * `templates/googlAutoCompleteGeneral.html`
 * `templates/googlAutoComplete.html`
@@ -91,31 +92,39 @@ It is the main screen of the project, it contain a number of componentes and fun
 
 
 2. **The Search Button:**
-The search button will send a `POST` request to the `app.py` file to run the `display_form():` function.
-This function will be calling another functions to get the data and check from the database and check if the address is already registerd and active or not.
+The search button will send a `POST` request to the `app.py` file to run the `display_form():` function. 
+This function will be calling another functions to get the data and check from the database and check if the address is already registered and active or not..
 
-* if the fucntions returns `True` the `retult.html` bage will be display with all the data coming from the Database, in addition to Google Map box using the `maps2.html` file.
+* if the fucntions return `True` the `retult.html` page will be display with all the data coming from the Database, in addition to Google Map box using the `maps2.html` file.
+
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/results%20screen.JPG" alt="mypy logo" width="600px"/>
 
-* if the fucntions returns `False` the app will be redirected to the main page with allert no data for the searched address founded displayed.
+if the functions return `False` the app will be redirected to the main page with alert no data for the searched address founded displayed
+
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/alert_not_founded.JPG" alt="mypy logo" width="600px"/>
 
+### Add Admin Screen: ### 
+The registration from the front-end is not an option, to gain access to the website the administration office, should grant you with the login credentials, that by registering your email and password to the user’s authentications table in the firebase API side
+
+as the following picture:
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/add-user.JPG" alt="mypy logo" width="600px"/>
 
 ### Loactions Screen: ### 
-This screen will display all the locations with in the databases, and give a fully dymaic table to the admins to add, delete, update, and reset the number of people for each row.
+This screen will display all the locations within the databases, and give a fully dynamic table to the admins to add, delete, update, and reset the number of people for each row.
 
 * Public access all locations page:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/all_locations.JPG" alt="mypy logo" width="600px"/>
 
-* Admis access all locations page with the menu options on the right mouse click:
+* Admins access all locations page with the menu options appear on the right mouse click:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/all_locations_admin.JPG" alt="mypy logo" width="600px"/>
 
 #### Add Building Feature ####
 > This is the one of the most important parts to link the hardware to the database:
 
-To add building you have to login as Admin (If you have no Access you sould contact the admin body create a credential for to gain an access).
+To add building, you have to login as Admin (If you have no Access you should contact the admin body create a credential for to gain an access). 
 Then you follow the steps in the picture:
 
 <img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/add_building_steps.JPG" alt="mypy logo" width="600px"/>
@@ -140,7 +149,7 @@ The Delete option from table menu, will update the  `active` value in the databa
 ```
 
 #### Activate Building Feature ####
-The Activate option from table menu, will updagte the `active` value in the database to `True`.
+The Activate option from table menu, will update the `active` value in the database to `True`.
 
 ```python 
 {"active": True}
@@ -178,6 +187,23 @@ data =
     }
 }
 ```
+
+EIH - Flask Unit Test
+------------
+
+- The file `test_flask.py` has been designed to ensure the connections to the database (firebase) has been established, and the webapp pages load seccessfully.
+
+**Run The Test file:**
+
+To run the test file you need to run the following command.
+
+```python
+    $ python3 test_flask.py -v
+```
+
+The test result will be all the tests passes.
+
+>In case of implenemting a new function to the App, you have to write a new test match the tests structure.
 
 
 > For more details you can refare to the comment with in each file, or contact the developer by email. 
