@@ -14,7 +14,7 @@ camera.resolution = (400,200)
 
 
 ## Sensors Configuration
-BEAM_PIN1 = 18 ##sensor Number !
+BEAM_PIN1 = 4  ##sensor Number !
 BEAM_PIN2 = 17 ##sensor Number 2
 
 

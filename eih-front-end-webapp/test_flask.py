@@ -84,18 +84,6 @@ class TestApp(unittest.TestCase):
 
         self.assertIn(b"Email Address OR Password", response.data)
 
-    # ##8 test login
-    # def test_login(self):
-    #     tester = web.test_client(self)
-    #     userlogin="test@test.com"
-    #     password = "<passwork_to_be_set>"
-    #     response = tester.post('/login',
-    #                            data=dict( loginInput=userlogin,
-    #                                      loginPass=password),
-    #                             follow_redirects=True)
-
-    #     self.assertIn(b'Right Click To Show The Options Menu', response.data)
-
     ##9 test to check the connections is good to the Database
     def test_get_data_from_db(self):
         result = app.get_all_data_from_firebase()

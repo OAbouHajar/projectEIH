@@ -196,10 +196,10 @@ def display_form():
     ## if the session were set already, and the ip was blocked.
     elif session["request_ip_address_locked"] == request.remote_addr:
         ## to check when the IP is blocke after the 5 time failing login attempts.
-        ## and check if the time at lock out was greater than 5 minutes then re allow to login.
+        ## and check if the time at lock out was greater than 60 minutes then re allow to login.
         if (
             session["locked_status"] is True
-            and (time.time() - session["time_locked"]) > 500
+            and (time.time() - session["time_locked"]) > 3600
         ):
             session["locked_status"] = False
             session.clear()
