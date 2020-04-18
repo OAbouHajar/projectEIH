@@ -48,6 +48,12 @@ As It shwon in the diagram above:,
     * The Emergency Services will be able to reach this details by the address search at anytime.
 
 
+What Technologies does EIH use?
+------------
+
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/back-eng-img/tech.JPG" alt="mypy logo" width="150px"/>
+
+
 EIH Story
 ------------
 
