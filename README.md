@@ -49,8 +49,9 @@ As It shwon in the diagram above:,
 
 User Usability/Videos Playlist?
 ------------
+- To learn how to use EIH and its functionality you can refer to the youtube video playlist always.
 
-<iframe width="750" height="350" src="https://www.youtube.com/embed/videoseries?list=PL4amH-KHpsvIujZYx7ztRXOgMtDIQeFQZ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Alt text](http://glasnost.itcarlow.ie/~softeng4/C00220135/documents/front-end-img/youtube.JPG)](https://www.youtube.com/embed/videoseries?list=PL4amH-KHpsvIujZYx7ztRXOgMtDIQeFQZ)
 
 
 What Technologies does EIH use?
