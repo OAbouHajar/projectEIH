@@ -47,6 +47,11 @@ As It shwon in the diagram above:,
     * The total number of people inside the building will be saved on the could (GOOGLE FIREBASE).
     * The Emergency Services will be able to reach this details by the address search at anytime.
 
+User Usability/Videos Playlist?
+------------
+
+<iframe width="750" height="350" src="https://www.youtube.com/embed/videoseries?list=PL4amH-KHpsvIujZYx7ztRXOgMtDIQeFQZ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 What Technologies does EIH use?
 ------------
