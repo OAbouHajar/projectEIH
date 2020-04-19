@@ -21,6 +21,7 @@ os.system('python get-pip.py')
 os.system('python3 get-pip.py')      # For specific python version
 ## Install all python dependency
 os.system('sudo apt update && sudo apt-get install python-opencv python-scipy ipython')
+os.system('pip install opencv-python')
 os.system('sudo pip install requests')
 os.system('sudo pip install python-firebase')
 os.system('pip3 install firebase')
