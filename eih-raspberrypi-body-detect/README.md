@@ -44,12 +44,16 @@ For other Linux flavors, macOS and Windows, packages are available at
   http://www.python.org/getit/
 
 
--- The file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) is made to easy install all the requirements 
+-- The file [setup.py] is made to easy install all the requirements 
 if you have Python 3 and pip3 installed on you device already, you can use the following command to setup the EIH project in fully. 
  
     $ python setup.py
 
-file [setup.py](https://github.com/OAbouHajar/projectEIH/blob/master/body-detect/setup.py) 
+or you can always install the `requirments.txt` with the following command:
+
+    $ pip3 install -r requirments.txt
+
+
 
 Once you setup is completed you will have the follwing dependencies installed on your system.
 
