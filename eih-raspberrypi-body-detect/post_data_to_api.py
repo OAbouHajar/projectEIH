@@ -30,6 +30,8 @@ def db_config():
 def update_with_the_new_number(id_to_reset, new_number):
     db = db_config().database()
     x= db.child("locations").child(id_to_reset).update({'numberOfPeopleINDetect': new_number})
+    print('###### DATA STORED ON CLOUD #####')
+    print('THE NEW NUMBER INSIDE BUILDING ' , new_number)
     return x
 
 ## get the previouse number on the API

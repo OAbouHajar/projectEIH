@@ -12,6 +12,7 @@ print("#########################################################################
 print("###################################     SETUP START       ######################################")
 print("################################################################################################")
 ##installing python
+
 os.system('sudo apt-get update')
 os.system('sudo apt-get install python3.6')
 ## Installing pip
@@ -19,6 +20,7 @@ os.system('curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"')
 os.system('python get-pip.py')
 os.system('python3 get-pip.py')      # For specific python version
 ## Install all python dependency
+os.system('sudo apt update && sudo apt-get install python-opencv python-scipy ipython')
 os.system('sudo pip install requests')
 os.system('sudo pip install python-firebase')
 os.system('pip3 install firebase')
