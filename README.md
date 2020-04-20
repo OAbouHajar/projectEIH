@@ -74,7 +74,7 @@ ANYBODY HERE? it's the reason to start, and here where we are: EIH - "EVERY LIFE
 
 EIH Developer
 ------------
-<img src="https://eih.pythonanywhere.com/static/me.png" alt="mypy logo" width="150px"/>
+<img src="http://glasnost.itcarlow.ie/~softeng4/C00220135/img/me.png" alt="mypy logo" width="150px"/>
 
 **Osama Abou Hajar** 
 
