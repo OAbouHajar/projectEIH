@@ -17,7 +17,7 @@ protobuf==3.11.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 python-jwt==2.0.1
-requests==2.11.1
+requests==2.20.0
 requests-toolbelt==0.7.0
 rsa==4.0
 six==1.14.0
