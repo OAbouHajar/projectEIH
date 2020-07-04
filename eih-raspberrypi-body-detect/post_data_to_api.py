@@ -16,7 +16,7 @@ def db_config():
     path = os.getcwd()
 
     config = {
-    "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
+    "apiKey": "<>",
     "authDomain": "projecteih.firebaseio.com",
     "databaseURL": "https://projecteih.firebaseio.com",
     "storageBucket": "projecteih.appspot.com",
