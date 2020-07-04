@@ -6,7 +6,7 @@ import sys
 #export FIREBASE_DB_URL=https://projecteih.firebaseio.com/locations.json
 #export REG_BUILIDING_ID=-M4Eq45nYdyBOA8GgL5r
 #export DEVICE_ID=carlow14512
-#export PROJECT_API_KEY=AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8
+#export PROJECT_API_KEY=<>
 #os.environ['PROJECT_API_KEY']
 print("################################################################################################")
 print("###################################     SETUP START       ######################################")
